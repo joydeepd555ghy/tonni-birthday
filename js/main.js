@@ -27,6 +27,17 @@
     const cfg = window.SITE_CONFIG;
     if (!cfg) return;
 
+    // Onboarding
+    if (cfg.onboarding) {
+      setText("onboarding-eyebrow", cfg.onboarding.eyebrow);
+      setText("onboarding-title-bn", cfg.onboarding.titleBn);
+      setText("onboarding-title-en", cfg.onboarding.titleEn);
+      setText("onboarding-sub-bn", cfg.onboarding.subtitleBn);
+      setText("onboarding-sub-en", cfg.onboarding.subtitleEn);
+      setText("onboarding-btn-bn", cfg.onboarding.buttonBn);
+      setText("onboarding-btn-en", cfg.onboarding.buttonEn);
+    }
+
     // Gate
     setText("gate-question-bn", cfg.gate.questionBn);
     setText("gate-question-en", cfg.gate.questionEn);
@@ -117,7 +128,7 @@
   /* ---------- Hero Grapheme Headline ---------- */
   function prepareHeroHeadline() {
     const h1 = $("hero-headline-bn");
-    const text = window.SITE_CONFIG?.hero?.headlineBn || "শুভ জন্মদিন, তন্নি";
+    const text = window.SITE_CONFIG?.hero?.headlineBn || "শুভ জন্মদিন, মহারানী";
     if (!h1) return;
     h1.innerHTML = "";
     const chars = segmentGraphemes(text);
@@ -211,6 +222,35 @@
       })
       .to("#loader-heart-svg", { scale: 1.15, opacity: 0, duration: 0.45, ease: "power2.in" })
       .to(loader, { opacity: 0, duration: 0.5, ease: "power2.out" }, "-=0.15");
+  }
+
+  function initOnboarding() {
+    const cfg = window.SITE_CONFIG?.onboarding;
+    const screen = $("onboarding-screen");
+    const enterBtn = $("onboarding-enter-btn");
+
+    if (!cfg?.enabled || !screen || !enterBtn) {
+      initGateAndLoader();
+      return;
+    }
+
+    screen.hidden = false;
+    enterBtn.addEventListener(
+      "click",
+      () => {
+        if (window.SiteSFX) window.SiteSFX.unlockBurst();
+        if (window.SiteParticles) {
+          window.SiteParticles.burst(window.innerWidth / 2, window.innerHeight / 2, 54, 0.75);
+        }
+        screen.classList.add("parting");
+        const delay = reducedMotion ? 80 : 950;
+        setTimeout(() => {
+          screen.hidden = true;
+          initGateAndLoader();
+        }, delay);
+      },
+      { once: true }
+    );
   }
 
   function initGateAndLoader() {
@@ -694,6 +734,6 @@
     initReasons();
     initScrollAnimations();
     initFinale();
-    initGateAndLoader();
+    initOnboarding();
   });
 })();

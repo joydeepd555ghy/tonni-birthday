@@ -1,6 +1,133 @@
 /* ==========================================================================
-   Section Styles (0. Gate -> 9. Finale)
+   Section Styles (00. Onboarding -> 0. Gate -> 9. Finale)
    ========================================================================== */
+
+/* 00. Royal Romantic Onboarding Curtain */
+.onboarding-screen {
+  z-index: 95;
+  overflow: hidden;
+  background: #12030c;
+}
+
+.velvet-curtain {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  width: 52%;
+  z-index: 1;
+  background:
+    repeating-linear-gradient(
+      90deg,
+      rgba(92, 14, 46, 0.92) 0px,
+      rgba(48, 8, 28, 0.96) 28px,
+      rgba(74, 12, 38, 0.94) 56px
+    );
+  box-shadow: inset 0 0 90px rgba(0, 0, 0, 0.72);
+  transition: transform 1.15s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.curtain-left {
+  left: 0;
+  border-right: 2px solid rgba(242, 195, 107, 0.45);
+}
+
+.curtain-right {
+  right: 0;
+  border-left: 2px solid rgba(242, 195, 107, 0.45);
+}
+
+.onboarding-screen.parting .curtain-left {
+  transform: translateX(-105%);
+}
+
+.onboarding-screen.parting .curtain-right {
+  transform: translateX(105%);
+}
+
+.onboarding-card {
+  position: relative;
+  z-index: 2;
+  width: min(390px, 100%);
+  padding: 36px 24px 30px;
+  text-align: center;
+  transition: opacity 0.65s ease, transform 0.65s ease;
+}
+
+.onboarding-screen.parting .onboarding-card {
+  opacity: 0;
+  transform: scale(0.94) translateY(-10px);
+}
+
+.royal-card::before {
+  content: "";
+  position: absolute;
+  inset: 8px;
+  border: 1px solid rgba(242, 195, 107, 0.24);
+  border-radius: calc(var(--radius-lg) - 6px);
+  pointer-events: none;
+}
+
+.royal-crest {
+  width: 72px;
+  margin: 0 auto 14px;
+  filter: drop-shadow(0 0 18px rgba(242, 195, 107, 0.65));
+}
+
+.crown-svg {
+  width: 100%;
+  height: auto;
+}
+
+.onboarding-title-bn {
+  margin-top: 8px;
+  font-family: var(--font-bn-display);
+  font-size: clamp(1.9rem, 8vw, 2.55rem);
+  font-weight: 400;
+  color: var(--gold);
+  line-height: 1.7;
+  text-shadow: 0 4px 24px rgba(242, 195, 107, 0.35);
+}
+
+.onboarding-title-en {
+  font-family: var(--font-en-script);
+  font-size: clamp(1.75rem, 7vw, 2.25rem);
+  color: var(--blush);
+  line-height: 1.25;
+  margin-bottom: 14px;
+}
+
+.onboarding-sub-bn {
+  font-family: var(--font-bn-display);
+  font-size: 0.96rem;
+  color: var(--cream);
+  line-height: 1.7;
+}
+
+.onboarding-sub-en {
+  font-size: 0.86rem;
+  color: var(--muted);
+  margin-top: 4px;
+  margin-bottom: 24px;
+}
+
+.btn-royal-enter {
+  width: 100%;
+  padding: 13px 24px;
+  box-shadow:
+    0 12px 34px rgba(242, 195, 107, 0.42),
+    0 0 28px rgba(255, 122, 156, 0.28);
+}
+
+.hero-crown-badge {
+  width: 46px;
+  margin: 0 auto 6px;
+  filter: drop-shadow(0 0 14px rgba(242, 195, 107, 0.65));
+}
+
+.crown-svg-sm {
+  width: 100%;
+  height: auto;
+}
 
 /* 0. Gate Screen */
 .gate-card {

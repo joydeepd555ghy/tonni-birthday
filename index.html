@@ -3,15 +3,15 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-  <title>Happy Birthday, Tonni</title>
-  <meta name="description" content="A private birthday premiere and love letter for Tonni Sarker.">
+  <title>Happy Birthday, Maharani — Tonni Sarker</title>
+  <meta name="description" content="A royal birthday premiere and love letter for Maharani Tonni Sarker.">
   <meta name="robots" content="noindex,nofollow">
-  <meta name="theme-color" content="#1a0613">
+  <meta name="theme-color" content="#12030c">
 
   <!-- Open Graph / Social Preview -->
   <meta property="og:type" content="website">
-  <meta property="og:title" content="Happy Birthday, Tonni">
-  <meta property="og:description" content="A private birthday premiere and love letter for Tonni Sarker.">
+  <meta property="og:title" content="Happy Birthday, Maharani — Tonni">
+  <meta property="og:description" content="A royal birthday premiere and love letter for Maharani Tonni Sarker.">
   <meta property="og:image" content="assets/media/tonni.jpg">
 
   <!-- Google Fonts -->
@@ -20,9 +20,9 @@
   <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;0,700;1,400;1,500;1,600;1,700&family=Galada&family=Great+Vibes&family=Hind+Siliguri:wght@300;400;500;600;700&family=Tiro+Bangla:ital@0;1&display=swap" rel="stylesheet">
 
   <!-- Stylesheets -->
-  <link rel="stylesheet" href="css/base.css">
-  <link rel="stylesheet" href="css/sections.css">
-  <link rel="stylesheet" href="css/effects.css">
+  <link rel="stylesheet" href="css/base.css?v=2">
+  <link rel="stylesheet" href="css/sections.css?v=2">
+  <link rel="stylesheet" href="css/effects.css?v=2">
 </head>
 <body>
   <!-- Scroll Progress Golden Thread -->
@@ -50,6 +50,37 @@
       <span class="music-pill-text">Music</span>
     </button>
   </div>
+
+  <!-- 00. Royal Romantic Onboarding Curtain -->
+  <section id="onboarding-screen" class="overlay-screen onboarding-screen" aria-label="Birthday premiere welcome" hidden>
+    <div class="velvet-curtain curtain-left" aria-hidden="true"></div>
+    <div class="velvet-curtain curtain-right" aria-hidden="true"></div>
+    <div class="glass-card onboarding-card royal-card">
+      <div class="royal-crest" aria-hidden="true">
+        <svg class="crown-svg" viewBox="0 0 64 42">
+          <path d="M6 34 L10 12 L23 23 L32 6 L41 23 L54 12 L58 34 Z" fill="none" stroke="#f2c36b" stroke-width="2.2" stroke-linejoin="round"/>
+          <circle cx="10" cy="10" r="2.6" fill="#ffd0dc"/>
+          <circle cx="32" cy="4.5" r="3.2" fill="#f2c36b"/>
+          <circle cx="54" cy="10" r="2.6" fill="#ffd0dc"/>
+          <line x1="8" y1="38" x2="56" y2="38" stroke="#f2c36b" stroke-width="2" stroke-linecap="round"/>
+        </svg>
+      </div>
+      <p class="eyebrow" id="onboarding-eyebrow" lang="en"></p>
+      <h1 class="onboarding-title-bn" id="onboarding-title-bn" lang="bn"></h1>
+      <p class="onboarding-title-en" id="onboarding-title-en" lang="en"></p>
+      <p class="onboarding-sub-bn" id="onboarding-sub-bn" lang="bn"></p>
+      <p class="onboarding-sub-en" id="onboarding-sub-en" lang="en"></p>
+      <button id="onboarding-enter-btn" class="btn btn-gold btn-royal-enter" type="button">
+        <svg class="btn-icon" viewBox="0 0 24 24" aria-hidden="true">
+          <path d="M12 21s-8.5-5.6-8.5-11.5C3.5 6.4 5.9 4 8.8 4c1.7 0 3.2.9 3.2 2.3C12 4.9 13.5 4 15.2 4 18.1 4 20.5 6.4 20.5 9.5 20.5 15.4 12 21 12 21Z" fill="currentColor"/>
+        </svg>
+        <span class="btn-bilingual">
+          <span id="onboarding-btn-bn" lang="bn"></span>
+          <span id="onboarding-btn-en" lang="en"></span>
+        </span>
+      </button>
+    </div>
+  </section>
 
   <!-- 0. Optional Gate Screen -->
   <section id="gate-screen" class="overlay-screen gate-screen" aria-label="Private entry question" hidden>
@@ -94,6 +125,13 @@
 
     <!-- 2. Hero -->
     <section id="hero" class="section hero-section">
+      <div class="hero-crown-badge" aria-hidden="true">
+        <svg class="crown-svg-sm" viewBox="0 0 64 42">
+          <path d="M6 34 L10 12 L23 23 L32 6 L41 23 L54 12 L58 34 Z" fill="none" stroke="#f2c36b" stroke-width="2.2" stroke-linejoin="round"/>
+          <circle cx="32" cy="4.5" r="3" fill="#ff7a9c"/>
+          <line x1="9" y1="38" x2="55" y2="38" stroke="#f2c36b" stroke-width="1.8" stroke-linecap="round"/>
+        </svg>
+      </div>
       <p class="eyebrow" id="hero-eyebrow" lang="en"></p>
 
       <div class="hero-arch-stage">
@@ -474,13 +512,13 @@
   <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/ScrollTrigger.min.js"></script>
 
   <!-- App Scripts -->
-  <script src="js/config.js"></script>
-  <script src="js/sfx.js"></script>
-  <script src="js/particles.js"></script>
-  <script src="js/cursor.js"></script>
-  <script src="js/gallery.js"></script>
-  <script src="js/cake.js"></script>
-  <script src="js/letter.js"></script>
-  <script src="js/main.js"></script>
+  <script src="js/config.js?v=2"></script>
+  <script src="js/sfx.js?v=2"></script>
+  <script src="js/particles.js?v=2"></script>
+  <script src="js/cursor.js?v=2"></script>
+  <script src="js/gallery.js?v=2"></script>
+  <script src="js/cake.js?v=2"></script>
+  <script src="js/letter.js?v=2"></script>
+  <script src="js/main.js?v=2"></script>
 </body>
 </html>

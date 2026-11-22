@@ -51,11 +51,21 @@ body {
   line-height: 1.65;
   overflow-x: clip;
   background:
-    radial-gradient(120% 70% at 50% 0%, rgba(61, 16, 41, 0.92) 0%, rgba(26, 6, 19, 0.98) 65%),
-    radial-gradient(80% 50% at 85% 90%, rgba(255, 122, 156, 0.08) 0%, transparent 70%),
-    var(--night);
+    radial-gradient(95% 55% at 50% 0%, rgba(102, 20, 56, 0.72) 0%, rgba(26, 6, 19, 0.96) 62%),
+    radial-gradient(60% 45% at 15% 40%, rgba(242, 195, 107, 0.08) 0%, transparent 70%),
+    radial-gradient(70% 50% at 85% 85%, rgba(255, 122, 156, 0.13) 0%, transparent 72%),
+    #12030c;
   background-attachment: fixed;
   -webkit-font-smoothing: antialiased;
+}
+
+body::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 1;
+  background: radial-gradient(circle at 50% 45%, transparent 55%, rgba(10, 1, 7, 0.62) 100%);
 }
 
 /* Bengali typography: ensure proper glyph shaping & generous line-height */
@@ -173,12 +183,16 @@ main {
 
 /* Glass Card */
 .glass-card {
-  background: var(--glass-bg);
-  backdrop-filter: blur(14px);
-  -webkit-backdrop-filter: blur(14px);
-  border: 1px solid var(--glass-border);
+  position: relative;
+  background: linear-gradient(160deg, rgba(64, 15, 42, 0.66), rgba(28, 6, 20, 0.76));
+  backdrop-filter: blur(18px);
+  -webkit-backdrop-filter: blur(18px);
+  border: 1px solid rgba(242, 195, 107, 0.36);
   border-radius: var(--radius-lg);
-  box-shadow: var(--shadow-glow);
+  box-shadow:
+    0 22px 54px rgba(0, 0, 0, 0.62),
+    inset 0 1px 0 rgba(255, 218, 228, 0.16),
+    0 0 42px rgba(255, 122, 156, 0.16);
 }
 
 /* Buttons */
