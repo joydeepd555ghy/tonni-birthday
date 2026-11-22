@@ -1,32 +1,10 @@
 /**
  * Cake module:
- *  - Sequential candle blow-out with smoke curl & confetti/heart burst
- *  - Optional Web Audio microphone blow detection (requested only on tap)
+ *  - Sequential candle blow-out with smoke curl, applause & cracker celebration
  */
 (function () {
   let candlesOut = false;
-  let audioCtx = null;
-  let micStream = null;
-  let micRaf = null;
-  let listening = false;
-
   const $ = (id) => document.getElementById(id);
-
-  function stopMic() {
-    listening = false;
-    if (micRaf) {
-      cancelAnimationFrame(micRaf);
-      micRaf = null;
-    }
-    if (micStream) {
-      micStream.getTracks().forEach((t) => t.stop());
-      micStream = null;
-    }
-    if (audioCtx) {
-      audioCtx.close().catch(() => {});
-      audioCtx = null;
-    }
-  }
 
   function blowOutCandles() {
     if (candlesOut) {
@@ -34,7 +12,7 @@
       return;
     }
     candlesOut = true;
-    stopMic();
+
     if (window.SiteMusic && window.SiteMusic.duck) {
       window.SiteMusic.duck(0.16);
     }
@@ -42,8 +20,6 @@
 
     const cfg = window.SITE_CONFIG?.cake || {};
     const candles = Array.from(document.querySelectorAll("#candles-group .candle"));
-    const status = $("mic-status");
-    if (status) status.textContent = "";
 
     candles.forEach((c, idx) => {
       setTimeout(() => {
@@ -74,7 +50,6 @@
       if (bnSpan) bnSpan.textContent = cfg.relightLabel || "Light candles again";
       if (enSpan) enSpan.textContent = "";
 
-      // Gently restore background music after applause & crackers finish
       setTimeout(() => {
         if (window.SiteMusic && window.SiteMusic.unduck) {
           window.SiteMusic.unduck();
@@ -96,66 +71,7 @@
     if (enSpan) enSpan.textContent = cfg.blowBtnEn || "Blow the candles";
   }
 
-  async function toggleMicBlow() {
-    const cfg = window.SITE_CONFIG?.cake || {};
-    const status = $("mic-status");
-
-    if (candlesOut) relightCandles();
-
-    if (listening) {
-      stopMic();
-      if (status) status.textContent = "";
-      return;
-    }
-
-    if (!navigator.mediaDevices || !navigator.mediaDevices.getUserMedia) {
-      if (status) status.textContent = cfg.micDeniedText || "Microphone unavailable — tap the button to blow.";
-      return;
-    }
-
-    try {
-      micStream = await navigator.mediaDevices.getUserMedia({ audio: true });
-      const AudioContextCls = window.AudioContext || window.webkitAudioContext;
-      audioCtx = new AudioContextCls();
-      const source = audioCtx.createMediaStreamSource(micStream);
-      const analyser = audioCtx.createAnalyser();
-      analyser.fftSize = 512;
-      source.connect(analyser);
-
-      const data = new Uint8Array(analyser.frequencyBinCount);
-      listening = true;
-      if (status) status.textContent = cfg.micListeningText || "Listening... blow gently into your microphone";
-
-      let sustainedFrames = 0;
-      const detect = () => {
-        if (!listening) return;
-        analyser.getByteFrequencyData(data);
-        // Blowing air creates strong low-mid energy
-        let sum = 0;
-        const bins = Math.min(32, data.length);
-        for (let i = 0; i < bins; i++) sum += data[i];
-        const avg = sum / bins;
-
-        if (avg > 62) {
-          sustainedFrames++;
-          if (sustainedFrames >= 6) {
-            blowOutCandles();
-            return;
-          }
-        } else {
-          sustainedFrames = Math.max(0, sustainedFrames - 1);
-        }
-        micRaf = requestAnimationFrame(detect);
-      };
-      micRaf = requestAnimationFrame(detect);
-    } catch {
-      stopMic();
-      if (status) status.textContent = cfg.micDeniedText || "Microphone unavailable — tap the button to blow.";
-    }
-  }
-
   document.addEventListener("DOMContentLoaded", () => {
     $("blow-btn")?.addEventListener("click", blowOutCandles);
-    $("mic-blow-btn")?.addEventListener("click", toggleMicBlow);
   });
 })();

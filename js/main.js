@@ -109,8 +109,6 @@
     setText("cake-subtitle", cfg.cake.subtitle);
     setText("blow-btn-bn", cfg.cake.blowBtnBn);
     setText("blow-btn-en", cfg.cake.blowBtnEn);
-    setText("mic-btn-bn", cfg.cake.micBtnBn);
-    setText("mic-btn-en", cfg.cake.micBtnEn);
     setText("wish-bn", cfg.cake.wishGrantedBn);
     setText("wish-en", cfg.cake.wishGrantedEn);
 

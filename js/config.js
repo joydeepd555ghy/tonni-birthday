@@ -198,10 +198,6 @@ window.SITE_CONFIG = {
     subtitle: "Close your eyes, make a wish, and blow out the candles.",
     blowBtnBn: "ফুঁ দাও",
     blowBtnEn: "Blow the candles",
-    micBtnBn: "মাইক্রোফোনে ফুঁ দাও",
-    micBtnEn: "Use mic to blow",
-    micListeningText: "Listening... blow gently into your microphone",
-    micDeniedText: "Microphone unavailable — tap the button to blow the candles.",
     relightLabel: "Light candles again",
     wishGrantedBn: "মহারানী, তোমার সব ইচ্ছে পূরণ হোক",
     wishGrantedEn: "May every single wish of yours come true, Maharani"
