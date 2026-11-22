@@ -1,9 +1,11 @@
 /**
  * Cake module:
- *  - Sequential candle blow-out with smoke curl, applause & cracker celebration
+ *  - Stage 1: Sequential candle blow-out with smoke curl, dimming candlelight, applause & crackers
+ *  - Stage 2: Interactive golden cake knife cut + frosted slice pop-out ("First bite for Maharani!")
  */
 (function () {
   let candlesOut = false;
+  let cakeCut = false;
   const $ = (id) => document.getElementById(id);
 
   function blowOutCandles() {
@@ -35,7 +37,9 @@
     const finishDelay = candles.length * 170 + 180;
     setTimeout(() => {
       const wish = $("wish-message");
+      const cutBtn = $("cut-cake-btn");
       if (wish) wish.hidden = false;
+      if (cutBtn && !cakeCut) cutBtn.hidden = false;
 
       if (window.SiteParticles) {
         const svg = $("cake-svg");
@@ -63,14 +67,51 @@
     }, finishDelay);
   }
 
+  function cutTheCake() {
+    if (cakeCut) return;
+    cakeCut = true;
+
+    const knife = $("cake-knife");
+    const slice = $("cake-slice");
+    const cutBtn = $("cut-cake-btn");
+    const biteBanner = $("cake-bite-banner");
+
+    if (knife) knife.classList.add("cutting");
+    if (slice) slice.classList.add("sliced");
+    if (cutBtn) cutBtn.hidden = true;
+
+    if (window.SiteSFX) {
+      window.SiteSFX.matchFanfare();
+      if (window.SiteSFX.applause) window.SiteSFX.applause();
+    }
+
+    if (window.SiteParticles) {
+      const svg = $("cake-svg");
+      const rect = svg ? svg.getBoundingClientRect() : { left: innerWidth / 2, top: innerHeight / 2, width: 0 };
+      window.SiteParticles.burst(rect.left + rect.width / 2, rect.top + rect.height * 0.55, 52, 0.8);
+      window.SiteParticles.heartRain(20);
+    }
+
+    setTimeout(() => {
+      if (knife) knife.classList.remove("cutting");
+      if (biteBanner) biteBanner.hidden = false;
+    }, 650);
+  }
+
   function relightCandles() {
     candlesOut = false;
+    cakeCut = false;
     const cfg = window.SITE_CONFIG?.cake || {};
     document.querySelectorAll("#candles-group .candle").forEach((c) => c.classList.remove("out"));
-    const glow = $("cake-candle-glow");
-    if (glow) glow.classList.remove("dimmed");
+    $("cake-candle-glow")?.classList.remove("dimmed");
+    $("cake-knife")?.classList.remove("cutting");
+    $("cake-slice")?.classList.remove("sliced");
     const wish = $("wish-message");
+    const cutBtn = $("cut-cake-btn");
+    const biteBanner = $("cake-bite-banner");
     if (wish) wish.hidden = true;
+    if (cutBtn) cutBtn.hidden = true;
+    if (biteBanner) biteBanner.hidden = true;
 
     const bnSpan = $("blow-btn-bn");
     const enSpan = $("blow-btn-en");
@@ -80,5 +121,6 @@
 
   document.addEventListener("DOMContentLoaded", () => {
     $("blow-btn")?.addEventListener("click", blowOutCandles);
+    $("cut-cake-btn")?.addEventListener("click", cutTheCake);
   });
 })();

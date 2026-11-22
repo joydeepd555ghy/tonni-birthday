@@ -113,6 +113,10 @@
     setText("cake-subtitle", cfg.cake.subtitle);
     setText("blow-btn-bn", cfg.cake.blowBtnBn);
     setText("blow-btn-en", cfg.cake.blowBtnEn);
+    setText("cut-btn-bn", cfg.cake.cutBtnBn || "কেক কাটো, মহারানী");
+    setText("cut-btn-en", cfg.cake.cutBtnEn || "Cut Your Birthday Cake");
+    setText("first-bite-bn", cfg.cake.firstBiteBn || "প্রথম টুকরো শুধু আমার মহারানীর জন্য!");
+    setText("first-bite-en", cfg.cake.firstBiteEn || "The very first bite is for my Maharani!");
     setText("wish-bn", cfg.cake.wishGrantedBn);
     setText("wish-en", cfg.cake.wishGrantedEn);
 

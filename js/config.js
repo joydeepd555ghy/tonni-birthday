@@ -228,9 +228,13 @@ window.SITE_CONFIG = {
   cake: {
     titleBn: "মহারানী, একটা ইচ্ছে করো",
     titleEn: "Make a birthday wish, Maharani",
-    subtitle: "Close your eyes, make a wish, and blow out the candles.",
+    subtitle: "Close your eyes, make a wish, blow out the candles, and cut your royal cake.",
     blowBtnBn: "ফুঁ দাও",
     blowBtnEn: "Blow the candles",
+    cutBtnBn: "কেক কাটো, মহারানী",
+    cutBtnEn: "Cut Your Birthday Cake",
+    firstBiteBn: "প্রথম টুকরো শুধু আমার মহারানীর জন্য!",
+    firstBiteEn: "The very first bite is for my Maharani!",
     relightLabel: "Light candles again",
     wishGrantedBn: "মহারানী, তোমার সব ইচ্ছে পূরণ হোক",
     wishGrantedEn: "May every single wish of yours come true, Maharani"

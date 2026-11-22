@@ -20,9 +20,9 @@
   <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;0,700;1,400;1,500;1,600;1,700&family=Galada&family=Great+Vibes&family=Hind+Siliguri:wght@300;400;500;600;700&family=Tiro+Bangla:ital@0;1&display=swap" rel="stylesheet">
 
   <!-- Stylesheets -->
-  <link rel="stylesheet" href="css/base.css?v=18">
-  <link rel="stylesheet" href="css/sections.css?v=18">
-  <link rel="stylesheet" href="css/effects.css?v=18">
+  <link rel="stylesheet" href="css/base.css?v=19">
+  <link rel="stylesheet" href="css/sections.css?v=19">
+  <link rel="stylesheet" href="css/effects.css?v=19">
 </head>
 <body>
   <!-- Scroll Progress Golden Thread -->
@@ -691,67 +691,136 @@
 
       <div class="cake-stage">
         <div id="cake-candle-glow" class="cake-candle-glow" aria-hidden="true"></div>
-        <svg id="cake-svg" class="cake-svg" viewBox="0 0 280 250" role="img" aria-label="Birthday cake with flickering candles">
+        <div class="cake-sparkles" aria-hidden="true">
+          <svg class="cake-sp sp1" viewBox="0 0 24 24"><path d="M12 1L14.5 9.5L23 12L14.5 14.5L12 23L9.5 14.5L1 12L9.5 9.5Z"/></svg>
+          <svg class="cake-sp sp2" viewBox="0 0 24 24"><path d="M12 21s-8.5-5.6-8.5-11.5C3.5 6.4 5.9 4 8.8 4c1.7 0 3.2.9 3.2 2.3C12 4.9 13.5 4 15.2 4 18.1 4 20.5 6.4 20.5 9.5 20.5 15.4 12 21 12 21Z"/></svg>
+          <svg class="cake-sp sp3" viewBox="0 0 24 24"><path d="M12 1L14.5 9.5L23 12L14.5 14.5L12 23L9.5 14.5L1 12L9.5 9.5Z"/></svg>
+        </div>
+
+        <svg id="cake-svg" class="cake-svg" viewBox="0 0 320 300" role="img" aria-label="Royal 3-tier birthday cake for Maharani with flickering candles">
           <defs>
-            <radialGradient id="flameGrad" cx="50%" cy="60%" r="60%">
-              <stop offset="0%" stop-color="#fff9d6"/>
-              <stop offset="50%" stop-color="#ffd166"/>
-              <stop offset="100%" stop-color="#ff6b6b"/>
+            <radialGradient id="flameGrad" cx="50%" cy="62%" r="60%">
+              <stop offset="0%" stop-color="#ffffff"/>
+              <stop offset="35%" stop-color="#fff4b8"/>
+              <stop offset="70%" stop-color="#ffb74d"/>
+              <stop offset="100%" stop-color="#ff5e62"/>
             </radialGradient>
-            <linearGradient id="cakeTierTop" x1="0%" y1="0%" x2="0%" y2="100%">
-              <stop offset="0%" stop-color="#ff8fab"/>
-              <stop offset="100%" stop-color="#e5537c"/>
+            <linearGradient id="tierRose" x1="0%" y1="0%" x2="100%" y2="100%">
+              <stop offset="0%" stop-color="#ff9ab8"/>
+              <stop offset="55%" stop-color="#e85382"/>
+              <stop offset="100%" stop-color="#b82c59"/>
             </linearGradient>
-            <linearGradient id="cakeTierBottom" x1="0%" y1="0%" x2="0%" y2="100%">
-              <stop offset="0%" stop-color="#f2c36b"/>
-              <stop offset="100%" stop-color="#c9933b"/>
+            <linearGradient id="tierCream" x1="0%" y1="0%" x2="0%" y2="100%">
+              <stop offset="0%" stop-color="#fff7ef"/>
+              <stop offset="100%" stop-color="#f7d7c8"/>
+            </linearGradient>
+            <linearGradient id="tierGold" x1="0%" y1="0%" x2="100%" y2="100%">
+              <stop offset="0%" stop-color="#fce09b"/>
+              <stop offset="50%" stop-color="#e5b04d"/>
+              <stop offset="100%" stop-color="#b87e24"/>
+            </linearGradient>
+            <linearGradient id="standGold" x1="0%" y1="0%" x2="100%" y2="0%">
+              <stop offset="0%" stop-color="#c48a2b"/>
+              <stop offset="50%" stop-color="#fce2a6"/>
+              <stop offset="100%" stop-color="#b57a1f"/>
             </linearGradient>
           </defs>
 
-          <!-- Plate shadow -->
-          <ellipse cx="140" cy="232" rx="122" ry="12" fill="rgba(0,0,0,0.4)"/>
-          <ellipse cx="140" cy="226" rx="116" ry="9" fill="#fbe9dc" opacity="0.2"/>
+          <!-- Pedestal Shadow & Royal Gold Cake Stand -->
+          <ellipse cx="160" cy="284" rx="112" ry="10" fill="rgba(0,0,0,0.45)"/>
+          <path d="M138 248 L182 248 L194 276 Q160 286 126 276 Z" fill="url(#standGold)"/>
+          <ellipse cx="160" cy="248" rx="124" ry="14" fill="url(#standGold)"/>
+          <ellipse cx="160" cy="245" rx="116" ry="10" fill="#fff5ea" opacity="0.28"/>
 
-          <!-- Bottom tier -->
-          <rect x="34" y="156" width="212" height="66" rx="14" fill="url(#cakeTierBottom)"/>
-          <path d="M34 174 q17.6 15 35.3 0 t35.3 0 t35.3 0 t35.3 0 t35.3 0 t35.5 0 v-12 H34 z" fill="#fbe9dc"/>
+          <!-- Bottom Tier (Royal Velvet Rose) -->
+          <rect x="46" y="182" width="228" height="62" rx="14" fill="url(#tierRose)"/>
+          <path d="M46 198 q19 16 38 0 t38 0 t38 0 t38 0 t38 0 t38 0 v-12 H46 z" fill="#fff4eb"/>
+          <!-- Gold Sugar Pearls on Bottom Tier -->
+          <g fill="#f7cc7a">
+            <circle cx="64" cy="232" r="3.2"/><circle cx="84" cy="232" r="3.2"/><circle cx="104" cy="232" r="3.2"/>
+            <circle cx="124" cy="232" r="3.2"/><circle cx="144" cy="232" r="3.2"/><circle cx="164" cy="232" r="3.2"/>
+            <circle cx="184" cy="232" r="3.2"/><circle cx="204" cy="232" r="3.2"/><circle cx="224" cy="232" r="3.2"/>
+            <circle cx="244" cy="232" r="3.2"/><circle cx="258" cy="232" r="3.2"/>
+          </g>
 
-          <!-- Top tier -->
-          <rect x="60" y="102" width="160" height="54" rx="12" fill="url(#cakeTierTop)"/>
-          <path d="M60 118 q16 14 32 0 t32 0 t32 0 t32 0 t32 0 v-10 H60 z" fill="#fff4ea"/>
+          <!-- Middle Tier (Champagne Cream + Rose Swags) -->
+          <rect x="74" y="130" width="172" height="52" rx="12" fill="url(#tierCream)"/>
+          <path d="M74 146 q17.2 14 34.4 0 t34.4 0 t34.4 0 t34.4 0 t34.4 0 v-12 H74 z" fill="#ff709e"/>
+          <!-- Mini Strawberries & Roses on Middle Tier -->
+          <g>
+            <circle cx="84" cy="180" r="6" fill="#e63963"/><circle cx="84" cy="177" r="2.2" fill="#4aa96c"/>
+            <circle cx="236" cy="180" r="6" fill="#e63963"/><circle cx="236" cy="177" r="2.2" fill="#4aa96c"/>
+            <circle cx="160" cy="164" r="7" fill="#ff709e"/><circle cx="160" cy="164" r="3.5" fill="#ffd9e6"/>
+          </g>
 
-          <!-- Candles -->
+          <!-- Top Tier (Champagne Gold Glaze) -->
+          <rect x="104" y="88" width="112" height="42" rx="10" fill="url(#tierGold)"/>
+          <path d="M104 102 q14 11 28 0 t28 0 t28 0 t28 0 v-10 H104 z" fill="#fff7ef"/>
+          <!-- Maharani Plaque on Middle Tier -->
+          <rect x="116" y="196" width="88" height="24" rx="12" fill="rgba(42,9,30,0.86)" stroke="#f7cc7a" stroke-width="1.4"/>
+          <text x="160" y="213" text-anchor="middle" fill="#f7cc7a" font-size="12.5" font-family="'Tiro Bangla', serif">মহারানী</text>
+
+          <!-- 5 Striped Rose-Gold Candles -->
           <g class="candles-group" id="candles-group">
-            <g class="candle" data-candle="0" transform="translate(92, 52)">
-              <rect x="-4" y="18" width="8" height="34" rx="3" fill="#ffd0dc"/>
-              <rect x="-1" y="12" width="2" height="7" fill="#3a1020"/>
-              <path class="flame" d="M0 0 C6 7 6 14 0 18 C-6 14 -6 7 0 0Z" fill="url(#flameGrad)"/>
-              <path class="smoke" d="M0 10 Q-5 2 2 -6 Q7 -14 -2 -22" fill="none" stroke="rgba(255,255,255,0.55)" stroke-width="2" stroke-linecap="round"/>
+            <g class="candle" data-candle="0" transform="translate(116, 44)">
+              <rect x="-3.5" y="18" width="7" height="28" rx="3" fill="#ffd9e6"/>
+              <line x1="-3.5" y1="26" x2="3.5" y2="22" stroke="#ff709e" stroke-width="1.6"/>
+              <line x1="-3.5" y1="35" x2="3.5" y2="31" stroke="#ff709e" stroke-width="1.6"/>
+              <rect x="-0.8" y="13" width="1.6" height="6" fill="#3a1020"/>
+              <circle class="flame-halo" cx="0" cy="9" r="10" fill="rgba(255,209,102,0.38)"/>
+              <path class="flame" d="M0 -1 C5.5 6 5.5 13 0 17 C-5.5 13 -5.5 6 0 -1Z" fill="url(#flameGrad)"/>
+              <path class="smoke" d="M0 9 Q-5 1 2 -7 Q7 -15 -2 -23" fill="none" stroke="rgba(255,255,255,0.6)" stroke-width="2" stroke-linecap="round"/>
             </g>
-            <g class="candle" data-candle="1" transform="translate(116, 44)">
-              <rect x="-4" y="18" width="8" height="42" rx="3" fill="#fbe9dc"/>
-              <rect x="-1" y="12" width="2" height="7" fill="#3a1020"/>
-              <path class="flame" d="M0 0 C6 7 6 14 0 18 C-6 14 -6 7 0 0Z" fill="url(#flameGrad)"/>
-              <path class="smoke" d="M0 10 Q5 2 -2 -6 Q-7 -14 2 -22" fill="none" stroke="rgba(255,255,255,0.55)" stroke-width="2" stroke-linecap="round"/>
+            <g class="candle" data-candle="1" transform="translate(138, 36)">
+              <rect x="-3.5" y="18" width="7" height="36" rx="3" fill="#fff3e6"/>
+              <line x1="-3.5" y1="28" x2="3.5" y2="24" stroke="#f7cc7a" stroke-width="1.6"/>
+              <line x1="-3.5" y1="38" x2="3.5" y2="34" stroke="#f7cc7a" stroke-width="1.6"/>
+              <rect x="-0.8" y="13" width="1.6" height="6" fill="#3a1020"/>
+              <circle class="flame-halo" cx="0" cy="9" r="10" fill="rgba(255,209,102,0.38)"/>
+              <path class="flame" d="M0 -1 C5.5 6 5.5 13 0 17 C-5.5 13 -5.5 6 0 -1Z" fill="url(#flameGrad)"/>
+              <path class="smoke" d="M0 9 Q5 1 -2 -7 Q-6 -15 2 -23" fill="none" stroke="rgba(255,255,255,0.6)" stroke-width="2" stroke-linecap="round"/>
             </g>
-            <g class="candle" data-candle="2" transform="translate(140, 38)">
-              <rect x="-4.5" y="18" width="9" height="48" rx="3" fill="#ffd0dc"/>
-              <rect x="-1" y="12" width="2" height="7" fill="#3a1020"/>
-              <path class="flame" d="M0 0 C7 8 7 15 0 19 C-7 15 -7 8 0 0Z" fill="url(#flameGrad)"/>
-              <path class="smoke" d="M0 10 Q-6 0 3 -10 Q8 -18 -1 -26" fill="none" stroke="rgba(255,255,255,0.55)" stroke-width="2" stroke-linecap="round"/>
+            <g class="candle" data-candle="2" transform="translate(160, 28)">
+              <rect x="-4" y="18" width="8" height="44" rx="3" fill="#ffd9e6"/>
+              <line x1="-4" y1="28" x2="4" y2="24" stroke="#ff709e" stroke-width="1.8"/>
+              <line x1="-4" y1="40" x2="4" y2="36" stroke="#ff709e" stroke-width="1.8"/>
+              <rect x="-1" y="13" width="2" height="6" fill="#3a1020"/>
+              <circle class="flame-halo" cx="0" cy="9" r="12" fill="rgba(255,209,102,0.46)"/>
+              <path class="flame" d="M0 -2 C6.5 6 6.5 14 0 18 C-6.5 14 -6.5 6 0 -2Z" fill="url(#flameGrad)"/>
+              <path class="smoke" d="M0 9 Q-6 -1 3 -11 Q8 -19 -1 -27" fill="none" stroke="rgba(255,255,255,0.6)" stroke-width="2" stroke-linecap="round"/>
             </g>
-            <g class="candle" data-candle="3" transform="translate(164, 44)">
-              <rect x="-4" y="18" width="8" height="42" rx="3" fill="#fbe9dc"/>
-              <rect x="-1" y="12" width="2" height="7" fill="#3a1020"/>
-              <path class="flame" d="M0 0 C6 7 6 14 0 18 C-6 14 -6 7 0 0Z" fill="url(#flameGrad)"/>
-              <path class="smoke" d="M0 10 Q4 2 -3 -6 Q-6 -14 2 -22" fill="none" stroke="rgba(255,255,255,0.55)" stroke-width="2" stroke-linecap="round"/>
+            <g class="candle" data-candle="3" transform="translate(182, 36)">
+              <rect x="-3.5" y="18" width="7" height="36" rx="3" fill="#fff3e6"/>
+              <line x1="-3.5" y1="28" x2="3.5" y2="24" stroke="#f7cc7a" stroke-width="1.6"/>
+              <line x1="-3.5" y1="38" x2="3.5" y2="34" stroke="#f7cc7a" stroke-width="1.6"/>
+              <rect x="-0.8" y="13" width="1.6" height="6" fill="#3a1020"/>
+              <circle class="flame-halo" cx="0" cy="9" r="10" fill="rgba(255,209,102,0.38)"/>
+              <path class="flame" d="M0 -1 C5.5 6 5.5 13 0 17 C-5.5 13 -5.5 6 0 -1Z" fill="url(#flameGrad)"/>
+              <path class="smoke" d="M0 9 Q4 1 -3 -7 Q-6 -15 2 -23" fill="none" stroke="rgba(255,255,255,0.6)" stroke-width="2" stroke-linecap="round"/>
             </g>
-            <g class="candle" data-candle="4" transform="translate(188, 52)">
-              <rect x="-4" y="18" width="8" height="34" rx="3" fill="#ffd0dc"/>
-              <rect x="-1" y="12" width="2" height="7" fill="#3a1020"/>
-              <path class="flame" d="M0 0 C6 7 6 14 0 18 C-6 14 -6 7 0 0Z" fill="url(#flameGrad)"/>
-              <path class="smoke" d="M0 10 Q-4 2 2 -6 Q6 -14 -2 -22" fill="none" stroke="rgba(255,255,255,0.55)" stroke-width="2" stroke-linecap="round"/>
+            <g class="candle" data-candle="4" transform="translate(204, 44)">
+              <rect x="-3.5" y="18" width="7" height="28" rx="3" fill="#ffd9e6"/>
+              <line x1="-3.5" y1="26" x2="3.5" y2="22" stroke="#ff709e" stroke-width="1.6"/>
+              <line x1="-3.5" y1="35" x2="3.5" y2="31" stroke="#ff709e" stroke-width="1.6"/>
+              <rect x="-0.8" y="13" width="1.6" height="6" fill="#3a1020"/>
+              <circle class="flame-halo" cx="0" cy="9" r="10" fill="rgba(255,209,102,0.38)"/>
+              <path class="flame" d="M0 -1 C5.5 6 5.5 13 0 17 C-5.5 13 -5.5 6 0 -1Z" fill="url(#flameGrad)"/>
+              <path class="smoke" d="M0 9 Q-4 1 2 -7 Q6 -15 -2 -23" fill="none" stroke="rgba(255,255,255,0.6)" stroke-width="2" stroke-linecap="round"/>
             </g>
+          </g>
+
+          <!-- Animated Golden Cake Knife (slides down when cutting cake!) -->
+          <g id="cake-knife" class="cake-knife" aria-hidden="true">
+            <path d="M160 40 L166 132 L156 132 Z" fill="#fff7ef" stroke="#f7cc7a" stroke-width="1.2"/>
+            <rect x="157" y="14" width="6" height="28" rx="3" fill="url(#standGold)"/>
+          </g>
+
+          <!-- Frosted Cake Slice Pop-Out (appears after cutting!) -->
+          <g id="cake-slice" class="cake-slice" aria-hidden="true">
+            <path d="M236 228 L294 218 L294 252 L236 256 Z" fill="#ff9ab8" stroke="#fff4eb" stroke-width="1.5"/>
+            <path d="M236 228 L294 218 L274 202 Z" fill="#fff7ef"/>
+            <line x1="236" y1="242" x2="294" y2="234" stroke="#fff7ef" stroke-width="3"/>
+            <circle cx="272" cy="212" r="6" fill="#e63963"/>
           </g>
         </svg>
       </div>
@@ -763,6 +832,17 @@
             <span id="blow-btn-en" lang="en"></span>
           </span>
         </button>
+        <button id="cut-cake-btn" class="btn btn-gold" type="button" hidden>
+          <span class="btn-bilingual">
+            <span id="cut-btn-bn" lang="bn"></span>
+            <span id="cut-btn-en" lang="en"></span>
+          </span>
+        </button>
+      </div>
+
+      <div id="cake-bite-banner" class="glass-card cake-bite-banner" aria-live="polite" hidden>
+        <p id="first-bite-bn" class="first-bite-bn" lang="bn"></p>
+        <p id="first-bite-en" class="first-bite-en" lang="en"></p>
       </div>
 
       <div id="wish-message" class="wish-message" aria-live="polite" hidden>
@@ -923,13 +1003,13 @@
   <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/ScrollTrigger.min.js"></script>
 
   <!-- App Scripts -->
-  <script src="js/config.js?v=18"></script>
-  <script src="js/sfx.js?v=18"></script>
-  <script src="js/particles.js?v=18"></script>
-  <script src="js/cursor.js?v=18"></script>
-  <script src="js/gallery.js?v=18"></script>
-  <script src="js/cake.js?v=18"></script>
-  <script src="js/letter.js?v=18"></script>
-  <script src="js/main.js?v=18"></script>
+  <script src="js/config.js?v=19"></script>
+  <script src="js/sfx.js?v=19"></script>
+  <script src="js/particles.js?v=19"></script>
+  <script src="js/cursor.js?v=19"></script>
+  <script src="js/gallery.js?v=19"></script>
+  <script src="js/cake.js?v=19"></script>
+  <script src="js/letter.js?v=19"></script>
+  <script src="js/main.js?v=19"></script>
 </body>
 </html>
