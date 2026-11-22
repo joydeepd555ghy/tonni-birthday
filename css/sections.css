@@ -35,26 +35,27 @@
       rgba(108, 16, 54, 0.96) 48px,
       rgba(42, 6, 22, 0.98) 70px
     );
-  background-size: 100% 100%, 140% 100%;
   box-shadow: inset 0 0 95px rgba(0, 0, 0, 0.72);
   transform-origin: top center;
-  will-change: transform, background-position;
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
   transition: transform 1.35s cubic-bezier(0.22, 1, 0.36, 1), opacity 1.1s ease;
 }
 
 .velvet-curtain::after {
   content: "";
   position: absolute;
-  inset: 0;
+  inset: 0 -40%;
   pointer-events: none;
   background: linear-gradient(
     105deg,
-    transparent 20%,
-    rgba(255, 168, 198, 0.16) 42%,
-    rgba(247, 204, 122, 0.14) 50%,
+    transparent 24%,
+    rgba(255, 168, 198, 0.16) 45%,
+    rgba(247, 204, 122, 0.14) 52%,
     transparent 74%
   );
-  background-size: 220% 100%;
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
   animation: velvetSheenWave 7.5s ease-in-out infinite alternate;
 }
 
@@ -197,14 +198,15 @@
   text-align: center;
   padding: 24px;
   cursor: pointer;
-  animation: dateZoomAppear 1.25s cubic-bezier(0.22, 1, 0.36, 1) both;
-  transition: transform 0.95s cubic-bezier(0.4, 0, 0.2, 1), opacity 0.85s ease, filter 0.85s ease;
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
+  animation: dateZoomAppear 1.15s cubic-bezier(0.22, 1, 0.36, 1) both;
+  transition: transform 0.9s cubic-bezier(0.4, 0, 0.2, 1), opacity 0.8s ease;
 }
 
 .date-intro-splash.zoom-out {
-  transform: scale(2.5);
+  transform: scale(2.2) translate3d(0, 0, 0);
   opacity: 0;
-  filter: blur(10px);
   pointer-events: none;
 }
 
@@ -267,7 +269,11 @@
 }
 
 .premiere-ticket {
-  background: linear-gradient(160deg, rgba(108, 22, 66, 0.78), rgba(40, 7, 28, 0.88));
+  background: linear-gradient(160deg, rgba(102, 20, 62, 0.94), rgba(38, 7, 26, 0.97));
+  backdrop-filter: none;
+  -webkit-backdrop-filter: none;
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
 }
 
 .corner-ornament {
