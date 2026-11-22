@@ -254,5 +254,36 @@ window.SITE_CONFIG = {
     toLetterEn: "Unlock Your Royal Letter",
     toFinaleBn: "শেষ চমক দেখো",
     toFinaleEn: "Unlock the Final Surprise"
+  },
+
+  interludes: {
+    film: {
+      bn: "তুমি জানো আজ আমি কতটা খুশি? আজ আমার মহারানীর জন্মদিন!",
+      en: "You know how excited I am? It's your birthday, Maharani..."
+    },
+    gallery: {
+      bn: "তোমার প্রতিটি হাসি আমার সবচেয়ে প্রিয় ছবি।",
+      en: "Every single smile of yours is my favourite work of art."
+    },
+    timeline: {
+      bn: "একটা ছোট্ট \"Hi\" আমার পুরো পৃথিবী বদলে দিল...",
+      en: "One tiny \"Hi\" changed my entire world forever..."
+    },
+    reasons: {
+      bn: "তোমাকে ভালোবাসার হাজারো কারণের কয়েকটা...",
+      en: "Just a few of the thousand reasons you own my heart..."
+    },
+    cake: {
+      bn: "চোখ বন্ধ করো মহারানী, একটা সুন্দর ইচ্ছে করো...",
+      en: "Close your eyes, Maharani, and wish for the stars..."
+    },
+    letter: {
+      bn: "কিছু কথা শুধু তোমার জন্য হৃদয় দিয়ে লিখে রেখেছি...",
+      en: "Some words were written only for your heart..."
+    },
+    finale: {
+      bn: "আর একটা শেষ কথা... যেটা আমি চিরকাল বলবো।",
+      en: "And one last thing I will say for the rest of my life..."
+    }
   }
 };

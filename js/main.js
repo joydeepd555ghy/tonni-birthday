@@ -770,11 +770,52 @@
     }
   }
 
+  let interludeTimer = null;
+
+  function playInterludeThenShow(targetId, triggerBtn) {
+    const quote = window.SITE_CONFIG?.interludes?.[targetId];
+    const overlay = $("quote-interlude");
+    if (!quote || !overlay || reducedMotion) {
+      showChapter(targetId, true, triggerBtn);
+      return;
+    }
+
+    clearTimeout(interludeTimer);
+    setText("interlude-bn", quote.bn || "");
+    setText("interlude-en", quote.en || "");
+
+    overlay.classList.remove("active");
+    overlay.hidden = false;
+    void overlay.offsetWidth;
+    overlay.classList.add("active");
+
+    if (window.SiteSFX) window.SiteSFX.chime();
+    if (window.SiteParticles) {
+      window.SiteParticles.burst(window.innerWidth / 2, window.innerHeight * 0.45, 34, 0.8);
+    }
+
+    let finished = false;
+    const finish = () => {
+      if (finished) return;
+      finished = true;
+      clearTimeout(interludeTimer);
+      overlay.removeEventListener("click", finish);
+      overlay.classList.remove("active");
+      showChapter(targetId, true, triggerBtn);
+      setTimeout(() => {
+        overlay.hidden = true;
+      }, 420);
+    };
+
+    overlay.addEventListener("click", finish, { once: true });
+    interludeTimer = setTimeout(finish, 2200);
+  }
+
   function initChapterReveals() {
     document.querySelectorAll("[data-reveal-target]").forEach((btn) => {
       btn.addEventListener("click", () => {
         const targetId = btn.getAttribute("data-reveal-target");
-        if (targetId) showChapter(targetId, true, btn);
+        if (targetId) playInterludeThenShow(targetId, btn);
       });
     });
 

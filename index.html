@@ -20,9 +20,9 @@
   <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;0,700;1,400;1,500;1,600;1,700&family=Galada&family=Great+Vibes&family=Hind+Siliguri:wght@300;400;500;600;700&family=Tiro+Bangla:ital@0;1&display=swap" rel="stylesheet">
 
   <!-- Stylesheets -->
-  <link rel="stylesheet" href="css/base.css?v=11">
-  <link rel="stylesheet" href="css/sections.css?v=11">
-  <link rel="stylesheet" href="css/effects.css?v=11">
+  <link rel="stylesheet" href="css/base.css?v=13">
+  <link rel="stylesheet" href="css/sections.css?v=13">
+  <link rel="stylesheet" href="css/effects.css?v=13">
 </head>
 <body>
   <!-- Scroll Progress Golden Thread -->
@@ -62,6 +62,26 @@
       </svg>
       <span class="music-pill-text">Music</span>
     </button>
+  </div>
+
+  <!-- Full-Screen Romantic Quote Flash Interlude (between steps) -->
+  <div id="quote-interlude" class="overlay-screen quote-interlude" role="status" aria-live="polite" hidden>
+    <div class="interlude-inner">
+      <svg class="interlude-sketch" viewBox="0 0 260 150" aria-hidden="true">
+        <path class="sketch-path" d="M18 102 C56 104, 86 78, 102 52 C112 34, 130 22, 142 36 C152 22, 170 30, 168 50 C166 74, 134 98, 130 108 C124 96, 94 74, 96 52 C98 34, 118 28, 130 44 M156 82 C182 96, 214 98, 244 88" fill="none" stroke="url(#sketchGrad)" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/>
+        <path class="sketch-sparkle" d="M214 34 L217 42 L225 45 L217 48 L214 56 L211 48 L203 45 L211 42 Z" fill="#f7cc7a"/>
+        <path class="sketch-sparkle s2" d="M52 38 L54 44 L60 46 L54 48 L52 54 L50 48 L44 46 L50 44 Z" fill="#ff709e"/>
+        <defs>
+          <linearGradient id="sketchGrad" x1="0%" y1="0%" x2="100%" y2="0%">
+            <stop offset="0%" stop-color="#f7cc7a"/>
+            <stop offset="50%" stop-color="#ff709e"/>
+            <stop offset="100%" stop-color="#f7cc7a"/>
+          </linearGradient>
+        </defs>
+      </svg>
+      <p id="interlude-bn" class="interlude-bn" lang="bn"></p>
+      <p id="interlude-en" class="interlude-en" lang="en"></p>
+    </div>
   </div>
 
   <!-- Cute Floating Love-Burst Charm Button -->
@@ -618,13 +638,13 @@
   <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/ScrollTrigger.min.js"></script>
 
   <!-- App Scripts -->
-  <script src="js/config.js?v=12"></script>
-  <script src="js/sfx.js?v=12"></script>
-  <script src="js/particles.js?v=12"></script>
-  <script src="js/cursor.js?v=12"></script>
-  <script src="js/gallery.js?v=12"></script>
-  <script src="js/cake.js?v=12"></script>
-  <script src="js/letter.js?v=12"></script>
-  <script src="js/main.js?v=12"></script>
+  <script src="js/config.js?v=13"></script>
+  <script src="js/sfx.js?v=13"></script>
+  <script src="js/particles.js?v=13"></script>
+  <script src="js/cursor.js?v=13"></script>
+  <script src="js/gallery.js?v=13"></script>
+  <script src="js/cake.js?v=13"></script>
+  <script src="js/letter.js?v=13"></script>
+  <script src="js/main.js?v=13"></script>
 </body>
 </html>
