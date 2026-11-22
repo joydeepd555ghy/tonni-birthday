@@ -10,6 +10,8 @@ window.SITE_CONFIG = {
     recipientTitleEn: "Maharani",
     senderNameBn: "জয়দীপ দেবনাথ",
     senderNameEn: "Joydeep Debnath",
+    birthdayMonth: 11,
+    birthdayDay: 28,
     startDate: "2026-02-10",
     birthdayMusicSrc: "assets/music/maharani-birthday.mp3",
     romanticMusicSrc: "assets/music/song.mp3",
@@ -24,11 +26,16 @@ window.SITE_CONFIG = {
 
   onboarding: {
     enabled: true,
-    eyebrow: "A Royal Birthday Premiere",
+    eyebrow: "28 November • Royal Birthday Premiere",
+    dateStampBn: "২৮ নভেম্বর",
+    dateStampEn: "28 NOVEMBER",
+    birthdayTodayBn: "আজ তোমার বিশেষ দিন, মহারানী!",
+    birthdayTodayEn: "It's 28th November — Happy Birthday, Maharani!",
+    countdownPrefixBn: "মহারানীর জন্মদিনে আর মাত্র",
     titleBn: "স্বাগতম, মহারানী",
     titleEn: "Welcome, my Maharani",
-    subtitleBn: "আজকের দিনটি শুধুমাত্র তোমার জন্য। সাউন্ড অন করে প্রবেশ করো।",
-    subtitleEn: "Tonight belongs only to you. Turn on your sound and step inside.",
+    subtitleBn: "২৮ নভেম্বর—আমার জীবনের সবচেয়ে প্রিয় দিন। সাউন্ড অন করে প্রবেশ করো।",
+    subtitleEn: "28th November—the brightest day of every year. Turn on sound & step inside.",
     buttonBn: "প্রবেশ করো, মহারানী",
     buttonEn: "Enter, Maharani"
   },

@@ -29,6 +29,8 @@
 
     // Onboarding
     if (cfg.onboarding) {
+      setText("premiere-date-bn", cfg.onboarding.dateStampBn || "২৮ নভেম্বর");
+      setText("premiere-date-en", cfg.onboarding.dateStampEn || "28 NOVEMBER");
       setText("onboarding-eyebrow", cfg.onboarding.eyebrow);
       setText("onboarding-title-bn", cfg.onboarding.titleBn);
       setText("onboarding-title-en", cfg.onboarding.titleEn);
@@ -245,6 +247,53 @@
       .to(loader, { opacity: 0, duration: 0.5, ease: "power2.out" }, "-=0.15");
   }
 
+  function initPremiereCountdown() {
+    const box = $("premiere-countdown");
+    const cfg = window.SITE_CONFIG;
+    if (!box || !cfg) return;
+
+    const bMonth = (cfg.meta?.birthdayMonth || 11) - 1; // 0-indexed (10 = November)
+    const bDay = cfg.meta?.birthdayDay || 28;
+    let timer = null;
+
+    function update() {
+      const now = new Date();
+      if (now.getMonth() === bMonth && now.getDate() === bDay) {
+        box.innerHTML = `<span class="cd-today-bn" lang="bn"></span><span class="cd-today-en" lang="en"></span>`;
+        box.querySelector(".cd-today-bn").textContent =
+          cfg.onboarding?.birthdayTodayBn || "আজ তোমার বিশেষ দিন, মহারানী!";
+        box.querySelector(".cd-today-en").textContent =
+          cfg.onboarding?.birthdayTodayEn || "It's 28th November — Happy Birthday, Maharani!";
+        clearInterval(timer);
+        return;
+      }
+
+      let target = new Date(now.getFullYear(), bMonth, bDay, 0, 0, 0);
+      if (target <= now) target = new Date(now.getFullYear() + 1, bMonth, bDay, 0, 0, 0);
+      const diff = Math.max(0, target - now);
+      const d = Math.floor(diff / 86400000);
+      const h = Math.floor((diff % 86400000) / 3600000);
+      const m = Math.floor((diff % 3600000) / 60000);
+      const s = Math.floor((diff % 60000) / 1000);
+
+      box.innerHTML = `<span class="cd-label" lang="bn"></span><span class="cd-digits"></span>`;
+      box.querySelector(".cd-label").textContent =
+        cfg.onboarding?.countdownPrefixBn || "মহারানীর জন্মদিনে আর মাত্র";
+      box.querySelector(".cd-digits").textContent =
+        `${d}d : ${String(h).padStart(2, "0")}h : ${String(m).padStart(2, "0")}m : ${String(s).padStart(2, "0")}s`;
+    }
+
+    update();
+    timer = setInterval(() => {
+      const scr = $("onboarding-screen");
+      if (!scr || scr.hidden) {
+        clearInterval(timer);
+        return;
+      }
+      update();
+    }, 1000);
+  }
+
   function initOnboarding() {
     const cfg = window.SITE_CONFIG?.onboarding;
     const screen = $("onboarding-screen");
@@ -256,6 +305,7 @@
     }
 
     screen.hidden = false;
+    initPremiereCountdown();
     enterBtn.addEventListener(
       "click",
       () => {

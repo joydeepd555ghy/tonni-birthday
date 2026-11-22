@@ -20,9 +20,9 @@
   <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;0,700;1,400;1,500;1,600;1,700&family=Galada&family=Great+Vibes&family=Hind+Siliguri:wght@300;400;500;600;700&family=Tiro+Bangla:ital@0;1&display=swap" rel="stylesheet">
 
   <!-- Stylesheets -->
-  <link rel="stylesheet" href="css/base.css?v=13">
-  <link rel="stylesheet" href="css/sections.css?v=13">
-  <link rel="stylesheet" href="css/effects.css?v=13">
+  <link rel="stylesheet" href="css/base.css?v=14">
+  <link rel="stylesheet" href="css/sections.css?v=14">
+  <link rel="stylesheet" href="css/effects.css?v=14">
 </head>
 <body>
   <!-- Scroll Progress Golden Thread -->
@@ -97,19 +97,48 @@
     <div class="velvet-curtain curtain-left" aria-hidden="true"></div>
     <div class="velvet-curtain curtain-right" aria-hidden="true"></div>
     <div class="curtain-seam-glow" aria-hidden="true"></div>
-    <div class="glass-card onboarding-card royal-card">
-      <div class="royal-crest" aria-hidden="true">
-        <svg class="crown-svg" viewBox="0 0 64 42">
-          <path d="M6 34 L10 12 L23 23 L32 6 L41 23 L54 12 L58 34 Z" fill="none" stroke="#f2c36b" stroke-width="2.2" stroke-linejoin="round"/>
-          <circle cx="10" cy="10" r="2.6" fill="#ffd0dc"/>
-          <circle cx="32" cy="4.5" r="3.2" fill="#f2c36b"/>
-          <circle cx="54" cy="10" r="2.6" fill="#ffd0dc"/>
-          <line x1="8" y1="38" x2="56" y2="38" stroke="#f2c36b" stroke-width="2" stroke-linecap="round"/>
-        </svg>
+    <div class="glass-card onboarding-card royal-card premiere-ticket">
+      <!-- Ornate Gold Corner Sparkles -->
+      <svg class="corner-ornament tl" viewBox="0 0 32 32" aria-hidden="true"><path d="M4 28 V10 Q4 4 10 4 H28" fill="none" stroke="#f7cc7a" stroke-width="1.6" stroke-linecap="round"/><circle cx="9" cy="9" r="2" fill="#ff709e"/></svg>
+      <svg class="corner-ornament tr" viewBox="0 0 32 32" aria-hidden="true"><path d="M28 28 V10 Q28 4 22 4 H4" fill="none" stroke="#f7cc7a" stroke-width="1.6" stroke-linecap="round"/><circle cx="23" cy="9" r="2" fill="#ff709e"/></svg>
+      <svg class="corner-ornament bl" viewBox="0 0 32 32" aria-hidden="true"><path d="M4 4 V22 Q4 28 10 28 H28" fill="none" stroke="#f7cc7a" stroke-width="1.6" stroke-linecap="round"/><circle cx="9" cy="23" r="2" fill="#ff709e"/></svg>
+      <svg class="corner-ornament br" viewBox="0 0 32 32" aria-hidden="true"><path d="M28 4 V22 Q28 28 22 28 H4" fill="none" stroke="#f7cc7a" stroke-width="1.6" stroke-linecap="round"/><circle cx="23" cy="23" r="2" fill="#ff709e"/></svg>
+
+      <div class="premiere-date-pill">
+        <span class="premiere-date-bn" id="premiere-date-bn" lang="bn">২৮ নভেম্বর</span>
+        <span class="premiere-date-sep" aria-hidden="true">•</span>
+        <span class="premiere-date-en" id="premiere-date-en" lang="en">28 NOVEMBER</span>
       </div>
+
+      <div class="premiere-portrait-wrap">
+        <div class="royal-crest premiere-crown" aria-hidden="true">
+          <svg class="crown-svg" viewBox="0 0 64 42">
+            <path d="M6 34 L10 12 L23 23 L32 6 L41 23 L54 12 L58 34 Z" fill="none" stroke="#f7cc7a" stroke-width="2.2" stroke-linejoin="round"/>
+            <circle cx="10" cy="10" r="2.6" fill="#ffd9e6"/>
+            <circle cx="32" cy="4.5" r="3.4" fill="#ff709e"/>
+            <circle cx="54" cy="10" r="2.6" fill="#ffd9e6"/>
+            <line x1="8" y1="38" x2="56" y2="38" stroke="#f7cc7a" stroke-width="2" stroke-linecap="round"/>
+          </svg>
+        </div>
+        <div class="premiere-heart-portrait">
+          <svg viewBox="0 0 120 110" aria-label="Maharani Tonni">
+            <defs>
+              <clipPath id="premiereHeartClip">
+                <path d="M60 100C60 100 10 68 10 34C10 17 23 6 38 6C48 6 56 11.5 60 19.5C64 11.5 72 6 82 6C97 6 110 17 110 34C110 68 60 100 60 100Z"/>
+              </clipPath>
+            </defs>
+            <image id="premiere-portrait-img" href="assets/media/tonni.jpg" width="120" height="110" preserveAspectRatio="xMidYMid slice" clip-path="url(#premiereHeartClip)"/>
+            <path d="M60 100C60 100 10 68 10 34C10 17 23 6 38 6C48 6 56 11.5 60 19.5C64 11.5 72 6 82 6C97 6 110 17 110 34C110 68 60 100 60 100Z" fill="none" stroke="#f7cc7a" stroke-width="3"/>
+          </svg>
+        </div>
+      </div>
+
       <p class="eyebrow" id="onboarding-eyebrow" lang="en"></p>
       <h1 class="onboarding-title-bn" id="onboarding-title-bn" lang="bn"></h1>
       <p class="onboarding-title-en" id="onboarding-title-en" lang="en"></p>
+
+      <div id="premiere-countdown" class="premiere-countdown" aria-live="polite"></div>
+
       <p class="onboarding-sub-bn" id="onboarding-sub-bn" lang="bn"></p>
       <p class="onboarding-sub-en" id="onboarding-sub-en" lang="en"></p>
       <button id="onboarding-enter-btn" class="btn btn-gold btn-royal-enter" type="button">
@@ -638,13 +667,13 @@
   <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/ScrollTrigger.min.js"></script>
 
   <!-- App Scripts -->
-  <script src="js/config.js?v=13"></script>
-  <script src="js/sfx.js?v=13"></script>
-  <script src="js/particles.js?v=13"></script>
-  <script src="js/cursor.js?v=13"></script>
-  <script src="js/gallery.js?v=13"></script>
-  <script src="js/cake.js?v=13"></script>
-  <script src="js/letter.js?v=13"></script>
-  <script src="js/main.js?v=13"></script>
+  <script src="js/config.js?v=14"></script>
+  <script src="js/sfx.js?v=14"></script>
+  <script src="js/particles.js?v=14"></script>
+  <script src="js/cursor.js?v=14"></script>
+  <script src="js/gallery.js?v=14"></script>
+  <script src="js/cake.js?v=14"></script>
+  <script src="js/letter.js?v=14"></script>
+  <script src="js/main.js?v=14"></script>
 </body>
 </html>

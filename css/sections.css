@@ -88,11 +88,123 @@
 .onboarding-card {
   position: relative;
   z-index: 3;
-  width: min(390px, 100%);
-  padding: 36px 24px 30px;
+  width: min(378px, 100%);
+  padding: 26px 22px 24px;
   text-align: center;
   animation: cardFloatIn 0.9s cubic-bezier(0.22, 1, 0.36, 1) both;
   transition: opacity 0.65s ease, transform 0.65s ease;
+}
+
+.premiere-ticket {
+  background: linear-gradient(160deg, rgba(108, 22, 66, 0.78), rgba(40, 7, 28, 0.88));
+}
+
+.corner-ornament {
+  position: absolute;
+  width: 24px;
+  height: 24px;
+  pointer-events: none;
+  opacity: 0.85;
+}
+
+.corner-ornament.tl { top: 10px; left: 10px; }
+.corner-ornament.tr { top: 10px; right: 10px; }
+.corner-ornament.bl { bottom: 10px; left: 10px; }
+.corner-ornament.br { bottom: 10px; right: 10px; }
+
+.premiere-date-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 4px 16px;
+  border-radius: var(--radius-pill);
+  background: rgba(247, 204, 122, 0.14);
+  border: 1px solid rgba(247, 204, 122, 0.55);
+  color: var(--gold);
+  font-size: 0.82rem;
+  font-weight: 600;
+  letter-spacing: 0.14em;
+  margin-bottom: 10px;
+  box-shadow: 0 0 18px rgba(247, 204, 122, 0.25);
+}
+
+.premiere-date-bn {
+  font-family: var(--font-bn-display);
+  font-size: 0.9rem;
+  letter-spacing: 0;
+  line-height: 1.5;
+}
+
+.premiere-date-sep {
+  color: var(--rose);
+}
+
+.premiere-portrait-wrap {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: 2px auto 8px;
+}
+
+.premiere-crown {
+  width: 50px;
+  margin: 0 auto -6px;
+  z-index: 2;
+  animation: gentleBob 3.2s ease-in-out infinite alternate;
+}
+
+.premiere-heart-portrait {
+  width: 108px;
+  height: 100px;
+  filter: drop-shadow(0 8px 24px rgba(255, 112, 158, 0.58)) drop-shadow(0 0 18px rgba(247, 204, 122, 0.35));
+}
+
+.premiere-heart-portrait svg {
+  width: 100%;
+  height: 100%;
+}
+
+.premiere-countdown {
+  margin: 8px auto 12px;
+  padding: 8px 14px;
+  border-radius: 14px;
+  background: rgba(28, 5, 20, 0.58);
+  border: 1px solid rgba(255, 112, 158, 0.35);
+  display: inline-flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 3px;
+}
+
+.cd-label {
+  font-family: var(--font-bn-display);
+  font-size: 0.82rem;
+  color: var(--blush);
+  line-height: 1.5;
+}
+
+.cd-digits {
+  font-family: var(--font-en-display);
+  font-size: 1.15rem;
+  font-weight: 700;
+  color: var(--gold);
+  letter-spacing: 0.06em;
+  font-variant-numeric: tabular-nums;
+  text-shadow: 0 0 14px rgba(247, 204, 122, 0.55);
+}
+
+.cd-today-bn {
+  font-family: var(--font-bn-script);
+  font-size: 1.15rem;
+  color: var(--gold);
+  line-height: 1.55;
+}
+
+.cd-today-en {
+  font-size: 0.78rem;
+  color: var(--blush);
+  letter-spacing: 0.06em;
 }
 
 .onboarding-screen.parting .onboarding-card {
