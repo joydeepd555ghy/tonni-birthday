@@ -123,6 +123,24 @@
     setText("finale-msg-bn", cfg.finale.messageBn);
     setText("finale-msg-en", cfg.finale.messageEn);
     setText("finale-credit", cfg.finale.credit);
+
+    // Chapter reveal buttons
+    if (cfg.reveals) {
+      setText("reveal-film-bn", cfg.reveals.toFilmBn);
+      setText("reveal-film-en", cfg.reveals.toFilmEn);
+      setText("reveal-gallery-bn", cfg.reveals.toGalleryBn);
+      setText("reveal-gallery-en", cfg.reveals.toGalleryEn);
+      setText("reveal-timeline-bn", cfg.reveals.toTimelineBn);
+      setText("reveal-timeline-en", cfg.reveals.toTimelineEn);
+      setText("reveal-reasons-bn", cfg.reveals.toReasonsBn);
+      setText("reveal-reasons-en", cfg.reveals.toReasonsEn);
+      setText("reveal-cake-bn", cfg.reveals.toCakeBn);
+      setText("reveal-cake-en", cfg.reveals.toCakeEn);
+      setText("reveal-letter-bn", cfg.reveals.toLetterBn);
+      setText("reveal-letter-en", cfg.reveals.toLetterEn);
+      setText("reveal-finale-bn", cfg.reveals.toFinaleBn);
+      setText("reveal-finale-en", cfg.reveals.toFinaleEn);
+    }
   }
 
   /* ---------- Hero Grapheme Headline ---------- */
@@ -239,6 +257,7 @@
       "click",
       () => {
         if (window.SiteSFX) window.SiteSFX.unlockBurst();
+        if (window.SiteMusic) window.SiteMusic.play("birthday");
         if (window.SiteParticles) {
           window.SiteParticles.burst(window.innerWidth / 2, window.innerHeight / 2, 54, 0.75);
         }
@@ -292,7 +311,7 @@
     });
   }
 
-  /* ---------- Music Player (Never Autoplay, Fade-in, Fallback) ---------- */
+  /* ---------- Dual-Track Music Player (Birthday Anthem + Tomake Chai) ---------- */
   function initMusic() {
     const STORAGE_KEY = "tonni_music_pref";
     const cfg = window.SITE_CONFIG;
@@ -300,140 +319,131 @@
     const pill = $("music-pill");
     const heroLabel = $("hero-music-label");
 
-    const audio = new Audio(cfg?.meta?.musicSrc || "assets/music/song.mp3");
-    audio.loop = true;
-    audio.preload = "none";
-    audio.volume = 0;
-
-    let playing = false;
-    let fadeTimer = null;
-    let fallbackCtx = null;
-    let fallbackTimer = null;
-    let useFallback = false;
-
-    audio.addEventListener("error", () => {
-      useFallback = true;
+    const tracks = {
+      birthday: new Audio(cfg?.meta?.birthdayMusicSrc || "assets/music/maharani-birthday.mp3"),
+      romantic: new Audio(cfg?.meta?.romanticMusicSrc || "assets/music/song.mp3")
+    };
+    Object.values(tracks).forEach((a) => {
+      a.loop = true;
+      a.preload = "none";
+      a.volume = 0;
     });
 
-    function startFallbackMusicBox() {
-      const AudioCtx = window.AudioContext || window.webkitAudioContext;
-      if (!AudioCtx) return;
-      if (!fallbackCtx) fallbackCtx = new AudioCtx();
-      if (fallbackCtx.state === "suspended") fallbackCtx.resume();
+    let activeTrackKey = "birthday";
+    let playing = false;
+    let fadeTimer = null;
+    let pausedByVideo = false;
 
-      // Gentle romantic arpeggio in D major
-      const notes = [293.66, 369.99, 440.0, 587.33, 440.0, 369.99, 329.63, 440.0];
-      let step = 0;
-      clearInterval(fallbackTimer);
-      fallbackTimer = setInterval(() => {
-        if (!playing || !fallbackCtx) return;
-        const now = fallbackCtx.currentTime;
-        const osc = fallbackCtx.createOscillator();
-        const gain = fallbackCtx.createGain();
-        osc.type = "sine";
-        osc.frequency.value = notes[step % notes.length];
-        gain.gain.setValueAtTime(0.0001, now);
-        gain.gain.exponentialRampToValueAtTime(0.045, now + 0.08);
-        gain.gain.exponentialRampToValueAtTime(0.0001, now + 1.4);
-        osc.connect(gain);
-        gain.connect(fallbackCtx.destination);
-        osc.start(now);
-        osc.stop(now + 1.45);
-        step++;
-      }, 650);
-    }
-
-    function stopFallbackMusicBox() {
-      clearInterval(fallbackTimer);
-      fallbackTimer = null;
+    function getActiveAudio() {
+      return tracks[activeTrackKey] || tracks.birthday;
     }
 
     function updateUI() {
       const heroCfg = cfg?.hero || {};
       if (heroBtn) heroBtn.setAttribute("aria-pressed", String(playing));
       if (pill) {
+        pill.hidden = false;
         pill.setAttribute("aria-pressed", String(playing));
         pill.classList.toggle("playing", playing);
         pill.querySelector(".music-pill-text").textContent = playing ? "Pause" : "Music";
       }
       if (heroLabel) {
         heroLabel.textContent = playing
-          ? heroCfg.musicPauseLabel || "Pause music"
-          : heroCfg.musicTapLabel || "Tap to play music";
+          ? heroCfg.musicPauseLabel || "Pause melody"
+          : heroCfg.musicTapLabel || "Play birthday melody";
       }
     }
 
-    async function play() {
-      if (playing) return;
+    function fadeIn(audio, targetVol = 0.72) {
+      clearInterval(fadeTimer);
+      audio.volume = 0;
+      fadeTimer = setInterval(() => {
+        if (audio.volume < targetVol) {
+          audio.volume = Math.min(targetVol, audio.volume + 0.045);
+        } else {
+          clearInterval(fadeTimer);
+        }
+      }, 100);
+    }
+
+    async function play(trackKey) {
+      if (trackKey && tracks[trackKey]) activeTrackKey = trackKey;
+      const audio = getActiveAudio();
       playing = true;
+      pausedByVideo = false;
       localStorage.setItem(STORAGE_KEY, "on");
       updateUI();
 
-      if (useFallback) {
-        startFallbackMusicBox();
-        return;
-      }
-
       try {
-        audio.volume = 0;
         await audio.play();
-        clearInterval(fadeTimer);
-        fadeTimer = setInterval(() => {
-          if (audio.volume < 0.72) {
-            audio.volume = Math.min(0.75, audio.volume + 0.05);
-          } else {
-            clearInterval(fadeTimer);
-          }
-        }, 120);
+        fadeIn(audio, 0.72);
       } catch {
-        useFallback = true;
-        startFallbackMusicBox();
+        playing = false;
+        updateUI();
       }
     }
 
-    function pause() {
+    function pause(byVideo = false) {
+      if (byVideo && playing) pausedByVideo = true;
+      else pausedByVideo = false;
       playing = false;
-      localStorage.setItem(STORAGE_KEY, "off");
       clearInterval(fadeTimer);
-      audio.pause();
-      stopFallbackMusicBox();
+      Object.values(tracks).forEach((a) => a.pause());
+      if (!byVideo) localStorage.setItem(STORAGE_KEY, "off");
       updateUI();
     }
 
+    async function switchTo(trackKey) {
+      if (!tracks[trackKey] || trackKey === activeTrackKey) return;
+      const prev = getActiveAudio();
+      const shouldResume = playing || pausedByVideo;
+      activeTrackKey = trackKey;
+      if (!shouldResume) return;
+
+      clearInterval(fadeTimer);
+      const next = getActiveAudio();
+      next.currentTime = 0;
+      next.volume = 0;
+      try {
+        await next.play();
+        playing = true;
+        updateUI();
+        // Smooth crossfade
+        let step = 0;
+        fadeTimer = setInterval(() => {
+          step++;
+          prev.volume = Math.max(0, prev.volume - 0.08);
+          next.volume = Math.min(0.75, next.volume + 0.06);
+          if (step >= 14) {
+            prev.pause();
+            prev.volume = 0;
+            clearInterval(fadeTimer);
+          }
+        }, 90);
+      } catch {
+        // Ignore if autoplay blocked
+      }
+    }
+
     function toggle() {
-      if (playing) pause();
-      else play();
+      if (playing) pause(false);
+      else play(activeTrackKey);
     }
 
     heroBtn?.addEventListener("click", toggle);
     pill?.addEventListener("click", toggle);
 
-    // Show floating pill once user scrolls past hero
-    if (pill && "IntersectionObserver" in window && $("hero")) {
-      const obs = new IntersectionObserver(
-        (entries) => {
-          pill.hidden = entries[0].isIntersecting;
-        },
-        { threshold: 0.15 }
-      );
-      obs.observe($("hero"));
-    }
-
-    // Remember user's previous preference (visual cue only; never autoplay without gesture)
-    const pref = localStorage.getItem(STORAGE_KEY);
-    if (pref === "on" && heroLabel) {
-      heroLabel.textContent = cfg?.hero?.musicTapLabel || "Tap to resume music";
-    }
-
     window.SiteMusic = {
       play,
       pause,
+      switchTo,
       toggle,
-      isPlaying: () => playing
+      isPlaying: () => playing,
+      wasPausedByVideo: () => pausedByVideo
     };
   }
 
-  /* ---------- 3. Film Section ---------- */
+  /* ---------- 3. Film Section (Auto-duck Music) ---------- */
   function initFilm() {
     const video = $("story-video");
     const overlay = $("film-play-overlay");
@@ -442,9 +452,20 @@
     overlay.addEventListener("click", () => {
       video.play().catch(() => {});
     });
-    video.addEventListener("play", () => overlay.classList.add("hidden"));
-    video.addEventListener("pause", () => overlay.classList.remove("hidden"));
-    video.addEventListener("ended", () => overlay.classList.remove("hidden"));
+    video.addEventListener("play", () => {
+      overlay.classList.add("hidden");
+      if (window.SiteMusic && window.SiteMusic.isPlaying()) {
+        window.SiteMusic.pause(true);
+      }
+    });
+    const onStop = () => {
+      overlay.classList.remove("hidden");
+      if (window.SiteMusic && window.SiteMusic.wasPausedByVideo()) {
+        window.SiteMusic.play();
+      }
+    };
+    video.addEventListener("pause", onStop);
+    video.addEventListener("ended", onStop);
   }
 
   /* ---------- 5. Timeline ---------- */
@@ -568,9 +589,12 @@
   /* ---------- 6. Reasons Flip Cards ---------- */
   function initReasons() {
     const grid = $("reasons-grid");
+    const progressEl = $("reasons-progress");
+    const cakeWrap = $("reveal-cake-wrap");
     const items = window.SITE_CONFIG?.reasons?.items || [];
     if (!grid) return;
     grid.innerHTML = "";
+    const seen = new Set();
 
     items.forEach((item, i) => {
       const btn = document.createElement("button");
@@ -600,13 +624,78 @@
         const flipped = btn.classList.toggle("flipped");
         btn.setAttribute("aria-pressed", String(flipped));
         if (window.SiteSFX) window.SiteSFX.cardFlip();
+        seen.add(i);
+        if (progressEl) {
+          progressEl.textContent = `${seen.size} of ${items.length} royal secrets revealed`;
+        }
+        if (cakeWrap && seen.size >= 1) {
+          cakeWrap.hidden = false;
+        }
       });
       grid.appendChild(btn);
     });
   }
 
-  /* ---------- GSAP ScrollTrigger Animations ---------- */
-  function initScrollAnimations() {
+  /* ---------- Action-Gated Chapter Reveals ---------- */
+  function revealChapter(targetId, triggerBtn) {
+    const target = $(targetId);
+    if (!target) return;
+
+    const divider = document.querySelector(`.chapter-divider[data-divider-for="${targetId}"]`);
+    if (divider) divider.hidden = false;
+
+    const wasHidden = target.hidden;
+    target.hidden = false;
+    if (triggerBtn) triggerBtn.classList.add("unlocked");
+
+    if (window.SiteSFX) window.SiteSFX.chime();
+    if (window.SiteParticles && triggerBtn) {
+      const r = triggerBtn.getBoundingClientRect();
+      window.SiteParticles.burst(r.left + r.width / 2, r.top + r.height / 2, 26, 0.7);
+    }
+
+    if (wasHidden && !reducedMotion && typeof gsap !== "undefined") {
+      if (divider) {
+        gsap.fromTo(
+          divider.querySelectorAll(".divider-line"),
+          { scaleX: 0 },
+          { scaleX: 1, duration: 0.75, ease: "power2.out", clearProps: "transform" }
+        );
+      }
+      gsap.fromTo(
+        target,
+        { opacity: 0, y: 28 },
+        { opacity: 1, y: 0, duration: 0.8, ease: "power2.out", clearProps: "opacity,transform" }
+      );
+    }
+
+    if (targetId === "timeline") {
+      initTimelineScrollAnimations();
+    } else if (typeof ScrollTrigger !== "undefined") {
+      setTimeout(() => ScrollTrigger.refresh(), 120);
+    }
+
+    // Smoothly glide to the newly revealed chapter
+    setTimeout(() => {
+      target.scrollIntoView({ behavior: reducedMotion ? "auto" : "smooth", block: "start" });
+    }, 80);
+  }
+
+  function initChapterReveals() {
+    document.querySelectorAll("[data-reveal-target]").forEach((btn) => {
+      btn.addEventListener("click", () => {
+        const targetId = btn.getAttribute("data-reveal-target");
+        if (targetId) revealChapter(targetId, btn);
+      });
+    });
+  }
+
+  /* ---------- GSAP ScrollTrigger Animations (Timeline) ---------- */
+  let timelineAnimInit = false;
+  function initTimelineScrollAnimations() {
+    if (timelineAnimInit) return;
+    timelineAnimInit = true;
+
     if (reducedMotion || typeof gsap === "undefined" || typeof ScrollTrigger === "undefined") {
       document.querySelectorAll(".timeline-stop").forEach((s) => s.classList.add("lit"));
       const fill = $("timeline-thread-fill");
@@ -615,30 +704,6 @@
     }
 
     gsap.registerPlugin(ScrollTrigger);
-
-    // Section dividers: gold line draw
-    document.querySelectorAll(".section-divider").forEach((div) => {
-      const lines = div.querySelectorAll(".divider-line");
-      gsap.from(lines, {
-        scaleX: 0,
-        duration: 0.75,
-        ease: "power2.out",
-        clearProps: "transform",
-        scrollTrigger: { trigger: div, start: "top 88%", once: true }
-      });
-    });
-
-    // Section headers fade-up + blur-in
-    document.querySelectorAll(".section-header").forEach((hdr) => {
-      gsap.from(hdr, {
-        opacity: 0,
-        y: 22,
-        duration: 0.75,
-        ease: "power2.out",
-        clearProps: "opacity,transform",
-        scrollTrigger: { trigger: hdr, start: "top 86%", once: true }
-      });
-    });
 
     // Self-drawing timeline thread
     const tlContainer = $("timeline-container");
@@ -649,8 +714,8 @@
         ease: "none",
         scrollTrigger: {
           trigger: tlContainer,
-          start: "top 72%",
-          end: "bottom 72%",
+          start: "top 75%",
+          end: "bottom 75%",
           scrub: 0.4
         }
       });
@@ -660,7 +725,7 @@
     document.querySelectorAll(".timeline-stop").forEach((stop, idx) => {
       ScrollTrigger.create({
         trigger: stop,
-        start: "top 78%",
+        start: "top 82%",
         once: true,
         onEnter: () => {
           stop.classList.add("lit");
@@ -690,6 +755,8 @@
         }
       });
     });
+
+    setTimeout(() => ScrollTrigger.refresh(), 150);
   }
 
   /* ---------- 9. Finale ---------- */
@@ -732,7 +799,7 @@
     initFilm();
     initTimeline();
     initReasons();
-    initScrollAnimations();
+    initChapterReveals();
     initFinale();
     initOnboarding();
   });

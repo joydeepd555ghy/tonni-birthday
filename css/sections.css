@@ -1535,6 +1535,40 @@
   color: rgba(251, 233, 220, 0.55);
 }
 
+/* Action-Gated Chapter Reveal Controls */
+.chapter-reveal[hidden],
+.chapter-divider[hidden],
+.chapter-next-wrap[hidden] {
+  display: none !important;
+}
+
+.chapter-next-wrap {
+  margin-top: 32px;
+  display: flex;
+  justify-content: center;
+}
+
+.btn-chapter-next {
+  min-height: 52px;
+  padding: 12px 26px;
+  box-shadow:
+    0 12px 32px rgba(242, 195, 107, 0.34),
+    0 0 24px rgba(255, 122, 156, 0.22);
+}
+
+.btn-chapter-next.unlocked {
+  opacity: 0.55;
+  pointer-events: none;
+  box-shadow: none;
+}
+
+.reasons-progress {
+  margin-top: 18px;
+  font-size: 0.88rem;
+  color: var(--blush);
+  letter-spacing: 0.04em;
+}
+
 /* Desktop Scaling (768px -> 1280px+) */
 @media (min-width: 768px) {
   .gallery-highlights {

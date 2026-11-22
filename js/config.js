@@ -11,7 +11,9 @@ window.SITE_CONFIG = {
     senderNameBn: "জয়দীপ দেবনাথ",
     senderNameEn: "Joydeep Debnath",
     startDate: "2026-02-10",
-    musicSrc: "assets/music/song.mp3",
+    birthdayMusicSrc: "assets/music/maharani-birthday.mp3",
+    romanticMusicSrc: "assets/music/song.mp3",
+    musicSrc: "assets/music/maharani-birthday.mp3",
     heroPhoto: "assets/media/tonni.jpg",
     joydeepPhoto: "assets/media/joydeep.jpg",
     tonniMatchPhoto: "assets/media/tonni.jpg",
@@ -232,5 +234,22 @@ window.SITE_CONFIG = {
     messageBn: "শুভ জন্মদিন, আমার মহারানী তন্নি।",
     messageEn: "Happy Birthday, my Maharani. I love you, today and always.",
     credit: "With all my heart, Joydeep Debnath"
+  },
+
+  reveals: {
+    toFilmBn: "প্রথম চমক খোলো",
+    toFilmEn: "Open Your First Surprise",
+    toGalleryBn: "মহারানীর গ্যালারি খোলো",
+    toGalleryEn: "Reveal Maharani's Gallery",
+    toTimelineBn: "সেই দিনগুলোতে ফিরে যাই",
+    toTimelineEn: "Relive How It Began",
+    toReasonsBn: "তুমি কেন এত বিশেষ",
+    toReasonsEn: "Discover Why You're Special",
+    toCakeBn: "এবার কেক কাটার পালা",
+    toCakeEn: "Bring Out the Birthday Cake",
+    toLetterBn: "মহারানীর চিঠি খোলো",
+    toLetterEn: "Unlock Your Royal Letter",
+    toFinaleBn: "শেষ চমক দেখো",
+    toFinaleEn: "Unlock the Final Surprise"
   }
 };

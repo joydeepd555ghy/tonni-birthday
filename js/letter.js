@@ -106,6 +106,9 @@
     seal.classList.add("broken");
     wrapper.classList.add("opening");
     if (window.SiteSFX) window.SiteSFX.envelopeOpen();
+    if (window.SiteMusic && window.SiteMusic.switchTo) {
+      window.SiteMusic.switchTo("romantic");
+    }
 
     if (window.SiteParticles) {
       const rect = seal.getBoundingClientRect();
@@ -115,6 +118,8 @@
     setTimeout(() => {
       wrapper.classList.add("opened");
       typeLetter();
+      const finaleWrap = $("reveal-finale-wrap");
+      if (finaleWrap) finaleWrap.hidden = false;
     }, 520);
   }
 

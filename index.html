@@ -20,9 +20,9 @@
   <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;0,700;1,400;1,500;1,600;1,700&family=Galada&family=Great+Vibes&family=Hind+Siliguri:wght@300;400;500;600;700&family=Tiro+Bangla:ital@0;1&display=swap" rel="stylesheet">
 
   <!-- Stylesheets -->
-  <link rel="stylesheet" href="css/base.css?v=2">
-  <link rel="stylesheet" href="css/sections.css?v=2">
-  <link rel="stylesheet" href="css/effects.css?v=2">
+  <link rel="stylesheet" href="css/base.css?v=3">
+  <link rel="stylesheet" href="css/sections.css?v=3">
+  <link rel="stylesheet" href="css/effects.css?v=3">
 </head>
 <body>
   <!-- Scroll Progress Golden Thread -->
@@ -173,18 +173,21 @@
         </button>
       </div>
 
-      <a href="#film" class="scroll-cue" aria-label="Scroll to film section">
-        <span class="scroll-cue-text" id="scroll-cue-text"></span>
-        <svg class="scroll-cue-arrow" viewBox="0 0 24 24" aria-hidden="true">
-          <path d="M6 9l6 6 6-6" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
-        </svg>
-      </a>
+      <div class="chapter-next-wrap">
+        <button id="reveal-film-btn" class="btn btn-gold btn-chapter-next" type="button" data-reveal-target="film">
+          <span class="btn-bilingual">
+            <span id="reveal-film-bn" lang="bn"></span>
+            <span id="reveal-film-en" lang="en"></span>
+          </span>
+          <svg class="btn-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M6 9l6 6 6-6" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </button>
+      </div>
     </section>
 
-    <div class="section-divider" aria-hidden="true"><span class="divider-line"></span><svg class="divider-heart" viewBox="0 0 24 24"><path d="M12 21s-8.5-5.6-8.5-11.5C3.5 6.4 5.9 4 8.8 4c1.7 0 3.2.9 3.2 2.3C12 4.9 13.5 4 15.2 4 18.1 4 20.5 6.4 20.5 9.5 20.5 15.4 12 21 12 21Z"/></svg><span class="divider-line"></span></div>
+    <div class="section-divider chapter-divider" data-divider-for="film" aria-hidden="true" hidden><span class="divider-line"></span><svg class="divider-heart" viewBox="0 0 24 24"><path d="M12 21s-8.5-5.6-8.5-11.5C3.5 6.4 5.9 4 8.8 4c1.7 0 3.2.9 3.2 2.3C12 4.9 13.5 4 15.2 4 18.1 4 20.5 6.4 20.5 9.5 20.5 15.4 12 21 12 21Z"/></svg><span class="divider-line"></span></div>
 
     <!-- 3. Film -->
-    <section id="film" class="section film-section">
+    <section id="film" class="section film-section chapter-reveal" hidden>
       <header class="section-header">
         <h2 class="section-title-bn" id="film-title-bn" lang="bn"></h2>
         <p class="section-title-en" id="film-title-en" lang="en"></p>
@@ -207,12 +210,21 @@
           </button>
         </div>
       </div>
+      <div class="chapter-next-wrap">
+        <button id="reveal-gallery-btn" class="btn btn-gold btn-chapter-next" type="button" data-reveal-target="gallery">
+          <span class="btn-bilingual">
+            <span id="reveal-gallery-bn" lang="bn"></span>
+            <span id="reveal-gallery-en" lang="en"></span>
+          </span>
+          <svg class="btn-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M6 9l6 6 6-6" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </button>
+      </div>
     </section>
 
-    <div class="section-divider" aria-hidden="true"><span class="divider-line"></span><svg class="divider-heart" viewBox="0 0 24 24"><path d="M12 21s-8.5-5.6-8.5-11.5C3.5 6.4 5.9 4 8.8 4c1.7 0 3.2.9 3.2 2.3C12 4.9 13.5 4 15.2 4 18.1 4 20.5 6.4 20.5 9.5 20.5 15.4 12 21 12 21Z"/></svg><span class="divider-line"></span></div>
+    <div class="section-divider chapter-divider" data-divider-for="gallery" aria-hidden="true" hidden><span class="divider-line"></span><svg class="divider-heart" viewBox="0 0 24 24"><path d="M12 21s-8.5-5.6-8.5-11.5C3.5 6.4 5.9 4 8.8 4c1.7 0 3.2.9 3.2 2.3C12 4.9 13.5 4 15.2 4 18.1 4 20.5 6.4 20.5 9.5 20.5 15.4 12 21 12 21Z"/></svg><span class="divider-line"></span></div>
 
     <!-- 4. Gallery -->
-    <section id="gallery" class="section gallery-section">
+    <section id="gallery" class="section gallery-section chapter-reveal" hidden>
       <header class="section-header">
         <h2 class="section-title-bn" id="gallery-title-bn" lang="bn"></h2>
         <p class="section-title-en" id="gallery-title-en" lang="en"></p>
@@ -276,12 +288,21 @@
       <div id="wall-load-more-wrap" class="wall-load-more-wrap" hidden>
         <button id="wall-load-more" class="btn btn-glass" type="button"></button>
       </div>
+      <div class="chapter-next-wrap">
+        <button id="reveal-timeline-btn" class="btn btn-gold btn-chapter-next" type="button" data-reveal-target="timeline">
+          <span class="btn-bilingual">
+            <span id="reveal-timeline-bn" lang="bn"></span>
+            <span id="reveal-timeline-en" lang="en"></span>
+          </span>
+          <svg class="btn-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M6 9l6 6 6-6" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </button>
+      </div>
     </section>
 
-    <div class="section-divider" aria-hidden="true"><span class="divider-line"></span><svg class="divider-heart" viewBox="0 0 24 24"><path d="M12 21s-8.5-5.6-8.5-11.5C3.5 6.4 5.9 4 8.8 4c1.7 0 3.2.9 3.2 2.3C12 4.9 13.5 4 15.2 4 18.1 4 20.5 6.4 20.5 9.5 20.5 15.4 12 21 12 21Z"/></svg><span class="divider-line"></span></div>
+    <div class="section-divider chapter-divider" data-divider-for="timeline" aria-hidden="true" hidden><span class="divider-line"></span><svg class="divider-heart" viewBox="0 0 24 24"><path d="M12 21s-8.5-5.6-8.5-11.5C3.5 6.4 5.9 4 8.8 4c1.7 0 3.2.9 3.2 2.3C12 4.9 13.5 4 15.2 4 18.1 4 20.5 6.4 20.5 9.5 20.5 15.4 12 21 12 21Z"/></svg><span class="divider-line"></span></div>
 
     <!-- 5. Timeline -->
-    <section id="timeline" class="section timeline-section">
+    <section id="timeline" class="section timeline-section chapter-reveal" hidden>
       <header class="section-header">
         <h2 class="section-title-bn" id="timeline-title-bn" lang="bn"></h2>
         <p class="section-title-en" id="timeline-title-en" lang="en"></p>
@@ -294,24 +315,43 @@
         </div>
         <div id="timeline-stops" class="timeline-stops"></div>
       </div>
+      <div class="chapter-next-wrap">
+        <button id="reveal-reasons-btn" class="btn btn-gold btn-chapter-next" type="button" data-reveal-target="reasons">
+          <span class="btn-bilingual">
+            <span id="reveal-reasons-bn" lang="bn"></span>
+            <span id="reveal-reasons-en" lang="en"></span>
+          </span>
+          <svg class="btn-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M6 9l6 6 6-6" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </button>
+      </div>
     </section>
 
-    <div class="section-divider" aria-hidden="true"><span class="divider-line"></span><svg class="divider-heart" viewBox="0 0 24 24"><path d="M12 21s-8.5-5.6-8.5-11.5C3.5 6.4 5.9 4 8.8 4c1.7 0 3.2.9 3.2 2.3C12 4.9 13.5 4 15.2 4 18.1 4 20.5 6.4 20.5 9.5 20.5 15.4 12 21 12 21Z"/></svg><span class="divider-line"></span></div>
+    <div class="section-divider chapter-divider" data-divider-for="reasons" aria-hidden="true" hidden><span class="divider-line"></span><svg class="divider-heart" viewBox="0 0 24 24"><path d="M12 21s-8.5-5.6-8.5-11.5C3.5 6.4 5.9 4 8.8 4c1.7 0 3.2.9 3.2 2.3C12 4.9 13.5 4 15.2 4 18.1 4 20.5 6.4 20.5 9.5 20.5 15.4 12 21 12 21Z"/></svg><span class="divider-line"></span></div>
 
     <!-- 6. Reasons -->
-    <section id="reasons" class="section reasons-section">
+    <section id="reasons" class="section reasons-section chapter-reveal" hidden>
       <header class="section-header">
         <h2 class="section-title-bn" id="reasons-title-bn" lang="bn"></h2>
         <p class="section-title-en" id="reasons-title-en" lang="en"></p>
         <p class="section-sub" id="reasons-subtitle" lang="en"></p>
       </header>
       <div id="reasons-grid" class="reasons-grid"></div>
+      <p id="reasons-progress" class="reasons-progress" aria-live="polite">Tap any card above to unlock the next surprise</p>
+      <div id="reveal-cake-wrap" class="chapter-next-wrap" hidden>
+        <button id="reveal-cake-btn" class="btn btn-gold btn-chapter-next" type="button" data-reveal-target="cake">
+          <span class="btn-bilingual">
+            <span id="reveal-cake-bn" lang="bn"></span>
+            <span id="reveal-cake-en" lang="en"></span>
+          </span>
+          <svg class="btn-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M6 9l6 6 6-6" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </button>
+      </div>
     </section>
 
-    <div class="section-divider" aria-hidden="true"><span class="divider-line"></span><svg class="divider-heart" viewBox="0 0 24 24"><path d="M12 21s-8.5-5.6-8.5-11.5C3.5 6.4 5.9 4 8.8 4c1.7 0 3.2.9 3.2 2.3C12 4.9 13.5 4 15.2 4 18.1 4 20.5 6.4 20.5 9.5 20.5 15.4 12 21 12 21Z"/></svg><span class="divider-line"></span></div>
+    <div class="section-divider chapter-divider" data-divider-for="cake" aria-hidden="true" hidden><span class="divider-line"></span><svg class="divider-heart" viewBox="0 0 24 24"><path d="M12 21s-8.5-5.6-8.5-11.5C3.5 6.4 5.9 4 8.8 4c1.7 0 3.2.9 3.2 2.3C12 4.9 13.5 4 15.2 4 18.1 4 20.5 6.4 20.5 9.5 20.5 15.4 12 21 12 21Z"/></svg><span class="divider-line"></span></div>
 
     <!-- 7. Cake -->
-    <section id="cake" class="section cake-section">
+    <section id="cake" class="section cake-section chapter-reveal" hidden>
       <header class="section-header">
         <h2 class="section-title-bn" id="cake-title-bn" lang="bn"></h2>
         <p class="section-title-en" id="cake-title-en" lang="en"></p>
@@ -407,13 +447,22 @@
       <div id="wish-message" class="wish-message" aria-live="polite" hidden>
         <p class="wish-bn" id="wish-bn" lang="bn"></p>
         <p class="wish-en" id="wish-en" lang="en"></p>
+        <div class="chapter-next-wrap">
+          <button id="reveal-letter-btn" class="btn btn-gold btn-chapter-next" type="button" data-reveal-target="letter">
+            <span class="btn-bilingual">
+              <span id="reveal-letter-bn" lang="bn"></span>
+              <span id="reveal-letter-en" lang="en"></span>
+            </span>
+            <svg class="btn-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M6 9l6 6 6-6" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </button>
+        </div>
       </div>
     </section>
 
-    <div class="section-divider" aria-hidden="true"><span class="divider-line"></span><svg class="divider-heart" viewBox="0 0 24 24"><path d="M12 21s-8.5-5.6-8.5-11.5C3.5 6.4 5.9 4 8.8 4c1.7 0 3.2.9 3.2 2.3C12 4.9 13.5 4 15.2 4 18.1 4 20.5 6.4 20.5 9.5 20.5 15.4 12 21 12 21Z"/></svg><span class="divider-line"></span></div>
+    <div class="section-divider chapter-divider" data-divider-for="letter" aria-hidden="true" hidden><span class="divider-line"></span><svg class="divider-heart" viewBox="0 0 24 24"><path d="M12 21s-8.5-5.6-8.5-11.5C3.5 6.4 5.9 4 8.8 4c1.7 0 3.2.9 3.2 2.3C12 4.9 13.5 4 15.2 4 18.1 4 20.5 6.4 20.5 9.5 20.5 15.4 12 21 12 21Z"/></svg><span class="divider-line"></span></div>
 
     <!-- 8. Letter -->
-    <section id="letter" class="section letter-section">
+    <section id="letter" class="section letter-section chapter-reveal" hidden>
       <header class="section-header">
         <h2 class="section-title-bn" id="letter-title-bn" lang="bn"></h2>
         <p class="section-title-en" id="letter-title-en" lang="en"></p>
@@ -449,10 +498,19 @@
           </button>
         </div>
       </div>
+      <div id="reveal-finale-wrap" class="chapter-next-wrap" hidden>
+        <button id="reveal-finale-btn" class="btn btn-gold btn-chapter-next" type="button" data-reveal-target="finale">
+          <span class="btn-bilingual">
+            <span id="reveal-finale-bn" lang="bn"></span>
+            <span id="reveal-finale-en" lang="en"></span>
+          </span>
+          <svg class="btn-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M6 9l6 6 6-6" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </button>
+      </div>
     </section>
 
     <!-- 9. Finale -->
-    <footer id="finale" class="section finale-section">
+    <footer id="finale" class="section finale-section chapter-reveal" hidden>
       <button id="finale-btn" class="btn btn-gold btn-finale" type="button">
         <span class="btn-bilingual">
           <span id="finale-btn-bn" lang="bn"></span>
@@ -512,13 +570,13 @@
   <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/ScrollTrigger.min.js"></script>
 
   <!-- App Scripts -->
-  <script src="js/config.js?v=2"></script>
-  <script src="js/sfx.js?v=2"></script>
-  <script src="js/particles.js?v=2"></script>
-  <script src="js/cursor.js?v=2"></script>
-  <script src="js/gallery.js?v=2"></script>
-  <script src="js/cake.js?v=2"></script>
-  <script src="js/letter.js?v=2"></script>
-  <script src="js/main.js?v=2"></script>
+  <script src="js/config.js?v=3"></script>
+  <script src="js/sfx.js?v=3"></script>
+  <script src="js/particles.js?v=3"></script>
+  <script src="js/cursor.js?v=3"></script>
+  <script src="js/gallery.js?v=3"></script>
+  <script src="js/cake.js?v=3"></script>
+  <script src="js/letter.js?v=3"></script>
+  <script src="js/main.js?v=3"></script>
 </body>
 </html>
