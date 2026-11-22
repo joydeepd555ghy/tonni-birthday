@@ -147,6 +147,14 @@
     }
   }
 
+  function haptic(pattern) {
+    try {
+      if (navigator.vibrate) navigator.vibrate(pattern);
+    } catch {
+      // Ignore on unsupported devices
+    }
+  }
+
   const SFX = {
     isEnabled: () => enabled,
     setEnabled(val) {
@@ -211,6 +219,7 @@
       playTone(680, 0.12, "sine", 0.032, 0);
     },
     curtainOpen() {
+      haptic([25, 35, 35]);
       // Plush velvet drape whoosh + sweeping royal harp glissando + crystal sparkle
       playNoise(0.95, 420, 0.055, 0);
       playNoise(0.65, 1100, 0.025, 0.18);
@@ -232,17 +241,20 @@
       });
     },
     cardFlip() {
+      haptic(15);
       playNoise(0.14, 1200, 0.02, 0);
       playTone(659.25, 0.35, "sine", 0.04, 0.03);
       playTone(987.77, 0.38, "sine", 0.025, 0.08);
     },
     envelopeOpen() {
+      haptic([22, 40, 26]);
       playNoise(0.28, 750, 0.035, 0);
       [293.66, 440.0, 554.37, 739.99].forEach((f, i) => {
         playTone(f, 0.9, "sine", 0.04, 0.06 + i * 0.09);
       });
     },
     blowOut() {
+      haptic([30, 50, 45]);
       // Breath whoosh -> celebratory wish chime -> warm applause & confetti pops!
       playNoise(0.45, 500, 0.055, 0);
       [587.33, 739.99, 880.0, 1174.66, 1479.98].forEach((f, i) => {

@@ -410,6 +410,7 @@
     const cfg = window.SITE_CONFIG;
     const heroBtn = $("hero-music-btn");
     const pill = $("music-pill");
+    const switchPill = $("music-switch-pill");
     const heroLabel = $("hero-music-label");
 
     const tracks = {
@@ -439,6 +440,9 @@
         pill.setAttribute("aria-pressed", String(playing));
         pill.classList.toggle("playing", playing);
         pill.querySelector(".music-pill-text").textContent = playing ? "Pause" : "Music";
+      }
+      if (switchPill) {
+        switchPill.hidden = false;
       }
       if (heroLabel) {
         heroLabel.textContent = playing
@@ -530,6 +534,15 @@
 
     heroBtn?.addEventListener("click", toggle);
     pill?.addEventListener("click", toggle);
+    switchPill?.addEventListener("click", () => {
+      const nextKey = activeTrackKey === "birthday" ? "romantic" : "birthday";
+      if (!playing) {
+        play(nextKey);
+      } else {
+        switchTo(nextKey);
+      }
+      if (window.SiteSFX && window.SiteSFX.softPop) window.SiteSFX.softPop();
+    });
 
     function duck(level = 0.14) {
       if (!playing) return;
