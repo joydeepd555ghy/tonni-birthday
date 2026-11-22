@@ -218,6 +218,53 @@
   100% { height: 28px; opacity: 1; }
 }
 
+/* Dreamy Romantic Text Glow across Headings & Captions */
+.hero-title-bn,
+.section-title-bn,
+.onboarding-title-bn,
+.wish-bn,
+.finale-message-bn,
+.gold-stamp-bn {
+  animation: textGlowGold 3.8s ease-in-out infinite alternate;
+}
+
+.hero-title-en,
+.section-title-en,
+.onboarding-title-en,
+.wish-en,
+.finale-message-en,
+.tl-title-en {
+  text-shadow:
+    0 0 14px rgba(255, 112, 158, 0.48),
+    0 0 28px rgba(255, 217, 230, 0.24);
+}
+
+.hero-name,
+.counter-line-bn,
+.counter-line-en,
+.tl-title-bn,
+.tl-desc,
+.reasons-progress,
+.onboarding-sub-bn,
+.onboarding-sub-en,
+.gate-question-bn,
+.gate-question-en {
+  text-shadow: 0 0 14px rgba(255, 196, 214, 0.28);
+}
+
+@keyframes textGlowGold {
+  0% {
+    text-shadow:
+      0 0 14px rgba(247, 204, 122, 0.42),
+      0 0 28px rgba(255, 112, 158, 0.24);
+  }
+  100% {
+    text-shadow:
+      0 0 22px rgba(247, 204, 122, 0.72),
+      0 0 44px rgba(255, 112, 158, 0.44);
+  }
+}
+
 @keyframes btnSheen {
   0%, 62% { transform: translateX(-120%); }
   100% { transform: translateX(120%); }

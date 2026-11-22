@@ -379,9 +379,29 @@
     startAmbient();
   }
 
+  function startCrackerShow() {
+    if (reducedMotion) return;
+    const spots = [
+      [0.22, 0.24],
+      [0.78, 0.22],
+      [0.5, 0.18],
+      [0.3, 0.34],
+      [0.72, 0.32]
+    ];
+    spots.forEach(([rx, ry], i) => {
+      setTimeout(() => {
+        if (document.hidden) return;
+        spawnBurst(W * rx, H * ry, 48, i % 2 === 0 ? 0.35 : 0.65);
+        if (window.SiteSFX) window.SiteSFX.firework();
+      }, i * 420);
+    });
+    spawnHeartRain(24);
+  }
+
   window.SiteParticles = {
     burst: spawnBurst,
     heartRain: spawnHeartRain,
+    crackerShow: startCrackerShow,
     finaleShow: startFinaleShow
   };
 })();

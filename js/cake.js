@@ -35,6 +35,9 @@
     }
     candlesOut = true;
     stopMic();
+    if (window.SiteMusic && window.SiteMusic.duck) {
+      window.SiteMusic.duck(0.16);
+    }
     if (window.SiteSFX) window.SiteSFX.blowOut();
 
     const cfg = window.SITE_CONFIG?.cake || {};
@@ -59,13 +62,24 @@
         const cx = rect.left + rect.width / 2;
         const cy = rect.top + 40;
         window.SiteParticles.burst(cx, cy, 55, 0.55);
-        window.SiteParticles.heartRain(18);
+        if (window.SiteParticles.crackerShow) {
+          window.SiteParticles.crackerShow();
+        } else {
+          window.SiteParticles.heartRain(18);
+        }
       }
 
       const bnSpan = $("blow-btn-bn");
       const enSpan = $("blow-btn-en");
       if (bnSpan) bnSpan.textContent = cfg.relightLabel || "Light candles again";
       if (enSpan) enSpan.textContent = "";
+
+      // Gently restore background music after applause & crackers finish
+      setTimeout(() => {
+        if (window.SiteMusic && window.SiteMusic.unduck) {
+          window.SiteMusic.unduck();
+        }
+      }, 3600);
     }, finishDelay);
   }
 
