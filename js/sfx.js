@@ -5,6 +5,7 @@
 (function () {
   const STORAGE_KEY = "tonni_sfx_enabled";
   let ctx = null;
+  let masterOut = null;
   let enabled = localStorage.getItem(STORAGE_KEY) !== "off";
   let unlocked = false;
 
@@ -16,7 +17,21 @@
     if (!enabled) return null;
     const AudioCtx = window.AudioContext || window.webkitAudioContext;
     if (!AudioCtx) return null;
-    if (!ctx) ctx = new AudioCtx();
+    if (!ctx) {
+      ctx = new AudioCtx();
+      // Master gain + gentle compressor so SFX are crisp, loud & distortion-free on phone speakers
+      const gain = ctx.createGain();
+      gain.gain.value = 1.75;
+      const comp = ctx.createDynamicsCompressor();
+      comp.threshold.value = -14;
+      comp.knee.value = 18;
+      comp.ratio.value = 4;
+      comp.attack.value = 0.004;
+      comp.release.value = 0.14;
+      gain.connect(comp);
+      comp.connect(ctx.destination);
+      masterOut = gain;
+    }
     if (ctx.state === "suspended") {
       ctx.resume().catch(() => {});
     }
@@ -24,14 +39,26 @@
   }
 
   function unlock() {
-    if (unlocked) return;
-    unlocked = true;
-    ensureCtx();
+    const c = ensureCtx();
+    if (!c) return;
+    if (!unlocked) {
+      unlocked = true;
+      // Silent 1-sample buffer unlock for iOS Safari Web Audio
+      try {
+        const buf = c.createBuffer(1, 1, 22050);
+        const src = c.createBufferSource();
+        src.buffer = buf;
+        src.connect(c.destination);
+        src.start(0);
+      } catch {
+        // Ignore
+      }
+    }
   }
 
   function playTone(freq, duration = 0.45, type = "sine", gainPeak = 0.06, delay = 0) {
     const c = ensureCtx();
-    if (!c || c.state !== "running") return;
+    if (!c || !masterOut) return;
     const t = c.currentTime + delay;
     const osc = c.createOscillator();
     const gain = c.createGain();
@@ -41,14 +68,14 @@
     gain.gain.exponentialRampToValueAtTime(gainPeak, t + 0.02);
     gain.gain.exponentialRampToValueAtTime(0.0001, t + duration);
     osc.connect(gain);
-    gain.connect(c.destination);
+    gain.connect(masterOut);
     osc.start(t);
     osc.stop(t + duration + 0.02);
   }
 
   function playNoise(duration = 0.25, filterFreq = 900, gainPeak = 0.04, delay = 0) {
     const c = ensureCtx();
-    if (!c || c.state !== "running") return;
+    if (!c || !masterOut) return;
     const bufSize = Math.floor(c.sampleRate * duration);
     const buffer = c.createBuffer(1, bufSize, c.sampleRate);
     const data = buffer.getChannelData(0);
@@ -58,25 +85,24 @@
     src.buffer = buffer;
     const filter = c.createBiquadFilter();
     filter.type = "bandpass";
-    filter.frequency.value = filterFreq;
+    filter.frequency.value = Math.max(420, filterFreq);
     filter.Q.value = 1.2;
 
     const gain = c.createGain();
     const t = c.currentTime + delay;
     gain.gain.setValueAtTime(0.0001, t);
-    gain.gain.exponentialRampToValueAtTime(gainPeak, t + 0.03);
+    gain.gain.exponentialRampToValueAtTime(gainPeak, t + 0.025);
     gain.gain.exponentialRampToValueAtTime(0.0001, t + duration);
 
     src.connect(filter);
     filter.connect(gain);
-    gain.connect(c.destination);
+    gain.connect(masterOut);
     src.start(t);
   }
 
-  function playClap(delay = 0, peak = 0.055, freq = 1150) {
+  function playClap(delay = 0, peak = 0.065, freq = 1250) {
     const c = ensureCtx();
-    if (!c || c.state !== "running") return;
-    // A realistic single hand clap has 2-3 micro-impulses (~12ms apart) + short resonant tail
+    if (!c || !masterOut) return;
     const dur = 0.14;
     const bufSize = Math.floor(c.sampleRate * dur);
     const buffer = c.createBuffer(1, bufSize, c.sampleRate);
@@ -92,17 +118,17 @@
     const bp = c.createBiquadFilter();
     bp.type = "bandpass";
     bp.frequency.value = freq;
-    bp.Q.value = 1.4;
+    bp.Q.value = 1.3;
 
     const gain = c.createGain();
     const t = c.currentTime + delay;
     gain.gain.setValueAtTime(0.0001, t);
-    gain.gain.linearRampToValueAtTime(peak, t + 0.006);
+    gain.gain.linearRampToValueAtTime(peak, t + 0.005);
     gain.gain.exponentialRampToValueAtTime(0.0001, t + dur);
 
     src.connect(bp);
     bp.connect(gain);
-    gain.connect(c.destination);
+    gain.connect(masterOut);
     src.start(t);
   }
 
@@ -161,7 +187,7 @@
     msgSent() {
       // Crisp cute upward chat-bubble pop
       const c = ensureCtx();
-      if (!c || c.state !== "running") return;
+      if (!c || !masterOut) return;
       const t = c.currentTime;
       const osc = c.createOscillator();
       const g = c.createGain();
@@ -169,10 +195,10 @@
       osc.frequency.setValueAtTime(520, t);
       osc.frequency.exponentialRampToValueAtTime(880, t + 0.075);
       g.gain.setValueAtTime(0.0001, t);
-      g.gain.linearRampToValueAtTime(0.048, t + 0.012);
+      g.gain.linearRampToValueAtTime(0.055, t + 0.012);
       g.gain.exponentialRampToValueAtTime(0.0001, t + 0.11);
       osc.connect(g);
-      g.connect(c.destination);
+      g.connect(masterOut);
       osc.start(t);
       osc.stop(t + 0.12);
     },
@@ -233,23 +259,23 @@
     firework() {
       // Soft whistle up + sparkle pop
       const c = ensureCtx();
-      if (!c || c.state !== "running") return;
+      if (!c || !masterOut) return;
       const t = c.currentTime;
       const osc = c.createOscillator();
       const g = c.createGain();
       osc.type = "sine";
-      osc.frequency.setValueAtTime(320, t);
-      osc.frequency.exponentialRampToValueAtTime(1100, t + 0.24);
-      g.gain.setValueAtTime(0.02, t);
+      osc.frequency.setValueAtTime(380, t);
+      osc.frequency.exponentialRampToValueAtTime(1250, t + 0.24);
+      g.gain.setValueAtTime(0.025, t);
       g.gain.exponentialRampToValueAtTime(0.0001, t + 0.25);
       osc.connect(g);
-      g.connect(c.destination);
+      g.connect(masterOut);
       osc.start(t);
       osc.stop(t + 0.26);
 
-      playNoise(0.28, 420, 0.055, 0.24);
-      playTone(880, 0.55, "triangle", 0.035, 0.26);
-      playTone(1174.66, 0.65, "sine", 0.035, 0.3);
+      playNoise(0.28, 620, 0.065, 0.24);
+      playTone(880, 0.55, "triangle", 0.04, 0.26);
+      playTone(1174.66, 0.65, "sine", 0.04, 0.3);
     },
     finaleChord() {
       [293.66, 440.0, 587.33, 739.99, 880.0, 1174.66].forEach((f, i) => {
@@ -267,8 +293,9 @@
     if (label) label.textContent = enabled ? "SFX On" : "SFX Off";
   }
 
-  window.addEventListener("pointerdown", unlock, { once: true, passive: true });
-  window.addEventListener("keydown", unlock, { once: true, passive: true });
+  ["touchstart", "touchend", "pointerdown", "click", "keydown"].forEach((ev) => {
+    window.addEventListener(ev, unlock, { passive: true });
+  });
 
   document.addEventListener("DOMContentLoaded", () => {
     const pill = document.getElementById("sfx-pill");

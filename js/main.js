@@ -447,7 +447,11 @@
       }
     }
 
-    function fadeIn(audio, targetVol = 0.72) {
+    const isIOS = /iPad|iPhone|iPod/.test(navigator.userAgent);
+    let pausedByDuck = false;
+    const BASE_VOL = 0.56;
+
+    function fadeIn(audio, targetVol = BASE_VOL) {
       clearInterval(fadeTimer);
       audio.volume = 0;
       fadeTimer = setInterval(() => {
@@ -464,12 +468,13 @@
       const audio = getActiveAudio();
       playing = true;
       pausedByVideo = false;
+      pausedByDuck = false;
       localStorage.setItem(STORAGE_KEY, "on");
       updateUI();
 
       try {
         await audio.play();
-        fadeIn(audio, 0.72);
+        fadeIn(audio, BASE_VOL);
       } catch {
         playing = false;
         updateUI();
@@ -530,12 +535,23 @@
       if (!playing) return;
       clearInterval(fadeTimer);
       const a = getActiveAudio();
+      // iOS Safari ignores audio.volume, so pause briefly during voice/blowout on iOS for crystal-clear audio
+      if (isIOS && level <= 0.2) {
+        pausedByDuck = true;
+        a.pause();
+        return;
+      }
       a.volume = Math.min(a.volume, level);
     }
 
     function unduck() {
       if (!playing) return;
-      fadeIn(getActiveAudio(), 0.72);
+      const a = getActiveAudio();
+      if (pausedByDuck) {
+        pausedByDuck = false;
+        a.play().catch(() => {});
+      }
+      fadeIn(a, BASE_VOL);
     }
 
     window.SiteMusic = {
