@@ -295,6 +295,10 @@
     const feedback = $("gate-feedback");
     const card = gate.querySelector(".gate-card");
 
+    input?.addEventListener("input", () => {
+      if (window.SiteSFX && window.SiteSFX.keyTap) window.SiteSFX.keyTap();
+    });
+
     form.addEventListener("submit", (e) => {
       e.preventDefault();
       const val = (input.value || "").trim().toLowerCase();
@@ -465,29 +469,73 @@
     };
   }
 
-  /* ---------- 3. Film Section (Auto-duck Music) ---------- */
+  /* ---------- 3. Film Section (Frame-Synced SFX + Soft Music Ducking) ---------- */
   function initFilm() {
     const video = $("story-video");
     const overlay = $("film-play-overlay");
     if (!video || !overlay) return;
 
+    // Frame-accurate SFX cues matching our-story.mp4 (22.3s)
+    const videoCues = [
+      { t: 0.4, fn: "swipeWhoosh" },
+      { t: 2.0, fn: "matchFanfare" },
+      { t: 3.0, fn: "msgSent" },
+      { t: 4.0, fn: "msgSent" },
+      { t: 5.0, fn: "msgRecv" },
+      { t: 6.0, fn: "msgSent" },
+      { t: 7.8, fn: "msgRecv" },
+      { t: 13.2, fn: "chime" },
+      { t: 15.0, fn: "unlockBurst" },
+      { t: 17.2, fn: "matchFanfare" },
+      { t: 20.2, fn: "finaleChord" }
+    ];
+    let firedCues = new Set();
+
     overlay.addEventListener("click", () => {
+      if (window.SiteSFX && window.SiteSFX.softPop) window.SiteSFX.softPop();
       video.play().catch(() => {});
     });
+
     video.addEventListener("play", () => {
       overlay.classList.add("hidden");
-      if (window.SiteMusic && window.SiteMusic.isPlaying()) {
-        window.SiteMusic.pause(true);
+      if (video.currentTime < 0.5) firedCues.clear();
+      // Duck music gently to 0.32 so the romantic song stays softly underneath the video SFX
+      if (window.SiteMusic && window.SiteMusic.duck) {
+        window.SiteMusic.duck(0.32);
       }
     });
+
+    video.addEventListener("seeked", () => {
+      firedCues.clear();
+      videoCues.forEach((c, idx) => {
+        if (video.currentTime > c.t + 0.25) firedCues.add(idx);
+      });
+    });
+
+    video.addEventListener("timeupdate", () => {
+      if (video.paused || !window.SiteSFX) return;
+      const nowT = video.currentTime;
+      videoCues.forEach((c, idx) => {
+        if (!firedCues.has(idx) && nowT >= c.t && nowT <= c.t + 0.6) {
+          firedCues.add(idx);
+          if (typeof window.SiteSFX[c.fn] === "function") {
+            window.SiteSFX[c.fn]();
+          }
+        }
+      });
+    });
+
     const onStop = () => {
       overlay.classList.remove("hidden");
-      if (window.SiteMusic && window.SiteMusic.wasPausedByVideo()) {
-        window.SiteMusic.play();
+      if (window.SiteMusic && window.SiteMusic.unduck) {
+        window.SiteMusic.unduck();
       }
     };
     video.addEventListener("pause", onStop);
-    video.addEventListener("ended", onStop);
+    video.addEventListener("ended", () => {
+      firedCues.clear();
+      onStop();
+    });
   }
 
   /* ---------- 5. Timeline ---------- */
@@ -793,7 +841,18 @@
             gsap.from(bubbles, {
               opacity: 0,
               y: 12,
-              stagger: 0.22,
+              stagger: {
+                each: 0.28,
+                onStart: function () {
+                  if (!window.SiteSFX) return;
+                  const el = this.targets()[0];
+                  if (el && el.classList.contains("her") && window.SiteSFX.msgRecv) {
+                    window.SiteSFX.msgRecv();
+                  } else if (window.SiteSFX.msgSent) {
+                    window.SiteSFX.msgSent();
+                  }
+                }
+              },
               duration: 0.45,
               ease: "power2.out",
               clearProps: "all"

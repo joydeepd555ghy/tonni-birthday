@@ -137,6 +137,53 @@
       playTone(f, 0.42, "sine", 0.045, 0);
       playTone(f * 2, 0.28, "triangle", 0.018, 0.02);
     },
+    keyTap() {
+      // Soft tactile crystal keystroke for typing
+      playNoise(0.035, 2400, 0.022, 0);
+      playTone(1050 + Math.random() * 180, 0.06, "triangle", 0.014, 0);
+    },
+    penTick() {
+      // Ultra-soft vintage pen-on-paper tick during letter handwriting
+      playNoise(0.025, 3100, 0.012, 0);
+    },
+    swipeWhoosh() {
+      // Silky swipe-right whoosh
+      playNoise(0.26, 1300, 0.042, 0);
+      playTone(520, 0.18, "sine", 0.022, 0.04);
+    },
+    matchFanfare() {
+      // Sparkly "It's a Match!" chime + celebration pop
+      [587.33, 739.99, 880.0, 1174.66].forEach((f, i) => {
+        playTone(f, 0.65, "sine", 0.055, i * 0.07);
+      });
+      playNoise(0.12, 2200, 0.045, 0.2);
+    },
+    msgSent() {
+      // Crisp cute upward chat-bubble pop
+      const c = ensureCtx();
+      if (!c || c.state !== "running") return;
+      const t = c.currentTime;
+      const osc = c.createOscillator();
+      const g = c.createGain();
+      osc.type = "sine";
+      osc.frequency.setValueAtTime(520, t);
+      osc.frequency.exponentialRampToValueAtTime(880, t + 0.075);
+      g.gain.setValueAtTime(0.0001, t);
+      g.gain.linearRampToValueAtTime(0.048, t + 0.012);
+      g.gain.exponentialRampToValueAtTime(0.0001, t + 0.11);
+      osc.connect(g);
+      g.connect(c.destination);
+      osc.start(t);
+      osc.stop(t + 0.12);
+    },
+    msgRecv() {
+      // Warm gentle double-bell incoming message ding
+      playTone(784.0, 0.18, "sine", 0.042, 0);
+      playTone(1046.5, 0.26, "sine", 0.046, 0.075);
+    },
+    softPop() {
+      playTone(680, 0.12, "sine", 0.032, 0);
+    },
     curtainOpen() {
       // Plush velvet drape whoosh + sweeping royal harp glissando + crystal sparkle
       playNoise(0.95, 420, 0.055, 0);

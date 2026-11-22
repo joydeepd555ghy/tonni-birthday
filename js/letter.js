@@ -84,6 +84,9 @@
         if (typingCancelled) return;
         if (gIdx < graphemes.length) {
           p.textContent += graphemes[gIdx++];
+          if (gIdx % 3 === 1 && window.SiteSFX && window.SiteSFX.penTick) {
+            window.SiteSFX.penTick();
+          }
           typingTimer = setTimeout(stepChar, para.lang === "bn" ? 26 : 18);
         } else {
           typingTimer = setTimeout(nextParagraph, 240);

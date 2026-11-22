@@ -130,6 +130,7 @@
 
   function moveCarousel(delta) {
     if (!featuredItems.length) return;
+    if (window.SiteSFX && window.SiteSFX.softPop) window.SiteSFX.softPop();
     carouselIdx = (carouselIdx + delta + featuredItems.length) % featuredItems.length;
     updateCarousel();
   }
@@ -249,6 +250,7 @@
       btn.appendChild(txt);
 
       btn.addEventListener("click", () => {
+        if (window.SiteSFX && window.SiteSFX.softPop) window.SiteSFX.softPop();
         activeAlbum = ch.key;
         container.querySelectorAll(".album-chip").forEach((el) => {
           el.classList.remove("active");
