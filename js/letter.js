@@ -105,6 +105,7 @@
 
     seal.classList.add("broken");
     wrapper.classList.add("opening");
+    if (window.SiteSFX) window.SiteSFX.envelopeOpen();
 
     if (window.SiteParticles) {
       const rect = seal.getBoundingClientRect();

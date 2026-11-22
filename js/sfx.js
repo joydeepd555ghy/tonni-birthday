@@ -1,0 +1,173 @@
+/**
+ * Romantic Web Audio SFX Engine (zero external files).
+ * Unlocks cleanly on first user gesture and provides a Sound FX toggle.
+ */
+(function () {
+  const STORAGE_KEY = "tonni_sfx_enabled";
+  let ctx = null;
+  let enabled = localStorage.getItem(STORAGE_KEY) !== "off";
+  let unlocked = false;
+
+  // Romantic D-major pentatonic frequencies for musical taps
+  const PENTATONIC = [587.33, 659.25, 739.99, 880.0, 987.77, 1174.66];
+  let noteStep = 0;
+
+  function ensureCtx() {
+    if (!enabled) return null;
+    const AudioCtx = window.AudioContext || window.webkitAudioContext;
+    if (!AudioCtx) return null;
+    if (!ctx) ctx = new AudioCtx();
+    if (ctx.state === "suspended") {
+      ctx.resume().catch(() => {});
+    }
+    return ctx;
+  }
+
+  function unlock() {
+    if (unlocked) return;
+    unlocked = true;
+    ensureCtx();
+  }
+
+  function playTone(freq, duration = 0.45, type = "sine", gainPeak = 0.06, delay = 0) {
+    const c = ensureCtx();
+    if (!c || c.state !== "running") return;
+    const t = c.currentTime + delay;
+    const osc = c.createOscillator();
+    const gain = c.createGain();
+    osc.type = type;
+    osc.frequency.setValueAtTime(freq, t);
+    gain.gain.setValueAtTime(0.0001, t);
+    gain.gain.exponentialRampToValueAtTime(gainPeak, t + 0.02);
+    gain.gain.exponentialRampToValueAtTime(0.0001, t + duration);
+    osc.connect(gain);
+    gain.connect(c.destination);
+    osc.start(t);
+    osc.stop(t + duration + 0.02);
+  }
+
+  function playNoise(duration = 0.25, filterFreq = 900, gainPeak = 0.04, delay = 0) {
+    const c = ensureCtx();
+    if (!c || c.state !== "running") return;
+    const bufSize = Math.floor(c.sampleRate * duration);
+    const buffer = c.createBuffer(1, bufSize, c.sampleRate);
+    const data = buffer.getChannelData(0);
+    for (let i = 0; i < bufSize; i++) data[i] = Math.random() * 2 - 1;
+
+    const src = c.createBufferSource();
+    src.buffer = buffer;
+    const filter = c.createBiquadFilter();
+    filter.type = "bandpass";
+    filter.frequency.value = filterFreq;
+    filter.Q.value = 1.2;
+
+    const gain = c.createGain();
+    const t = c.currentTime + delay;
+    gain.gain.setValueAtTime(0.0001, t);
+    gain.gain.exponentialRampToValueAtTime(gainPeak, t + 0.03);
+    gain.gain.exponentialRampToValueAtTime(0.0001, t + duration);
+
+    src.connect(filter);
+    filter.connect(gain);
+    gain.connect(c.destination);
+    src.start(t);
+  }
+
+  const SFX = {
+    isEnabled: () => enabled,
+    setEnabled(val) {
+      enabled = Boolean(val);
+      localStorage.setItem(STORAGE_KEY, enabled ? "on" : "off");
+      if (enabled) ensureCtx();
+      updatePill();
+    },
+    toggle() {
+      this.setEnabled(!enabled);
+    },
+    chime() {
+      const f = PENTATONIC[noteStep++ % PENTATONIC.length];
+      playTone(f, 0.42, "sine", 0.045, 0);
+      playTone(f * 2, 0.28, "triangle", 0.018, 0.02);
+    },
+    unlockBurst() {
+      // Warm ascending harp arpeggio
+      [293.66, 369.99, 440.0, 587.33, 739.99, 880.0].forEach((f, i) => {
+        playTone(f, 0.75, "sine", 0.055, i * 0.065);
+      });
+    },
+    petalSplit() {
+      playNoise(0.35, 1600, 0.022, 0);
+      [587.33, 880.0, 1174.66].forEach((f, i) => {
+        playTone(f, 0.65, "triangle", 0.03, i * 0.08);
+      });
+    },
+    cardFlip() {
+      playNoise(0.14, 1200, 0.02, 0);
+      playTone(659.25, 0.35, "sine", 0.04, 0.03);
+      playTone(987.77, 0.38, "sine", 0.025, 0.08);
+    },
+    envelopeOpen() {
+      playNoise(0.28, 750, 0.035, 0);
+      [293.66, 440.0, 554.37, 739.99].forEach((f, i) => {
+        playTone(f, 0.9, "sine", 0.04, 0.06 + i * 0.09);
+      });
+    },
+    blowOut() {
+      playNoise(0.45, 500, 0.05, 0);
+      [587.33, 739.99, 880.0, 1174.66].forEach((f, i) => {
+        playTone(f, 0.85, "sine", 0.05, 0.35 + i * 0.1);
+      });
+    },
+    firework() {
+      // Soft whistle up + sparkle pop
+      const c = ensureCtx();
+      if (!c || c.state !== "running") return;
+      const t = c.currentTime;
+      const osc = c.createOscillator();
+      const g = c.createGain();
+      osc.type = "sine";
+      osc.frequency.setValueAtTime(320, t);
+      osc.frequency.exponentialRampToValueAtTime(1100, t + 0.24);
+      g.gain.setValueAtTime(0.02, t);
+      g.gain.exponentialRampToValueAtTime(0.0001, t + 0.25);
+      osc.connect(g);
+      g.connect(c.destination);
+      osc.start(t);
+      osc.stop(t + 0.26);
+
+      playNoise(0.28, 420, 0.055, 0.24);
+      playTone(880, 0.55, "triangle", 0.035, 0.26);
+      playTone(1174.66, 0.65, "sine", 0.035, 0.3);
+    },
+    finaleChord() {
+      [293.66, 440.0, 587.33, 739.99, 880.0, 1174.66].forEach((f, i) => {
+        playTone(f, 1.8, "sine", 0.045, i * 0.07);
+      });
+    }
+  };
+
+  function updatePill() {
+    const pill = document.getElementById("sfx-pill");
+    if (!pill) return;
+    pill.setAttribute("aria-pressed", String(enabled));
+    pill.classList.toggle("muted", !enabled);
+    const label = pill.querySelector(".sfx-pill-text");
+    if (label) label.textContent = enabled ? "SFX On" : "SFX Off";
+  }
+
+  window.addEventListener("pointerdown", unlock, { once: true, passive: true });
+  window.addEventListener("keydown", unlock, { once: true, passive: true });
+
+  document.addEventListener("DOMContentLoaded", () => {
+    const pill = document.getElementById("sfx-pill");
+    if (pill) {
+      updatePill();
+      pill.addEventListener("click", () => {
+        SFX.toggle();
+        if (SFX.isEnabled()) SFX.chime();
+      });
+    }
+  });
+
+  window.SiteSFX = SFX;
+})();

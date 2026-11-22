@@ -22,7 +22,10 @@
 
   const petals = [];
   const bokeh = [];
+  const stars = [];
+  const shootingStars = [];
   const fwParticles = [];
+  let nextShootAt = performance.now() + 3500;
 
   const PETAL_COLORS = ["#ff7a9c", "#ff9db5", "#e8587f", "#ffd0dc"];
   const FW_COLORS = ["#f2c36b", "#ff7a9c", "#ffd0dc", "#fbe9dc", "#ff9db5"];
@@ -73,11 +76,22 @@
   function initAmbient() {
     petals.length = 0;
     bokeh.length = 0;
+    stars.length = 0;
     const isMobile = W < 640;
     const petalCount = isMobile ? 24 : 34;
     const bokehCount = isMobile ? 12 : 18;
+    const starCount = isMobile ? 22 : 36;
     for (let i = 0; i < petalCount; i++) petals.push(createPetal(true));
     for (let i = 0; i < bokehCount; i++) bokeh.push(createBokeh(true));
+    for (let i = 0; i < starCount; i++) {
+      stars.push({
+        x: Math.random() * W,
+        y: Math.random() * H * 0.75,
+        r: 0.7 + Math.random() * 1.3,
+        phase: Math.random() * Math.PI * 2,
+        speed: 0.018 + Math.random() * 0.025
+      });
+    }
   }
 
   function drawPetal(ctx, p) {
@@ -110,6 +124,49 @@
 
   function renderAmbientFrame() {
     actx.clearRect(0, 0, W, H);
+
+    // Twinkling stars
+    for (let i = 0; i < stars.length; i++) {
+      const s = stars[i];
+      s.phase += s.speed;
+      const a = 0.15 + (Math.sin(s.phase) + 1) * 0.25;
+      actx.fillStyle = `rgba(251, 233, 220, ${a.toFixed(3)})`;
+      actx.beginPath();
+      actx.arc(s.x, s.y, s.r, 0, Math.PI * 2);
+      actx.fill();
+    }
+
+    // Occasional shooting star
+    const now = performance.now();
+    if (now > nextShootAt && shootingStars.length < 1) {
+      nextShootAt = now + 5500 + Math.random() * 6500;
+      shootingStars.push({
+        x: W * (0.15 + Math.random() * 0.65),
+        y: H * (0.06 + Math.random() * 0.25),
+        vx: 7 + Math.random() * 4,
+        vy: 3.2 + Math.random() * 2,
+        life: 1
+      });
+    }
+    for (let i = shootingStars.length - 1; i >= 0; i--) {
+      const st = shootingStars[i];
+      st.x += st.vx;
+      st.y += st.vy;
+      st.life -= 0.025;
+      if (st.life <= 0) {
+        shootingStars.splice(i, 1);
+        continue;
+      }
+      const grad = actx.createLinearGradient(st.x, st.y, st.x - st.vx * 8, st.y - st.vy * 8);
+      grad.addColorStop(0, `rgba(242, 195, 107, ${st.life})`);
+      grad.addColorStop(1, "rgba(242, 195, 107, 0)");
+      actx.strokeStyle = grad;
+      actx.lineWidth = 1.8;
+      actx.beginPath();
+      actx.moveTo(st.x, st.y);
+      actx.lineTo(st.x - st.vx * 8, st.y - st.vy * 8);
+      actx.stroke();
+    }
 
     for (let i = 0; i < bokeh.length; i++) {
       const b = bokeh[i];
@@ -246,6 +303,7 @@
 
   function startFinaleShow() {
     if (reducedMotion) return;
+    if (window.SiteSFX) window.SiteSFX.finaleChord();
     const launch = () => {
       spawnBurst(
         W * (0.18 + Math.random() * 0.64),
@@ -254,6 +312,7 @@
         0.35
       );
       spawnHeartRain(12);
+      if (window.SiteSFX) window.SiteSFX.firework();
     };
     launch();
     setTimeout(launch, 350);

@@ -35,6 +35,7 @@
     }
     candlesOut = true;
     stopMic();
+    if (window.SiteSFX) window.SiteSFX.blowOut();
 
     const cfg = window.SITE_CONFIG?.cake || {};
     const candles = Array.from(document.querySelectorAll("#candles-group .candle"));

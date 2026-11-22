@@ -185,6 +185,7 @@
       .to(fill, { opacity: 1, duration: 0.55, ease: "power2.out" }, "-=0.25")
       // 3) Split into petals
       .add(() => {
+        if (window.SiteSFX) window.SiteSFX.petalSplit();
         if (!petalsBox) return;
         petalsBox.innerHTML = "";
         for (let i = 0; i < 16; i++) {
@@ -234,6 +235,7 @@
 
       if (accepted.includes(val)) {
         feedback.textContent = "";
+        if (window.SiteSFX) window.SiteSFX.unlockBurst();
         if (window.SiteParticles) {
           window.SiteParticles.burst(window.innerWidth / 2, window.innerHeight / 2, 50, 0.8);
         }
@@ -557,6 +559,7 @@
       btn.addEventListener("click", () => {
         const flipped = btn.classList.toggle("flipped");
         btn.setAttribute("aria-pressed", String(flipped));
+        if (window.SiteSFX) window.SiteSFX.cardFlip();
       });
       grid.appendChild(btn);
     });
@@ -667,9 +670,24 @@
     });
   }
 
+  function initScrollProgress() {
+    const bar = $("scroll-progress");
+    if (!bar) return;
+    window.addEventListener(
+      "scroll",
+      () => {
+        const max = document.documentElement.scrollHeight - window.innerHeight;
+        const pct = max > 0 ? Math.min(100, Math.max(0, (window.scrollY / max) * 100)) : 0;
+        bar.style.width = `${pct.toFixed(2)}%`;
+      },
+      { passive: true }
+    );
+  }
+
   document.addEventListener("DOMContentLoaded", () => {
     hydrateCopy();
     prepareHeroHeadline();
+    initScrollProgress();
     initMusic();
     initFilm();
     initTimeline();

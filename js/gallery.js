@@ -178,6 +178,7 @@
 
     $("surprise-memory-btn")?.addEventListener("click", () => {
       if (!allMedia.length) return;
+      if (window.SiteSFX) window.SiteSFX.chime();
       const idx = Math.floor(Math.random() * allMedia.length);
       if (window.SiteParticles) {
         const rect = $("surprise-memory-btn").getBoundingClientRect();
