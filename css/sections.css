@@ -255,9 +255,9 @@
 
 /* 2. Hero */
 .hero-section {
-  padding-top: 52px;
-  padding-bottom: 48px;
-  min-height: 92vh;
+  padding-top: 68px;
+  padding-bottom: 36px;
+  min-height: 100svh;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -266,8 +266,8 @@
 
 .hero-arch-stage {
   position: relative;
-  width: min(250px, 68vw);
-  margin: 22px auto 26px;
+  width: min(196px, 52vw);
+  margin: 12px auto 16px;
 }
 
 .hero-orbit {
@@ -343,28 +343,28 @@
 }
 
 .days-counter {
-  margin-top: 22px;
-  padding: 12px 22px;
+  margin-top: 14px;
+  padding: 9px 18px;
   display: inline-flex;
   flex-direction: column;
-  gap: 2px;
+  gap: 1px;
 }
 
 .counter-line-bn {
   font-family: var(--font-bn-display);
-  font-size: 1.05rem;
+  font-size: 0.98rem;
   color: var(--gold);
-  line-height: 1.7;
+  line-height: 1.6;
 }
 
 .counter-line-en {
-  font-size: 0.88rem;
+  font-size: 0.84rem;
   color: var(--blush);
 }
 
 .counter-num {
   font-family: var(--font-en-display);
-  font-size: 1.35rem;
+  font-size: 1.25rem;
   font-weight: 700;
   color: var(--cream);
   font-variant-numeric: tabular-nums;
@@ -372,7 +372,11 @@
 }
 
 .hero-actions {
-  margin-top: 22px;
+  margin-top: 14px;
+}
+
+.hero-section .chapter-next-wrap {
+  margin-top: 16px;
 }
 
 .scroll-cue {
