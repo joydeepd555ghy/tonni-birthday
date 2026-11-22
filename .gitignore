@@ -1,0 +1,17 @@
+# Raw original photos and videos (keep local only, never push huge originals)
+assets/raw/
+
+# OS & editor files
+.DS_Store
+Thumbs.db
+desktop.ini
+*.swp
+.vscode/
+.idea/
+
+# Python cache
+__pycache__/
+*.py[cod]
+*.egg-info/
+.venv/
+venv/

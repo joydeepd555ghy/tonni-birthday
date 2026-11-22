@@ -1,0 +1,942 @@
+[
+  {
+    "type": "photo",
+    "album": "February 2026",
+    "date": "2026-02-11",
+    "caption": "",
+    "thumb": "assets/photos/thumbs/february-2026/img-20260211-wa0014-1.webp",
+    "full": "assets/photos/full/february-2026/img-20260211-wa0014-1.webp",
+    "poster": "",
+    "featured": true
+  },
+  {
+    "type": "photo",
+    "album": "February 2026",
+    "date": "2026-02-11",
+    "caption": "",
+    "thumb": "assets/photos/thumbs/february-2026/img-20260211-wa0015-1.webp",
+    "full": "assets/photos/full/february-2026/img-20260211-wa0015-1.webp",
+    "poster": "",
+    "featured": false
+  },
+  {
+    "type": "photo",
+    "album": "February 2026",
+    "date": "2026-02-11",
+    "caption": "",
+    "thumb": "assets/photos/thumbs/february-2026/img-20260211-wa0016.webp",
+    "full": "assets/photos/full/february-2026/img-20260211-wa0016.webp",
+    "poster": "",
+    "featured": false
+  },
+  {
+    "type": "photo",
+    "album": "February 2026",
+    "date": "2026-02-11",
+    "caption": "",
+    "thumb": "assets/photos/thumbs/february-2026/img-20260211-wa0072.webp",
+    "full": "assets/photos/full/february-2026/img-20260211-wa0072.webp",
+    "poster": "",
+    "featured": false
+  },
+  {
+    "type": "photo",
+    "album": "February 2026",
+    "date": "2026-02-11",
+    "caption": "",
+    "thumb": "assets/photos/thumbs/february-2026/img-20260211-wa0073-1.webp",
+    "full": "assets/photos/full/february-2026/img-20260211-wa0073-1.webp",
+    "poster": "",
+    "featured": false
+  },
+  {
+    "type": "photo",
+    "album": "February 2026",
+    "date": "2026-02-12",
+    "caption": "",
+    "thumb": "assets/photos/thumbs/february-2026/img-20260212-wa0001.webp",
+    "full": "assets/photos/full/february-2026/img-20260212-wa0001.webp",
+    "poster": "",
+    "featured": false
+  },
+  {
+    "type": "photo",
+    "album": "February 2026",
+    "date": "2026-02-12",
+    "caption": "",
+    "thumb": "assets/photos/thumbs/february-2026/img-20260212-wa0005.webp",
+    "full": "assets/photos/full/february-2026/img-20260212-wa0005.webp",
+    "poster": "",
+    "featured": false
+  },
+  {
+    "type": "photo",
+    "album": "February 2026",
+    "date": "2026-02-12",
+    "caption": "",
+    "thumb": "assets/photos/thumbs/february-2026/img-20260212-wa0007.webp",
+    "full": "assets/photos/full/february-2026/img-20260212-wa0007.webp",
+    "poster": "",
+    "featured": false
+  },
+  {
+    "type": "photo",
+    "album": "February 2026",
+    "date": "2026-02-13",
+    "caption": "",
+    "thumb": "assets/photos/thumbs/february-2026/img-20260213-wa0014.webp",
+    "full": "assets/photos/full/february-2026/img-20260213-wa0014.webp",
+    "poster": "",
+    "featured": false
+  },
+  {
+    "type": "photo",
+    "album": "February 2026",
+    "date": "2026-02-13",
+    "caption": "",
+    "thumb": "assets/photos/thumbs/february-2026/img-20260213-wa0030-2.webp",
+    "full": "assets/photos/full/february-2026/img-20260213-wa0030-2.webp",
+    "poster": "",
+    "featured": false
+  },
+  {
+    "type": "photo",
+    "album": "February 2026",
+    "date": "2026-02-13",
+    "caption": "",
+    "thumb": "assets/photos/thumbs/february-2026/img-20260213-wa0050-2.webp",
+    "full": "assets/photos/full/february-2026/img-20260213-wa0050-2.webp",
+    "poster": "",
+    "featured": false
+  },
+  {
+    "type": "photo",
+    "album": "February 2026",
+    "date": "2026-02-14",
+    "caption": "",
+    "thumb": "assets/photos/thumbs/february-2026/img-20260214-wa0002.webp",
+    "full": "assets/photos/full/february-2026/img-20260214-wa0002.webp",
+    "poster": "",
+    "featured": false
+  },
+  {
+    "type": "photo",
+    "album": "February 2026",
+    "date": "2026-02-14",
+    "caption": "",
+    "thumb": "assets/photos/thumbs/february-2026/img-20260214-wa0019-1.webp",
+    "full": "assets/photos/full/february-2026/img-20260214-wa0019-1.webp",
+    "poster": "",
+    "featured": false
+  },
+  {
+    "type": "photo",
+    "album": "February 2026",
+    "date": "2026-02-14",
+    "caption": "",
+    "thumb": "assets/photos/thumbs/february-2026/img-20260214-wa0020-2.webp",
+    "full": "assets/photos/full/february-2026/img-20260214-wa0020-2.webp",
+    "poster": "",
+    "featured": false
+  },
+  {
+    "type": "photo",
+    "album": "February 2026",
+    "date": "2026-02-14",
+    "caption": "",
+    "thumb": "assets/photos/thumbs/february-2026/img-20260214-wa0021-2.webp",
+    "full": "assets/photos/full/february-2026/img-20260214-wa0021-2.webp",
+    "poster": "",
+    "featured": false
+  },
+  {
+    "type": "photo",
+    "album": "February 2026",
+    "date": "2026-02-14",
+    "caption": "",
+    "thumb": "assets/photos/thumbs/february-2026/img-20260214-wa0022-1.webp",
+    "full": "assets/photos/full/february-2026/img-20260214-wa0022-1.webp",
+    "poster": "",
+    "featured": false
+  },
+  {
+    "type": "photo",
+    "album": "February 2026",
+    "date": "2026-02-14",
+    "caption": "",
+    "thumb": "assets/photos/thumbs/february-2026/img-20260214-wa0027-1.webp",
+    "full": "assets/photos/full/february-2026/img-20260214-wa0027-1.webp",
+    "poster": "",
+    "featured": false
+  },
+  {
+    "type": "photo",
+    "album": "February 2026",
+    "date": "2026-02-14",
+    "caption": "",
+    "thumb": "assets/photos/thumbs/february-2026/img-20260214-wa0030.webp",
+    "full": "assets/photos/full/february-2026/img-20260214-wa0030.webp",
+    "poster": "",
+    "featured": false
+  },
+  {
+    "type": "photo",
+    "album": "February 2026",
+    "date": "2026-02-14",
+    "caption": "",
+    "thumb": "assets/photos/thumbs/february-2026/img-20260214-wa0031.webp",
+    "full": "assets/photos/full/february-2026/img-20260214-wa0031.webp",
+    "poster": "",
+    "featured": false
+  },
+  {
+    "type": "photo",
+    "album": "February 2026",
+    "date": "2026-02-14",
+    "caption": "",
+    "thumb": "assets/photos/thumbs/february-2026/img-20260214-wa0033-2.webp",
+    "full": "assets/photos/full/february-2026/img-20260214-wa0033-2.webp",
+    "poster": "",
+    "featured": false
+  },
+  {
+    "type": "photo",
+    "album": "February 2026",
+    "date": "2026-02-14",
+    "caption": "",
+    "thumb": "assets/photos/thumbs/february-2026/img-20260214-wa0034.webp",
+    "full": "assets/photos/full/february-2026/img-20260214-wa0034.webp",
+    "poster": "",
+    "featured": false
+  },
+  {
+    "type": "photo",
+    "album": "February 2026",
+    "date": "2026-02-15",
+    "caption": "",
+    "thumb": "assets/photos/thumbs/february-2026/img-20260215-wa0015.webp",
+    "full": "assets/photos/full/february-2026/img-20260215-wa0015.webp",
+    "poster": "",
+    "featured": false
+  },
+  {
+    "type": "photo",
+    "album": "February 2026",
+    "date": "2026-02-15",
+    "caption": "",
+    "thumb": "assets/photos/thumbs/february-2026/img-20260215-wa0017.webp",
+    "full": "assets/photos/full/february-2026/img-20260215-wa0017.webp",
+    "poster": "",
+    "featured": false
+  },
+  {
+    "type": "photo",
+    "album": "February 2026",
+    "date": "2026-02-15",
+    "caption": "",
+    "thumb": "assets/photos/thumbs/february-2026/img-20260215-wa0026.webp",
+    "full": "assets/photos/full/february-2026/img-20260215-wa0026.webp",
+    "poster": "",
+    "featured": false
+  },
+  {
+    "type": "photo",
+    "album": "February 2026",
+    "date": "2026-02-15",
+    "caption": "",
+    "thumb": "assets/photos/thumbs/february-2026/img-20260215-wa0027.webp",
+    "full": "assets/photos/full/february-2026/img-20260215-wa0027.webp",
+    "poster": "",
+    "featured": false
+  },
+  {
+    "type": "photo",
+    "album": "February 2026",
+    "date": "2026-02-19",
+    "caption": "",
+    "thumb": "assets/photos/thumbs/february-2026/img-20260219-wa0009.webp",
+    "full": "assets/photos/full/february-2026/img-20260219-wa0009.webp",
+    "poster": "",
+    "featured": false
+  },
+  {
+    "type": "photo",
+    "album": "February 2026",
+    "date": "2026-02-20",
+    "caption": "",
+    "thumb": "assets/photos/thumbs/february-2026/img-20260220-wa0031-1.webp",
+    "full": "assets/photos/full/february-2026/img-20260220-wa0031-1.webp",
+    "poster": "",
+    "featured": false
+  },
+  {
+    "type": "photo",
+    "album": "February 2026",
+    "date": "2026-02-21",
+    "caption": "",
+    "thumb": "assets/photos/thumbs/february-2026/img-20260221-wa0009.webp",
+    "full": "assets/photos/full/february-2026/img-20260221-wa0009.webp",
+    "poster": "",
+    "featured": false
+  },
+  {
+    "type": "photo",
+    "album": "February 2026",
+    "date": "2026-02-25",
+    "caption": "",
+    "thumb": "assets/photos/thumbs/february-2026/img-20260225-wa0000.webp",
+    "full": "assets/photos/full/february-2026/img-20260225-wa0000.webp",
+    "poster": "",
+    "featured": false
+  },
+  {
+    "type": "photo",
+    "album": "February 2026",
+    "date": "2026-02-25",
+    "caption": "",
+    "thumb": "assets/photos/thumbs/february-2026/img-20260225-wa0014.webp",
+    "full": "assets/photos/full/february-2026/img-20260225-wa0014.webp",
+    "poster": "",
+    "featured": false
+  },
+  {
+    "type": "photo",
+    "album": "February 2026",
+    "date": "2026-02-26",
+    "caption": "",
+    "thumb": "assets/photos/thumbs/february-2026/img-20260226-wa0029-1.webp",
+    "full": "assets/photos/full/february-2026/img-20260226-wa0029-1.webp",
+    "poster": "",
+    "featured": false
+  },
+  {
+    "type": "photo",
+    "album": "February 2026",
+    "date": "2026-02-27",
+    "caption": "",
+    "thumb": "assets/photos/thumbs/february-2026/img-20260227-wa0049.webp",
+    "full": "assets/photos/full/february-2026/img-20260227-wa0049.webp",
+    "poster": "",
+    "featured": false
+  },
+  {
+    "type": "photo",
+    "album": "February 2026",
+    "date": "2026-02-27",
+    "caption": "",
+    "thumb": "assets/photos/thumbs/february-2026/img-20260227-wa0061.webp",
+    "full": "assets/photos/full/february-2026/img-20260227-wa0061.webp",
+    "poster": "",
+    "featured": false
+  },
+  {
+    "type": "photo",
+    "album": "February 2026",
+    "date": "2026-02-28",
+    "caption": "",
+    "thumb": "assets/photos/thumbs/february-2026/img-20260228-wa0049.webp",
+    "full": "assets/photos/full/february-2026/img-20260228-wa0049.webp",
+    "poster": "",
+    "featured": false
+  },
+  {
+    "type": "photo",
+    "album": "February 2026",
+    "date": "2026-02-28",
+    "caption": "",
+    "thumb": "assets/photos/thumbs/february-2026/img-20260228-wa0082.webp",
+    "full": "assets/photos/full/february-2026/img-20260228-wa0082.webp",
+    "poster": "",
+    "featured": false
+  },
+  {
+    "type": "photo",
+    "album": "March 2026",
+    "date": "2026-03-01",
+    "caption": "",
+    "thumb": "assets/photos/thumbs/march-2026/img-20260301-wa0016.webp",
+    "full": "assets/photos/full/march-2026/img-20260301-wa0016.webp",
+    "poster": "",
+    "featured": true
+  },
+  {
+    "type": "photo",
+    "album": "March 2026",
+    "date": "2026-03-01",
+    "caption": "",
+    "thumb": "assets/photos/thumbs/march-2026/img-20260301-wa0017.webp",
+    "full": "assets/photos/full/march-2026/img-20260301-wa0017.webp",
+    "poster": "",
+    "featured": false
+  },
+  {
+    "type": "photo",
+    "album": "March 2026",
+    "date": "2026-03-01",
+    "caption": "",
+    "thumb": "assets/photos/thumbs/march-2026/img-20260301-wa0020.webp",
+    "full": "assets/photos/full/march-2026/img-20260301-wa0020.webp",
+    "poster": "",
+    "featured": false
+  },
+  {
+    "type": "photo",
+    "album": "March 2026",
+    "date": "2026-03-02",
+    "caption": "",
+    "thumb": "assets/photos/thumbs/march-2026/img-20260302-wa0023.webp",
+    "full": "assets/photos/full/march-2026/img-20260302-wa0023.webp",
+    "poster": "",
+    "featured": false
+  },
+  {
+    "type": "photo",
+    "album": "March 2026",
+    "date": "2026-03-04",
+    "caption": "",
+    "thumb": "assets/photos/thumbs/march-2026/img-20260304-wa0021.webp",
+    "full": "assets/photos/full/march-2026/img-20260304-wa0021.webp",
+    "poster": "",
+    "featured": false
+  },
+  {
+    "type": "photo",
+    "album": "March 2026",
+    "date": "2026-03-05",
+    "caption": "",
+    "thumb": "assets/photos/thumbs/march-2026/img-20260305-wa0036.webp",
+    "full": "assets/photos/full/march-2026/img-20260305-wa0036.webp",
+    "poster": "",
+    "featured": false
+  },
+  {
+    "type": "photo",
+    "album": "March 2026",
+    "date": "2026-03-07",
+    "caption": "",
+    "thumb": "assets/photos/thumbs/march-2026/img-20260307-wa0019.webp",
+    "full": "assets/photos/full/march-2026/img-20260307-wa0019.webp",
+    "poster": "",
+    "featured": false
+  },
+  {
+    "type": "photo",
+    "album": "March 2026",
+    "date": "2026-03-08",
+    "caption": "",
+    "thumb": "assets/photos/thumbs/march-2026/img-20260308-wa0012-1.webp",
+    "full": "assets/photos/full/march-2026/img-20260308-wa0012-1.webp",
+    "poster": "",
+    "featured": false
+  },
+  {
+    "type": "photo",
+    "album": "March 2026",
+    "date": "2026-03-12",
+    "caption": "",
+    "thumb": "assets/photos/thumbs/march-2026/img-20260312-wa0025-1.webp",
+    "full": "assets/photos/full/march-2026/img-20260312-wa0025-1.webp",
+    "poster": "",
+    "featured": false
+  },
+  {
+    "type": "photo",
+    "album": "March 2026",
+    "date": "2026-03-12",
+    "caption": "",
+    "thumb": "assets/photos/thumbs/march-2026/img-20260312-wa0036.webp",
+    "full": "assets/photos/full/march-2026/img-20260312-wa0036.webp",
+    "poster": "",
+    "featured": false
+  },
+  {
+    "type": "photo",
+    "album": "March 2026",
+    "date": "2026-03-17",
+    "caption": "",
+    "thumb": "assets/photos/thumbs/march-2026/img-20260317-wa0011.webp",
+    "full": "assets/photos/full/march-2026/img-20260317-wa0011.webp",
+    "poster": "",
+    "featured": false
+  },
+  {
+    "type": "photo",
+    "album": "March 2026",
+    "date": "2026-03-17",
+    "caption": "",
+    "thumb": "assets/photos/thumbs/march-2026/img-20260317-wa0012.webp",
+    "full": "assets/photos/full/march-2026/img-20260317-wa0012.webp",
+    "poster": "",
+    "featured": false
+  },
+  {
+    "type": "photo",
+    "album": "March 2026",
+    "date": "2026-03-19",
+    "caption": "",
+    "thumb": "assets/photos/thumbs/march-2026/img-20260319-wa0003.webp",
+    "full": "assets/photos/full/march-2026/img-20260319-wa0003.webp",
+    "poster": "",
+    "featured": false
+  },
+  {
+    "type": "photo",
+    "album": "March 2026",
+    "date": "2026-03-23",
+    "caption": "",
+    "thumb": "assets/photos/thumbs/march-2026/img-20260323-wa0038.webp",
+    "full": "assets/photos/full/march-2026/img-20260323-wa0038.webp",
+    "poster": "",
+    "featured": false
+  },
+  {
+    "type": "photo",
+    "album": "March 2026",
+    "date": "2026-03-26",
+    "caption": "",
+    "thumb": "assets/photos/thumbs/march-2026/img-20260326-wa0011-1.webp",
+    "full": "assets/photos/full/march-2026/img-20260326-wa0011-1.webp",
+    "poster": "",
+    "featured": false
+  },
+  {
+    "type": "photo",
+    "album": "March 2026",
+    "date": "2026-03-28",
+    "caption": "",
+    "thumb": "assets/photos/thumbs/march-2026/img-20260328-wa0001.webp",
+    "full": "assets/photos/full/march-2026/img-20260328-wa0001.webp",
+    "poster": "",
+    "featured": false
+  },
+  {
+    "type": "photo",
+    "album": "March 2026",
+    "date": "2026-03-29",
+    "caption": "",
+    "thumb": "assets/photos/thumbs/march-2026/img-20260329-wa0004-1.webp",
+    "full": "assets/photos/full/march-2026/img-20260329-wa0004-1.webp",
+    "poster": "",
+    "featured": false
+  },
+  {
+    "type": "photo",
+    "album": "March 2026",
+    "date": "2026-03-29",
+    "caption": "",
+    "thumb": "assets/photos/thumbs/march-2026/img-20260329-wa0014.webp",
+    "full": "assets/photos/full/march-2026/img-20260329-wa0014.webp",
+    "poster": "",
+    "featured": false
+  },
+  {
+    "type": "photo",
+    "album": "March 2026",
+    "date": "2026-03-29",
+    "caption": "",
+    "thumb": "assets/photos/thumbs/march-2026/img-20260329-wa0019.webp",
+    "full": "assets/photos/full/march-2026/img-20260329-wa0019.webp",
+    "poster": "",
+    "featured": false
+  },
+  {
+    "type": "photo",
+    "album": "March 2026",
+    "date": "2026-03-30",
+    "caption": "",
+    "thumb": "assets/photos/thumbs/march-2026/img-20260330-wa0017.webp",
+    "full": "assets/photos/full/march-2026/img-20260330-wa0017.webp",
+    "poster": "",
+    "featured": false
+  },
+  {
+    "type": "photo",
+    "album": "April 2026",
+    "date": "2026-04-04",
+    "caption": "",
+    "thumb": "assets/photos/thumbs/april-2026/img-20260404-wa0018.webp",
+    "full": "assets/photos/full/april-2026/img-20260404-wa0018.webp",
+    "poster": "",
+    "featured": true
+  },
+  {
+    "type": "photo",
+    "album": "April 2026",
+    "date": "2026-04-05",
+    "caption": "",
+    "thumb": "assets/photos/thumbs/april-2026/img-20260405-wa0008.webp",
+    "full": "assets/photos/full/april-2026/img-20260405-wa0008.webp",
+    "poster": "",
+    "featured": false
+  },
+  {
+    "type": "photo",
+    "album": "April 2026",
+    "date": "2026-04-06",
+    "caption": "",
+    "thumb": "assets/photos/thumbs/april-2026/img-20260406-wa0000.webp",
+    "full": "assets/photos/full/april-2026/img-20260406-wa0000.webp",
+    "poster": "",
+    "featured": false
+  },
+  {
+    "type": "photo",
+    "album": "April 2026",
+    "date": "2026-04-06",
+    "caption": "",
+    "thumb": "assets/photos/thumbs/april-2026/img-20260406-wa0001.webp",
+    "full": "assets/photos/full/april-2026/img-20260406-wa0001.webp",
+    "poster": "",
+    "featured": false
+  },
+  {
+    "type": "photo",
+    "album": "April 2026",
+    "date": "2026-04-07",
+    "caption": "",
+    "thumb": "assets/photos/thumbs/april-2026/img-20260407-wa0005.webp",
+    "full": "assets/photos/full/april-2026/img-20260407-wa0005.webp",
+    "poster": "",
+    "featured": false
+  },
+  {
+    "type": "photo",
+    "album": "April 2026",
+    "date": "2026-04-08",
+    "caption": "",
+    "thumb": "assets/photos/thumbs/april-2026/img-20260408-wa0001.webp",
+    "full": "assets/photos/full/april-2026/img-20260408-wa0001.webp",
+    "poster": "",
+    "featured": false
+  },
+  {
+    "type": "photo",
+    "album": "April 2026",
+    "date": "2026-04-09",
+    "caption": "",
+    "thumb": "assets/photos/thumbs/april-2026/img-20260409-wa0007.webp",
+    "full": "assets/photos/full/april-2026/img-20260409-wa0007.webp",
+    "poster": "",
+    "featured": false
+  },
+  {
+    "type": "photo",
+    "album": "April 2026",
+    "date": "2026-04-14",
+    "caption": "",
+    "thumb": "assets/photos/thumbs/april-2026/img-20260414-wa0007.webp",
+    "full": "assets/photos/full/april-2026/img-20260414-wa0007.webp",
+    "poster": "",
+    "featured": false
+  },
+  {
+    "type": "photo",
+    "album": "April 2026",
+    "date": "2026-04-18",
+    "caption": "",
+    "thumb": "assets/photos/thumbs/april-2026/img-20260418-wa0003-2.webp",
+    "full": "assets/photos/full/april-2026/img-20260418-wa0003-2.webp",
+    "poster": "",
+    "featured": false
+  },
+  {
+    "type": "photo",
+    "album": "May 2026",
+    "date": "2026-05-11",
+    "caption": "",
+    "thumb": "assets/photos/thumbs/may-2026/img-20260511-wa0007.webp",
+    "full": "assets/photos/full/may-2026/img-20260511-wa0007.webp",
+    "poster": "",
+    "featured": true
+  },
+  {
+    "type": "photo",
+    "album": "May 2026",
+    "date": "2026-05-14",
+    "caption": "",
+    "thumb": "assets/photos/thumbs/may-2026/img-20260514-wa0001.webp",
+    "full": "assets/photos/full/may-2026/img-20260514-wa0001.webp",
+    "poster": "",
+    "featured": false
+  },
+  {
+    "type": "photo",
+    "album": "May 2026",
+    "date": "2026-05-22",
+    "caption": "",
+    "thumb": "assets/photos/thumbs/may-2026/img-20260522-wa0007.webp",
+    "full": "assets/photos/full/may-2026/img-20260522-wa0007.webp",
+    "poster": "",
+    "featured": false
+  },
+  {
+    "type": "photo",
+    "album": "May 2026",
+    "date": "2026-05-23",
+    "caption": "",
+    "thumb": "assets/photos/thumbs/may-2026/img-20260523-wa0016.webp",
+    "full": "assets/photos/full/may-2026/img-20260523-wa0016.webp",
+    "poster": "",
+    "featured": false
+  },
+  {
+    "type": "photo",
+    "album": "May 2026",
+    "date": "2026-05-26",
+    "caption": "",
+    "thumb": "assets/photos/thumbs/may-2026/img-20260526-wa0001.webp",
+    "full": "assets/photos/full/may-2026/img-20260526-wa0001.webp",
+    "poster": "",
+    "featured": false
+  },
+  {
+    "type": "photo",
+    "album": "May 2026",
+    "date": "2026-05-26",
+    "caption": "",
+    "thumb": "assets/photos/thumbs/may-2026/img-20260526-wa0007.webp",
+    "full": "assets/photos/full/may-2026/img-20260526-wa0007.webp",
+    "poster": "",
+    "featured": false
+  },
+  {
+    "type": "photo",
+    "album": "July 2026",
+    "date": "2026-07-30",
+    "caption": "",
+    "thumb": "assets/photos/thumbs/july-2026/img-20260730-wa0024.webp",
+    "full": "assets/photos/full/july-2026/img-20260730-wa0024.webp",
+    "poster": "",
+    "featured": true
+  },
+  {
+    "type": "photo",
+    "album": "August 2026",
+    "date": "2026-08-07",
+    "caption": "",
+    "thumb": "assets/photos/thumbs/august-2026/img-20260807-wa0023.webp",
+    "full": "assets/photos/full/august-2026/img-20260807-wa0023.webp",
+    "poster": "",
+    "featured": true
+  },
+  {
+    "type": "photo",
+    "album": "August 2026",
+    "date": "2026-08-13",
+    "caption": "",
+    "thumb": "assets/photos/thumbs/august-2026/img-20260813-wa0012.webp",
+    "full": "assets/photos/full/august-2026/img-20260813-wa0012.webp",
+    "poster": "",
+    "featured": false
+  },
+  {
+    "type": "photo",
+    "album": "August 2026",
+    "date": "2026-08-13",
+    "caption": "",
+    "thumb": "assets/photos/thumbs/august-2026/img-20260813-wa0013.webp",
+    "full": "assets/photos/full/august-2026/img-20260813-wa0013.webp",
+    "poster": "",
+    "featured": false
+  },
+  {
+    "type": "photo",
+    "album": "September 2026",
+    "date": "2026-09-14",
+    "caption": "",
+    "thumb": "assets/photos/thumbs/september-2026/img-20260914-wa0068.webp",
+    "full": "assets/photos/full/september-2026/img-20260914-wa0068.webp",
+    "poster": "",
+    "featured": true
+  },
+  {
+    "type": "photo",
+    "album": "September 2026",
+    "date": "2026-09-14",
+    "caption": "",
+    "thumb": "assets/photos/thumbs/september-2026/img-20260914-wa0070.webp",
+    "full": "assets/photos/full/september-2026/img-20260914-wa0070.webp",
+    "poster": "",
+    "featured": false
+  },
+  {
+    "type": "photo",
+    "album": "September 2026",
+    "date": "2026-09-24",
+    "caption": "",
+    "thumb": "assets/photos/thumbs/september-2026/img-20260924-wa0019.webp",
+    "full": "assets/photos/full/september-2026/img-20260924-wa0019.webp",
+    "poster": "",
+    "featured": false
+  },
+  {
+    "type": "photo",
+    "album": "October 2026",
+    "date": "2026-10-18",
+    "caption": "",
+    "thumb": "assets/photos/thumbs/october-2026/img-20261018-wa0006.webp",
+    "full": "assets/photos/full/october-2026/img-20261018-wa0006.webp",
+    "poster": "",
+    "featured": true
+  },
+  {
+    "type": "photo",
+    "album": "October 2026",
+    "date": "2026-10-18",
+    "caption": "",
+    "thumb": "assets/photos/thumbs/october-2026/img-20261018-wa0012.webp",
+    "full": "assets/photos/full/october-2026/img-20261018-wa0012.webp",
+    "poster": "",
+    "featured": false
+  },
+  {
+    "type": "photo",
+    "album": "October 2026",
+    "date": "2026-10-19",
+    "caption": "",
+    "thumb": "assets/photos/thumbs/october-2026/img-20261019-wa0000-1.webp",
+    "full": "assets/photos/full/october-2026/img-20261019-wa0000-1.webp",
+    "poster": "",
+    "featured": false
+  },
+  {
+    "type": "photo",
+    "album": "October 2026",
+    "date": "2026-10-19",
+    "caption": "",
+    "thumb": "assets/photos/thumbs/october-2026/img-20261019-wa0014.webp",
+    "full": "assets/photos/full/october-2026/img-20261019-wa0014.webp",
+    "poster": "",
+    "featured": false
+  },
+  {
+    "type": "photo",
+    "album": "October 2026",
+    "date": "2026-10-19",
+    "caption": "",
+    "thumb": "assets/photos/thumbs/october-2026/img-20261019-wa0019.webp",
+    "full": "assets/photos/full/october-2026/img-20261019-wa0019.webp",
+    "poster": "",
+    "featured": false
+  },
+  {
+    "type": "photo",
+    "album": "October 2026",
+    "date": "2026-10-19",
+    "caption": "",
+    "thumb": "assets/photos/thumbs/october-2026/img-20261019-wa0021-1.webp",
+    "full": "assets/photos/full/october-2026/img-20261019-wa0021-1.webp",
+    "poster": "",
+    "featured": false
+  },
+  {
+    "type": "photo",
+    "album": "October 2026",
+    "date": "2026-10-19",
+    "caption": "",
+    "thumb": "assets/photos/thumbs/october-2026/img-20261019-wa0031.webp",
+    "full": "assets/photos/full/october-2026/img-20261019-wa0031.webp",
+    "poster": "",
+    "featured": false
+  },
+  {
+    "type": "photo",
+    "album": "October 2026",
+    "date": "2026-10-20",
+    "caption": "",
+    "thumb": "assets/photos/thumbs/october-2026/img-20261020-wa0024.webp",
+    "full": "assets/photos/full/october-2026/img-20261020-wa0024.webp",
+    "poster": "",
+    "featured": false
+  },
+  {
+    "type": "photo",
+    "album": "October 2026",
+    "date": "2026-10-22",
+    "caption": "",
+    "thumb": "assets/photos/thumbs/october-2026/img-20261022-wa0025.webp",
+    "full": "assets/photos/full/october-2026/img-20261022-wa0025.webp",
+    "poster": "",
+    "featured": false
+  },
+  {
+    "type": "photo",
+    "album": "October 2026",
+    "date": "2026-10-23",
+    "caption": "",
+    "thumb": "assets/photos/thumbs/october-2026/img-20261023-wa0004.webp",
+    "full": "assets/photos/full/october-2026/img-20261023-wa0004.webp",
+    "poster": "",
+    "featured": false
+  },
+  {
+    "type": "photo",
+    "album": "October 2026",
+    "date": "2026-10-23",
+    "caption": "",
+    "thumb": "assets/photos/thumbs/october-2026/img-20261023-wa0006.webp",
+    "full": "assets/photos/full/october-2026/img-20261023-wa0006.webp",
+    "poster": "",
+    "featured": false
+  },
+  {
+    "type": "photo",
+    "album": "October 2026",
+    "date": "2026-10-30",
+    "caption": "",
+    "thumb": "assets/photos/thumbs/october-2026/img-20261030-wa0012.webp",
+    "full": "assets/photos/full/october-2026/img-20261030-wa0012.webp",
+    "poster": "",
+    "featured": false
+  },
+  {
+    "type": "photo",
+    "album": "November 2026",
+    "date": "2026-11-15",
+    "caption": "",
+    "thumb": "assets/photos/thumbs/november-2026/img-20261115-wa0009.webp",
+    "full": "assets/photos/full/november-2026/img-20261115-wa0009.webp",
+    "poster": "",
+    "featured": true
+  },
+  {
+    "type": "photo",
+    "album": "November 2026",
+    "date": "2026-11-15",
+    "caption": "",
+    "thumb": "assets/photos/thumbs/november-2026/img-20261115-wa0011.webp",
+    "full": "assets/photos/full/november-2026/img-20261115-wa0011.webp",
+    "poster": "",
+    "featured": false
+  },
+  {
+    "type": "photo",
+    "album": "November 2026",
+    "date": "2026-11-15",
+    "caption": "",
+    "thumb": "assets/photos/thumbs/november-2026/img-20261115-wa0014.webp",
+    "full": "assets/photos/full/november-2026/img-20261115-wa0014.webp",
+    "poster": "",
+    "featured": false
+  },
+  {
+    "type": "photo",
+    "album": "November 2026",
+    "date": "2026-11-16",
+    "caption": "",
+    "thumb": "assets/photos/thumbs/november-2026/img-20261116-wa0004-1.webp",
+    "full": "assets/photos/full/november-2026/img-20261116-wa0004-1.webp",
+    "poster": "",
+    "featured": false
+  },
+  {
+    "type": "photo",
+    "album": "November 2026",
+    "date": "2026-11-18",
+    "caption": "",
+    "thumb": "assets/photos/thumbs/november-2026/img-20261118-wa0005.webp",
+    "full": "assets/photos/full/november-2026/img-20261118-wa0005.webp",
+    "poster": "",
+    "featured": false
+  }
+]

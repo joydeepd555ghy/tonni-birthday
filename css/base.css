@@ -1,0 +1,364 @@
+/* ==========================================================================
+   Design System & Base Typography (Mobile-First: 390px -> 1280px+)
+   ========================================================================== */
+
+:root {
+  --night: #1a0613;
+  --wine: #3d1029;
+  --rose: #ff7a9c;
+  --blush: #ffd0dc;
+  --gold: #f2c36b;
+  --cream: #fbe9dc;
+
+  --wine-deep: #29091c;
+  --muted: rgba(251, 233, 220, 0.74);
+  --glass-bg: rgba(45, 11, 31, 0.58);
+  --glass-border: rgba(242, 195, 107, 0.28);
+
+  --font-body: "Hind Siliguri", system-ui, -apple-system, sans-serif;
+  --font-bn-display: "Tiro Bangla", "Hind Siliguri", serif;
+  --font-bn-script: "Galada", "Tiro Bangla", cursive;
+  --font-en-display: "Cormorant Garamond", Georgia, serif;
+  --font-en-script: "Great Vibes", "Cormorant Garamond", cursive;
+
+  --radius-lg: 22px;
+  --radius-md: 16px;
+  --radius-pill: 999px;
+  --shadow-glow: 0 18px 48px rgba(0, 0, 0, 0.55), 0 0 36px rgba(255, 122, 156, 0.14);
+
+  color-scheme: dark;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  scroll-behavior: smooth;
+  font-size: 16px;
+  background-color: var(--night);
+  overflow-x: clip;
+}
+
+body {
+  min-height: 100vh;
+  color: var(--cream);
+  font-family: var(--font-body);
+  line-height: 1.65;
+  overflow-x: clip;
+  background:
+    radial-gradient(120% 70% at 50% 0%, rgba(61, 16, 41, 0.92) 0%, rgba(26, 6, 19, 0.98) 65%),
+    radial-gradient(80% 50% at 85% 90%, rgba(255, 122, 156, 0.08) 0%, transparent 70%),
+    var(--night);
+  background-attachment: fixed;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* Bengali typography: ensure proper glyph shaping & generous line-height */
+[lang="bn"],
+.bn {
+  font-family: var(--font-bn-display);
+  line-height: 1.7;
+  letter-spacing: 0;
+}
+
+img,
+video,
+svg {
+  display: block;
+  max-width: 100%;
+}
+
+button,
+input {
+  font: inherit;
+  color: inherit;
+}
+
+button {
+  cursor: pointer;
+}
+
+button:focus-visible,
+a:focus-visible,
+input:focus-visible,
+[tabindex]:focus-visible {
+  outline: 2px solid var(--gold);
+  outline-offset: 3px;
+}
+
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+/* Background Canvases */
+.bg-canvas,
+.fw-canvas {
+  position: fixed;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+}
+
+.bg-canvas {
+  z-index: 0;
+}
+
+.fw-canvas {
+  z-index: 70;
+}
+
+main {
+  position: relative;
+  z-index: 2;
+}
+
+/* Layout & Sections */
+.section {
+  width: 100%;
+  max-width: 960px;
+  margin: 0 auto;
+  padding: 64px 18px;
+  text-align: center;
+}
+
+.section-header {
+  margin-bottom: 32px;
+}
+
+.section-title-bn {
+  font-family: var(--font-bn-display);
+  font-size: clamp(1.9rem, 7.5vw, 3rem);
+  font-weight: 400;
+  line-height: 1.7;
+  color: var(--gold);
+  text-shadow: 0 4px 24px rgba(242, 195, 107, 0.22);
+}
+
+.section-title-en {
+  font-family: var(--font-en-display);
+  font-style: italic;
+  font-weight: 600;
+  font-size: clamp(1.15rem, 4vw, 1.55rem);
+  color: var(--blush);
+  margin-top: 2px;
+}
+
+.section-sub {
+  margin-top: 8px;
+  font-size: 0.95rem;
+  color: var(--muted);
+}
+
+.eyebrow {
+  font-size: 0.72rem;
+  font-weight: 600;
+  letter-spacing: 0.28em;
+  text-transform: uppercase;
+  color: var(--rose);
+}
+
+/* Glass Card */
+.glass-card {
+  background: var(--glass-bg);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  border: 1px solid var(--glass-border);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-glow);
+}
+
+/* Buttons */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  min-height: 46px;
+  padding: 11px 24px;
+  border-radius: var(--radius-pill);
+  border: 1px solid transparent;
+  font-weight: 600;
+  font-size: 0.95rem;
+  text-decoration: none;
+  transition: transform 0.22s ease, box-shadow 0.22s ease, background-color 0.22s ease, border-color 0.22s ease;
+}
+
+.btn:active {
+  transform: scale(0.97);
+}
+
+.btn-gold {
+  background: linear-gradient(135deg, #f7d388 0%, var(--gold) 55%, #dfaa4b 100%);
+  color: #2c0a1b;
+  box-shadow: 0 10px 28px rgba(242, 195, 107, 0.3);
+}
+
+.btn-gold:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 14px 34px rgba(242, 195, 107, 0.44);
+}
+
+.btn-glass {
+  background: rgba(61, 16, 41, 0.65);
+  border-color: rgba(242, 195, 107, 0.38);
+  color: var(--cream);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+}
+
+.btn-glass:hover {
+  transform: translateY(-2px);
+  border-color: var(--gold);
+  background: rgba(82, 22, 55, 0.78);
+}
+
+.btn-small {
+  min-height: 36px;
+  padding: 7px 16px;
+  font-size: 0.84rem;
+}
+
+.btn-icon {
+  width: 18px;
+  height: 18px;
+  flex-shrink: 0;
+}
+
+.btn-bilingual {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  line-height: 1.25;
+}
+
+.btn-bilingual [lang="bn"] {
+  font-size: 0.96rem;
+  line-height: 1.5;
+}
+
+.btn-bilingual [lang="en"] {
+  font-size: 0.74rem;
+  opacity: 0.85;
+  font-weight: 500;
+}
+
+.icon-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 42px;
+  height: 42px;
+  border-radius: 50%;
+  border: 1px solid rgba(242, 195, 107, 0.38);
+  background: rgba(26, 6, 19, 0.78);
+  color: var(--cream);
+  backdrop-filter: blur(8px);
+  transition: transform 0.2s ease, border-color 0.2s ease, background-color 0.2s ease;
+}
+
+.icon-btn:hover {
+  border-color: var(--gold);
+  transform: scale(1.06);
+}
+
+.icon-btn svg {
+  width: 20px;
+  height: 20px;
+}
+
+/* Section Divider */
+.section-divider {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 14px;
+  max-width: 420px;
+  margin: 0 auto;
+  padding: 4px 24px;
+}
+
+.divider-line {
+  flex: 1;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, rgba(242, 195, 107, 0.55), transparent);
+  transform-origin: center;
+}
+
+.divider-heart {
+  width: 16px;
+  height: 16px;
+  fill: var(--rose);
+  filter: drop-shadow(0 0 8px rgba(255, 122, 156, 0.55));
+}
+
+/* Floating Music Pill */
+.music-pill {
+  position: fixed;
+  top: 14px;
+  right: 14px;
+  z-index: 45;
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  padding: 8px 14px;
+  border-radius: var(--radius-pill);
+  border: 1px solid rgba(242, 195, 107, 0.42);
+  background: rgba(26, 6, 19, 0.82);
+  backdrop-filter: blur(10px);
+  color: var(--gold);
+  font-size: 0.82rem;
+  font-weight: 600;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.45);
+}
+
+.music-pill[hidden] {
+  display: none;
+}
+
+.music-pill .icon-music {
+  width: 16px;
+  height: 16px;
+}
+
+.music-pill.playing {
+  border-color: var(--rose);
+  color: var(--blush);
+  box-shadow: 0 0 20px rgba(255, 122, 156, 0.38);
+}
+
+/* Overlay Screens (Gate & Loader) */
+.overlay-screen {
+  position: fixed;
+  inset: 0;
+  z-index: 90;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+  background:
+    radial-gradient(circle at 50% 35%, rgba(61, 16, 41, 0.96), rgba(26, 6, 19, 0.99));
+}
+
+.overlay-screen[hidden] {
+  display: none;
+}
+
+@media (min-width: 768px) {
+  .section {
+    padding: 88px 28px;
+  }
+}

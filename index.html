@@ -1,0 +1,473 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>Happy Birthday, Tonni</title>
+  <meta name="description" content="A private birthday premiere and love letter for Tonni Sarker.">
+  <meta name="robots" content="noindex,nofollow">
+  <meta name="theme-color" content="#1a0613">
+
+  <!-- Open Graph / Social Preview -->
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="Happy Birthday, Tonni">
+  <meta property="og:description" content="A private birthday premiere and love letter for Tonni Sarker.">
+  <meta property="og:image" content="assets/media/tonni.jpg">
+
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;0,700;1,400;1,500;1,600;1,700&family=Galada&family=Great+Vibes&family=Hind+Siliguri:wght@300;400;500;600;700&family=Tiro+Bangla:ital@0;1&display=swap" rel="stylesheet">
+
+  <!-- Stylesheets -->
+  <link rel="stylesheet" href="css/base.css">
+  <link rel="stylesheet" href="css/sections.css">
+  <link rel="stylesheet" href="css/effects.css">
+</head>
+<body>
+  <!-- Ambient Background Canvases -->
+  <canvas id="ambient-canvas" class="bg-canvas" aria-hidden="true"></canvas>
+  <canvas id="fireworks-canvas" class="fw-canvas" aria-hidden="true"></canvas>
+
+  <!-- Floating Persistent Music Pill -->
+  <button id="music-pill" class="music-pill" type="button" aria-label="Toggle background music" aria-pressed="false" hidden>
+    <svg class="icon-music" viewBox="0 0 24 24" aria-hidden="true">
+      <path d="M9 18V5l12-2v13" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+      <circle cx="6" cy="18" r="3" fill="none" stroke="currentColor" stroke-width="1.8"/>
+      <circle cx="18" cy="16" r="3" fill="none" stroke="currentColor" stroke-width="1.8"/>
+    </svg>
+    <span class="music-pill-text">Music</span>
+  </button>
+
+  <!-- 0. Optional Gate Screen -->
+  <section id="gate-screen" class="overlay-screen gate-screen" aria-label="Private entry question" hidden>
+    <div class="glass-card gate-card">
+      <div class="gate-heart-wrap" aria-hidden="true">
+        <svg class="gate-heart-svg" viewBox="0 0 100 92">
+          <path d="M50 86C50 86 8 58 8 28C8 14 19 4 32 4C40.5 4 47.5 8.8 50 15.5C52.5 8.8 59.5 4 68 4C81 4 92 14 92 28C92 58 50 86 50 86Z" />
+        </svg>
+      </div>
+      <p class="gate-question-bn" id="gate-question-bn" lang="bn"></p>
+      <p class="gate-question-en" id="gate-question-en" lang="en"></p>
+      <form id="gate-form" class="gate-form" novalidate>
+        <label for="gate-input" class="sr-only">Your answer</label>
+        <input id="gate-input" class="gate-input" type="text" autocomplete="off" autocapitalize="none" spellcheck="false" required>
+        <button id="gate-submit" class="btn btn-gold" type="submit"></button>
+      </form>
+      <p id="gate-feedback" class="gate-feedback" role="status" aria-live="polite"></p>
+    </div>
+  </section>
+
+  <!-- 1. Heart Loader -->
+  <div id="loader-screen" class="overlay-screen loader-screen" role="status" aria-live="polite" hidden>
+    <div class="loader-inner">
+      <svg id="loader-heart-svg" class="loader-heart-svg" viewBox="0 0 120 110" aria-hidden="true">
+        <defs>
+          <linearGradient id="roseFillGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+            <stop offset="0%" stop-color="#ff7a9c"/>
+            <stop offset="100%" stop-color="#c93863"/>
+          </linearGradient>
+        </defs>
+        <path id="loader-heart-fill" class="loader-heart-fill" fill="url(#roseFillGrad)" d="M60 100C60 100 10 68 10 33C10 16 23 5 38 5C48 5 56 10.5 60 18.5C64 10.5 72 5 82 5C97 5 110 16 110 33C110 68 60 100 60 100Z"/>
+        <path id="loader-heart-stroke" class="loader-heart-stroke" fill="none" stroke="#f2c36b" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" d="M60 100C60 100 10 68 10 33C10 16 23 5 38 5C48 5 56 10.5 60 18.5C64 10.5 72 5 82 5C97 5 110 16 110 33C110 68 60 100 60 100Z"/>
+      </svg>
+      <div id="loader-petals" class="loader-petals" aria-hidden="true"></div>
+      <p class="loader-text-bn" id="loader-text-bn" lang="bn"></p>
+      <p class="loader-text-en" id="loader-text-en" lang="en"></p>
+    </div>
+  </div>
+
+  <!-- Main Content -->
+  <main id="main-content">
+
+    <!-- 2. Hero -->
+    <section id="hero" class="section hero-section">
+      <p class="eyebrow" id="hero-eyebrow" lang="en"></p>
+
+      <div class="hero-arch-stage">
+        <div class="hero-orbit" aria-hidden="true">
+          <svg class="orbit-sparkle s1" viewBox="0 0 24 24"><path d="M12 1L14.6 9.4L23 12L14.6 14.6L12 23L9.4 14.6L1 12L9.4 9.4Z"/></svg>
+          <svg class="orbit-sparkle s2" viewBox="0 0 24 24"><path d="M12 1L14.6 9.4L23 12L14.6 14.6L12 23L9.4 14.6L1 12L9.4 9.4Z"/></svg>
+          <svg class="orbit-sparkle s3" viewBox="0 0 24 24"><path d="M12 1L14.6 9.4L23 12L14.6 14.6L12 23L9.4 14.6L1 12L9.4 9.4Z"/></svg>
+        </div>
+        <div class="arch-frame">
+          <img id="hero-photo" src="assets/media/tonni.jpg" alt="Tonni Sarker smiling" loading="eager" decoding="async">
+        </div>
+      </div>
+
+      <h1 class="hero-title-bn" id="hero-headline-bn" lang="bn"></h1>
+      <p class="hero-title-en" id="hero-headline-en" lang="en"></p>
+      <p class="hero-name" id="hero-name" lang="en"></p>
+
+      <div class="days-counter glass-card" aria-live="polite">
+        <div class="counter-line-bn" lang="bn">
+          <span id="counter-bn-prefix"></span>
+          <strong class="counter-num" id="days-count-bn">0</strong>
+          <span id="counter-bn-suffix"></span>
+        </div>
+        <div class="counter-line-en" lang="en">
+          <span id="counter-en-prefix"></span>
+          <strong class="counter-num" id="days-count-en">0</strong>
+          <span id="counter-en-suffix"></span>
+        </div>
+      </div>
+
+      <div class="hero-actions">
+        <button id="hero-music-btn" class="btn btn-glass" type="button" aria-pressed="false">
+          <svg class="btn-icon" viewBox="0 0 24 24" aria-hidden="true">
+            <path d="M9 18V5l12-2v13" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+            <circle cx="6" cy="18" r="3" fill="none" stroke="currentColor" stroke-width="1.8"/>
+            <circle cx="18" cy="16" r="3" fill="none" stroke="currentColor" stroke-width="1.8"/>
+          </svg>
+          <span id="hero-music-label">Tap to play music</span>
+        </button>
+      </div>
+
+      <a href="#film" class="scroll-cue" aria-label="Scroll to film section">
+        <span class="scroll-cue-text" id="scroll-cue-text"></span>
+        <svg class="scroll-cue-arrow" viewBox="0 0 24 24" aria-hidden="true">
+          <path d="M6 9l6 6 6-6" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+      </a>
+    </section>
+
+    <div class="section-divider" aria-hidden="true"><span class="divider-line"></span><svg class="divider-heart" viewBox="0 0 24 24"><path d="M12 21s-8.5-5.6-8.5-11.5C3.5 6.4 5.9 4 8.8 4c1.7 0 3.2.9 3.2 2.3C12 4.9 13.5 4 15.2 4 18.1 4 20.5 6.4 20.5 9.5 20.5 15.4 12 21 12 21Z"/></svg><span class="divider-line"></span></div>
+
+    <!-- 3. Film -->
+    <section id="film" class="section film-section">
+      <header class="section-header">
+        <h2 class="section-title-bn" id="film-title-bn" lang="bn"></h2>
+        <p class="section-title-en" id="film-title-en" lang="en"></p>
+        <p class="section-sub" id="film-subtitle" lang="en"></p>
+      </header>
+
+      <div class="phone-frame">
+        <div class="phone-notch" aria-hidden="true"></div>
+        <div class="phone-screen">
+          <video id="story-video" src="assets/media/our-story.mp4" poster="assets/media/poster.jpg" playsinline controls preload="metadata"></video>
+          <button id="film-play-overlay" class="film-play-overlay" type="button" aria-label="Play our story film">
+            <span class="glowing-heart-btn">
+              <svg class="heart-bg" viewBox="0 0 100 92" aria-hidden="true">
+                <path d="M50 86C50 86 8 58 8 28C8 14 19 4 32 4C40.5 4 47.5 8.8 50 15.5C52.5 8.8 59.5 4 68 4C81 4 92 14 92 28C92 58 50 86 50 86Z"/>
+              </svg>
+              <svg class="play-tri" viewBox="0 0 24 24" aria-hidden="true">
+                <path d="M8 5.5v13l11-6.5z"/>
+              </svg>
+            </span>
+          </button>
+        </div>
+      </div>
+    </section>
+
+    <div class="section-divider" aria-hidden="true"><span class="divider-line"></span><svg class="divider-heart" viewBox="0 0 24 24"><path d="M12 21s-8.5-5.6-8.5-11.5C3.5 6.4 5.9 4 8.8 4c1.7 0 3.2.9 3.2 2.3C12 4.9 13.5 4 15.2 4 18.1 4 20.5 6.4 20.5 9.5 20.5 15.4 12 21 12 21Z"/></svg><span class="divider-line"></span></div>
+
+    <!-- 4. Gallery -->
+    <section id="gallery" class="section gallery-section">
+      <header class="section-header">
+        <h2 class="section-title-bn" id="gallery-title-bn" lang="bn"></h2>
+        <p class="section-title-en" id="gallery-title-en" lang="en"></p>
+        <p class="section-sub" id="gallery-subtitle" lang="en"></p>
+      </header>
+
+      <!-- 3D Curved Featured Carousel -->
+      <div id="featured-carousel-wrap" class="featured-carousel-wrap" hidden>
+        <div class="carousel-stage" id="carousel-stage" role="region" aria-label="Featured memories carousel" tabindex="0">
+          <div class="carousel-track" id="carousel-track"></div>
+        </div>
+        <div class="carousel-controls">
+          <button id="carousel-prev" class="icon-btn" type="button" aria-label="Previous featured memory">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M15 18l-6-6 6-6" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </button>
+          <div id="carousel-dots" class="carousel-dots" role="tablist" aria-label="Featured slides"></div>
+          <button id="carousel-next" class="icon-btn" type="button" aria-label="Next featured memory">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9 18l6-6-6-6" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </button>
+        </div>
+      </div>
+
+      <!-- Memory of the Day + Quick Actions -->
+      <div class="gallery-highlights">
+        <article id="memory-of-day" class="glass-card motd-card" hidden>
+          <div class="motd-thumb-wrap">
+            <img id="motd-img" src="" alt="Memory of the day" loading="lazy">
+          </div>
+          <div class="motd-body">
+            <span class="motd-badge-bn" id="motd-label-bn" lang="bn"></span>
+            <span class="motd-badge-en" id="motd-label-en" lang="en"></span>
+            <p class="motd-date" id="motd-date"></p>
+            <button id="motd-open" class="btn btn-small btn-glass" type="button">Open</button>
+          </div>
+        </article>
+
+        <div class="gallery-cta-stack">
+          <button id="surprise-memory-btn" class="btn btn-gold" type="button">
+            <svg class="btn-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2l2.4 7.2L22 12l-7.6 2.8L12 22l-2.4-7.2L2 12l7.6-2.8Z" fill="currentColor"/></svg>
+            <span class="btn-bilingual">
+              <span id="surprise-btn-bn" lang="bn"></span>
+              <span id="surprise-btn-en" lang="en"></span>
+            </span>
+          </button>
+          <button id="slideshow-btn" class="btn btn-glass" type="button">
+            <svg class="btn-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 4h14a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2zm5 4.5v7l6-3.5-6-3.5z" fill="currentColor"/></svg>
+            <span class="btn-bilingual">
+              <span id="slideshow-btn-bn" lang="bn"></span>
+              <span id="slideshow-btn-en" lang="en"></span>
+            </span>
+          </button>
+        </div>
+      </div>
+
+      <!-- Album Chapters -->
+      <div id="album-chapters" class="album-chapters" role="tablist" aria-label="Photo and video albums"></div>
+
+      <!-- Masonry Love Wall -->
+      <div id="love-wall" class="love-wall" aria-live="polite"></div>
+      <div id="wall-sentinel" class="wall-sentinel" aria-hidden="true"></div>
+      <div id="wall-load-more-wrap" class="wall-load-more-wrap" hidden>
+        <button id="wall-load-more" class="btn btn-glass" type="button"></button>
+      </div>
+    </section>
+
+    <div class="section-divider" aria-hidden="true"><span class="divider-line"></span><svg class="divider-heart" viewBox="0 0 24 24"><path d="M12 21s-8.5-5.6-8.5-11.5C3.5 6.4 5.9 4 8.8 4c1.7 0 3.2.9 3.2 2.3C12 4.9 13.5 4 15.2 4 18.1 4 20.5 6.4 20.5 9.5 20.5 15.4 12 21 12 21Z"/></svg><span class="divider-line"></span></div>
+
+    <!-- 5. Timeline -->
+    <section id="timeline" class="section timeline-section">
+      <header class="section-header">
+        <h2 class="section-title-bn" id="timeline-title-bn" lang="bn"></h2>
+        <p class="section-title-en" id="timeline-title-en" lang="en"></p>
+        <p class="section-sub" id="timeline-subtitle" lang="en"></p>
+      </header>
+
+      <div class="timeline-container" id="timeline-container">
+        <div class="timeline-thread-bg" aria-hidden="true">
+          <div class="timeline-thread-fill" id="timeline-thread-fill"></div>
+        </div>
+        <div id="timeline-stops" class="timeline-stops"></div>
+      </div>
+    </section>
+
+    <div class="section-divider" aria-hidden="true"><span class="divider-line"></span><svg class="divider-heart" viewBox="0 0 24 24"><path d="M12 21s-8.5-5.6-8.5-11.5C3.5 6.4 5.9 4 8.8 4c1.7 0 3.2.9 3.2 2.3C12 4.9 13.5 4 15.2 4 18.1 4 20.5 6.4 20.5 9.5 20.5 15.4 12 21 12 21Z"/></svg><span class="divider-line"></span></div>
+
+    <!-- 6. Reasons -->
+    <section id="reasons" class="section reasons-section">
+      <header class="section-header">
+        <h2 class="section-title-bn" id="reasons-title-bn" lang="bn"></h2>
+        <p class="section-title-en" id="reasons-title-en" lang="en"></p>
+        <p class="section-sub" id="reasons-subtitle" lang="en"></p>
+      </header>
+      <div id="reasons-grid" class="reasons-grid"></div>
+    </section>
+
+    <div class="section-divider" aria-hidden="true"><span class="divider-line"></span><svg class="divider-heart" viewBox="0 0 24 24"><path d="M12 21s-8.5-5.6-8.5-11.5C3.5 6.4 5.9 4 8.8 4c1.7 0 3.2.9 3.2 2.3C12 4.9 13.5 4 15.2 4 18.1 4 20.5 6.4 20.5 9.5 20.5 15.4 12 21 12 21Z"/></svg><span class="divider-line"></span></div>
+
+    <!-- 7. Cake -->
+    <section id="cake" class="section cake-section">
+      <header class="section-header">
+        <h2 class="section-title-bn" id="cake-title-bn" lang="bn"></h2>
+        <p class="section-title-en" id="cake-title-en" lang="en"></p>
+        <p class="section-sub" id="cake-subtitle" lang="en"></p>
+      </header>
+
+      <div class="cake-stage">
+        <svg id="cake-svg" class="cake-svg" viewBox="0 0 280 250" role="img" aria-label="Birthday cake with flickering candles">
+          <defs>
+            <radialGradient id="flameGrad" cx="50%" cy="60%" r="60%">
+              <stop offset="0%" stop-color="#fff9d6"/>
+              <stop offset="50%" stop-color="#ffd166"/>
+              <stop offset="100%" stop-color="#ff6b6b"/>
+            </radialGradient>
+            <linearGradient id="cakeTierTop" x1="0%" y1="0%" x2="0%" y2="100%">
+              <stop offset="0%" stop-color="#ff8fab"/>
+              <stop offset="100%" stop-color="#e5537c"/>
+            </linearGradient>
+            <linearGradient id="cakeTierBottom" x1="0%" y1="0%" x2="0%" y2="100%">
+              <stop offset="0%" stop-color="#f2c36b"/>
+              <stop offset="100%" stop-color="#c9933b"/>
+            </linearGradient>
+          </defs>
+
+          <!-- Plate shadow -->
+          <ellipse cx="140" cy="232" rx="122" ry="12" fill="rgba(0,0,0,0.4)"/>
+          <ellipse cx="140" cy="226" rx="116" ry="9" fill="#fbe9dc" opacity="0.2"/>
+
+          <!-- Bottom tier -->
+          <rect x="34" y="156" width="212" height="66" rx="14" fill="url(#cakeTierBottom)"/>
+          <path d="M34 174 q17.6 15 35.3 0 t35.3 0 t35.3 0 t35.3 0 t35.3 0 t35.5 0 v-12 H34 z" fill="#fbe9dc"/>
+
+          <!-- Top tier -->
+          <rect x="60" y="102" width="160" height="54" rx="12" fill="url(#cakeTierTop)"/>
+          <path d="M60 118 q16 14 32 0 t32 0 t32 0 t32 0 t32 0 v-10 H60 z" fill="#fff4ea"/>
+
+          <!-- Candles -->
+          <g class="candles-group" id="candles-group">
+            <g class="candle" data-candle="0" transform="translate(92, 52)">
+              <rect x="-4" y="18" width="8" height="34" rx="3" fill="#ffd0dc"/>
+              <rect x="-1" y="12" width="2" height="7" fill="#3a1020"/>
+              <path class="flame" d="M0 0 C6 7 6 14 0 18 C-6 14 -6 7 0 0Z" fill="url(#flameGrad)"/>
+              <path class="smoke" d="M0 10 Q-5 2 2 -6 Q7 -14 -2 -22" fill="none" stroke="rgba(255,255,255,0.55)" stroke-width="2" stroke-linecap="round"/>
+            </g>
+            <g class="candle" data-candle="1" transform="translate(116, 44)">
+              <rect x="-4" y="18" width="8" height="42" rx="3" fill="#fbe9dc"/>
+              <rect x="-1" y="12" width="2" height="7" fill="#3a1020"/>
+              <path class="flame" d="M0 0 C6 7 6 14 0 18 C-6 14 -6 7 0 0Z" fill="url(#flameGrad)"/>
+              <path class="smoke" d="M0 10 Q5 2 -2 -6 Q-7 -14 2 -22" fill="none" stroke="rgba(255,255,255,0.55)" stroke-width="2" stroke-linecap="round"/>
+            </g>
+            <g class="candle" data-candle="2" transform="translate(140, 38)">
+              <rect x="-4.5" y="18" width="9" height="48" rx="3" fill="#ffd0dc"/>
+              <rect x="-1" y="12" width="2" height="7" fill="#3a1020"/>
+              <path class="flame" d="M0 0 C7 8 7 15 0 19 C-7 15 -7 8 0 0Z" fill="url(#flameGrad)"/>
+              <path class="smoke" d="M0 10 Q-6 0 3 -10 Q8 -18 -1 -26" fill="none" stroke="rgba(255,255,255,0.55)" stroke-width="2" stroke-linecap="round"/>
+            </g>
+            <g class="candle" data-candle="3" transform="translate(164, 44)">
+              <rect x="-4" y="18" width="8" height="42" rx="3" fill="#fbe9dc"/>
+              <rect x="-1" y="12" width="2" height="7" fill="#3a1020"/>
+              <path class="flame" d="M0 0 C6 7 6 14 0 18 C-6 14 -6 7 0 0Z" fill="url(#flameGrad)"/>
+              <path class="smoke" d="M0 10 Q4 2 -3 -6 Q-6 -14 2 -22" fill="none" stroke="rgba(255,255,255,0.55)" stroke-width="2" stroke-linecap="round"/>
+            </g>
+            <g class="candle" data-candle="4" transform="translate(188, 52)">
+              <rect x="-4" y="18" width="8" height="34" rx="3" fill="#ffd0dc"/>
+              <rect x="-1" y="12" width="2" height="7" fill="#3a1020"/>
+              <path class="flame" d="M0 0 C6 7 6 14 0 18 C-6 14 -6 7 0 0Z" fill="url(#flameGrad)"/>
+              <path class="smoke" d="M0 10 Q-4 2 2 -6 Q6 -14 -2 -22" fill="none" stroke="rgba(255,255,255,0.55)" stroke-width="2" stroke-linecap="round"/>
+            </g>
+          </g>
+        </svg>
+      </div>
+
+      <div class="cake-controls">
+        <button id="blow-btn" class="btn btn-gold" type="button">
+          <span class="btn-bilingual">
+            <span id="blow-btn-bn" lang="bn"></span>
+            <span id="blow-btn-en" lang="en"></span>
+          </span>
+        </button>
+        <button id="mic-blow-btn" class="btn btn-glass" type="button">
+          <svg class="btn-icon" viewBox="0 0 24 24" aria-hidden="true">
+            <path d="M12 1a3 3 0 0 0-3 3v8a3 3 0 0 0 6 0V4a3 3 0 0 0-3-3z" fill="none" stroke="currentColor" stroke-width="1.8"/>
+            <path d="M19 10v2a7 7 0 0 1-14 0v-2M12 19v4M8 23h8" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>
+          </svg>
+          <span class="btn-bilingual">
+            <span id="mic-btn-bn" lang="bn"></span>
+            <span id="mic-btn-en" lang="en"></span>
+          </span>
+        </button>
+      </div>
+
+      <p id="mic-status" class="mic-status" role="status" aria-live="polite"></p>
+      <div id="wish-message" class="wish-message" aria-live="polite" hidden>
+        <p class="wish-bn" id="wish-bn" lang="bn"></p>
+        <p class="wish-en" id="wish-en" lang="en"></p>
+      </div>
+    </section>
+
+    <div class="section-divider" aria-hidden="true"><span class="divider-line"></span><svg class="divider-heart" viewBox="0 0 24 24"><path d="M12 21s-8.5-5.6-8.5-11.5C3.5 6.4 5.9 4 8.8 4c1.7 0 3.2.9 3.2 2.3C12 4.9 13.5 4 15.2 4 18.1 4 20.5 6.4 20.5 9.5 20.5 15.4 12 21 12 21Z"/></svg><span class="divider-line"></span></div>
+
+    <!-- 8. Letter -->
+    <section id="letter" class="section letter-section">
+      <header class="section-header">
+        <h2 class="section-title-bn" id="letter-title-bn" lang="bn"></h2>
+        <p class="section-title-en" id="letter-title-en" lang="en"></p>
+        <p class="section-sub" id="letter-subtitle" lang="en"></p>
+      </header>
+
+      <div id="envelope-stage" class="envelope-stage">
+        <div class="envelope-wrapper" id="envelope-wrapper">
+          <div class="envelope-back"></div>
+          <article class="letter-paper" id="letter-paper" aria-live="polite">
+            <div class="letter-inner">
+              <p class="letter-salutation" id="letter-salutation" lang="en"></p>
+              <div id="letter-body" class="letter-body"></div>
+              <div class="letter-signature" id="letter-signature">
+                <p class="sig-bn" id="letter-closing-bn" lang="bn"></p>
+                <p class="sig-en" id="letter-closing-en" lang="en"></p>
+                <svg class="sig-underline" viewBox="0 0 220 34" aria-hidden="true">
+                  <path id="sig-underline-path" d="M8 22 Q65 28 112 16 Q122 10 128 15 Q134 9 140 15 Q143 22 128 28 Q114 22 118 16 M146 18 Q182 14 212 19" fill="none" stroke="#b0304f" stroke-width="2" stroke-linecap="round"/>
+                </svg>
+              </div>
+              <button id="letter-skip-btn" class="letter-skip-btn" type="button" hidden></button>
+            </div>
+          </article>
+          <div class="envelope-front"></div>
+          <div class="envelope-flap" id="envelope-flap"></div>
+          <button id="wax-seal-btn" class="wax-seal" type="button" aria-label="Break wax seal and open letter">
+            <svg class="wax-seal-svg" viewBox="0 0 64 64" aria-hidden="true">
+              <circle cx="32" cy="32" r="28" fill="#8f1d3b" stroke="#f2c36b" stroke-width="1.5"/>
+              <circle cx="32" cy="32" r="22" fill="none" stroke="rgba(242,195,107,0.45)" stroke-width="1"/>
+              <path d="M32 45C32 45 19 36.2 19 26.8C19 22.3 22.6 19 26.8 19C29.4 19 31.3 20.4 32 22.3C32.7 20.4 34.6 19 37.2 19C41.4 19 45 22.3 45 26.8C45 36.2 32 45 32 45Z" fill="#f2c36b"/>
+            </svg>
+            <span class="wax-hint" id="wax-hint"></span>
+          </button>
+        </div>
+      </div>
+    </section>
+
+    <!-- 9. Finale -->
+    <footer id="finale" class="section finale-section">
+      <button id="finale-btn" class="btn btn-gold btn-finale" type="button">
+        <span class="btn-bilingual">
+          <span id="finale-btn-bn" lang="bn"></span>
+          <span id="finale-btn-en" lang="en"></span>
+        </span>
+      </button>
+
+      <div id="finale-reveal" class="finale-reveal" aria-live="polite" hidden>
+        <p class="finale-message-bn" id="finale-msg-bn" lang="bn"></p>
+        <p class="finale-message-en" id="finale-msg-en" lang="en"></p>
+      </div>
+
+      <p class="finale-credit" id="finale-credit" lang="en"></p>
+    </footer>
+  </main>
+
+  <!-- Lightbox Modal -->
+  <div id="lightbox" class="lightbox" role="dialog" aria-modal="true" aria-label="Memory viewer" hidden>
+    <button id="lb-close" class="lb-close icon-btn" type="button" aria-label="Close viewer">
+      <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M18 6L6 18M6 6l12 12" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+    </button>
+    <button id="lb-prev" class="lb-nav lb-prev icon-btn" type="button" aria-label="Previous memory">
+      <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M15 18l-6-6 6-6" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+    </button>
+    <div id="lb-stage" class="lb-stage">
+      <img id="lb-img" class="lb-media" src="" alt="" hidden>
+      <video id="lb-video" class="lb-media" controls playsinline hidden></video>
+    </div>
+    <button id="lb-next" class="lb-nav lb-next icon-btn" type="button" aria-label="Next memory">
+      <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9 18l6-6-6-6" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+    </button>
+    <div class="lb-caption-bar">
+      <span id="lb-meta" class="lb-meta"></span>
+      <p id="lb-caption" class="lb-caption"></p>
+    </div>
+  </div>
+
+  <!-- Slideshow Modal -->
+  <div id="slideshow-modal" class="slideshow-modal" role="dialog" aria-modal="true" aria-label="Slideshow of us" hidden>
+    <div class="slideshow-top">
+      <span class="slideshow-counter" id="slideshow-counter">1 / 1</span>
+      <div class="slideshow-actions">
+        <button id="slideshow-play-pause" class="icon-btn" type="button" aria-label="Pause slideshow">Pause</button>
+        <button id="slideshow-close" class="icon-btn" type="button" aria-label="Close slideshow">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M18 6L6 18M6 6l12 12" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+        </button>
+      </div>
+    </div>
+    <div class="slideshow-stage">
+      <img id="slideshow-img" class="slideshow-img" src="" alt="Slideshow memory">
+    </div>
+    <p id="slideshow-caption" class="slideshow-caption"></p>
+  </div>
+
+  <!-- Pinned GSAP & ScrollTrigger -->
+  <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/ScrollTrigger.min.js"></script>
+
+  <!-- App Scripts -->
+  <script src="js/config.js"></script>
+  <script src="js/particles.js"></script>
+  <script src="js/cursor.js"></script>
+  <script src="js/gallery.js"></script>
+  <script src="js/cake.js"></script>
+  <script src="js/letter.js"></script>
+  <script src="js/main.js"></script>
+</body>
+</html>
