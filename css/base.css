@@ -3,17 +3,17 @@
    ========================================================================== */
 
 :root {
-  --night: #1a0613;
-  --wine: #3d1029;
-  --rose: #ff7a9c;
-  --blush: #ffd0dc;
-  --gold: #f2c36b;
-  --cream: #fbe9dc;
+  --night: #210719;
+  --wine: #56163c;
+  --rose: #ff709e;
+  --blush: #ffd9e6;
+  --gold: #f7cc7a;
+  --cream: #fff5ee;
 
-  --wine-deep: #29091c;
-  --muted: rgba(251, 233, 220, 0.74);
-  --glass-bg: rgba(45, 11, 31, 0.58);
-  --glass-border: rgba(242, 195, 107, 0.28);
+  --wine-deep: #340b24;
+  --muted: rgba(255, 240, 234, 0.78);
+  --glass-bg: rgba(74, 18, 50, 0.56);
+  --glass-border: rgba(247, 204, 122, 0.38);
 
   --font-body: "Hind Siliguri", system-ui, -apple-system, sans-serif;
   --font-bn-display: "Tiro Bangla", "Hind Siliguri", serif;
@@ -51,10 +51,10 @@ body {
   line-height: 1.65;
   overflow-x: clip;
   background:
-    radial-gradient(95% 55% at 50% 0%, rgba(102, 20, 56, 0.72) 0%, rgba(26, 6, 19, 0.96) 62%),
-    radial-gradient(60% 45% at 15% 40%, rgba(242, 195, 107, 0.08) 0%, transparent 70%),
-    radial-gradient(70% 50% at 85% 85%, rgba(255, 122, 156, 0.13) 0%, transparent 72%),
-    #12030c;
+    radial-gradient(100% 62% at 50% 0%, rgba(138, 28, 78, 0.76) 0%, rgba(44, 10, 31, 0.94) 58%),
+    radial-gradient(65% 50% at 12% 38%, rgba(247, 204, 122, 0.14) 0%, transparent 70%),
+    radial-gradient(75% 55% at 88% 82%, rgba(255, 112, 158, 0.2) 0%, transparent 72%),
+    #1c0514;
   background-attachment: fixed;
   -webkit-font-smoothing: antialiased;
 }
@@ -65,7 +65,7 @@ body::before {
   inset: 0;
   pointer-events: none;
   z-index: 1;
-  background: radial-gradient(circle at 50% 45%, transparent 55%, rgba(10, 1, 7, 0.62) 100%);
+  background: radial-gradient(circle at 50% 42%, transparent 56%, rgba(16, 3, 12, 0.48) 100%);
 }
 
 /* Bengali typography: ensure proper glyph shaping & generous line-height */
@@ -136,13 +136,34 @@ main {
   z-index: 2;
 }
 
-/* Layout & Sections */
+/* Layout & Sections (One focused romantic chapter per step) */
 .section {
   width: 100%;
   max-width: 960px;
+  min-height: 100svh;
   margin: 0 auto;
-  padding: 64px 18px;
+  padding: 78px 18px calc(64px + env(safe-area-inset-bottom, 0px));
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
   text-align: center;
+}
+
+.section > header,
+.section > .featured-carousel-wrap,
+.section > .gallery-highlights,
+.section > .album-chapters,
+.section > .love-wall,
+.section > .timeline-container,
+.section > .reasons-grid,
+.section > .envelope-stage,
+.section > .chapter-next-wrap {
+  width: 100%;
+}
+
+.section[hidden] {
+  display: none !important;
 }
 
 .section-header {
@@ -184,15 +205,15 @@ main {
 /* Glass Card */
 .glass-card {
   position: relative;
-  background: linear-gradient(160deg, rgba(64, 15, 42, 0.66), rgba(28, 6, 20, 0.76));
+  background: linear-gradient(155deg, rgba(96, 23, 62, 0.62), rgba(42, 9, 30, 0.72));
   backdrop-filter: blur(18px);
   -webkit-backdrop-filter: blur(18px);
-  border: 1px solid rgba(242, 195, 107, 0.36);
+  border: 1px solid rgba(247, 204, 122, 0.42);
   border-radius: var(--radius-lg);
   box-shadow:
-    0 22px 54px rgba(0, 0, 0, 0.62),
-    inset 0 1px 0 rgba(255, 218, 228, 0.16),
-    0 0 42px rgba(255, 122, 156, 0.16);
+    0 22px 54px rgba(14, 2, 10, 0.52),
+    inset 0 1px 0 rgba(255, 224, 234, 0.22),
+    0 0 46px rgba(255, 112, 158, 0.2);
 }
 
 /* Buttons */
@@ -330,6 +351,57 @@ main {
   background: linear-gradient(90deg, var(--rose), var(--gold), var(--blush));
   box-shadow: 0 0 10px rgba(242, 195, 107, 0.75);
   pointer-events: none;
+}
+
+/* Floating Chapter Stepper (Top Left) */
+.chapter-stepper {
+  position: fixed;
+  top: 14px;
+  left: 14px;
+  z-index: 45;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 5px 12px 5px 8px;
+  border-radius: var(--radius-pill);
+  border: 1px solid rgba(247, 204, 122, 0.42);
+  background: rgba(42, 9, 30, 0.8);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.4);
+}
+
+.chapter-stepper[hidden] {
+  display: none;
+}
+
+.stepper-back-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  border: 0;
+  background: rgba(255, 112, 158, 0.22);
+  color: var(--blush);
+}
+
+.stepper-back-btn[hidden] {
+  display: none;
+}
+
+.stepper-back-btn svg {
+  width: 16px;
+  height: 16px;
+}
+
+.stepper-label {
+  font-size: 0.78rem;
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  color: var(--gold);
+  padding-left: 4px;
 }
 
 /* Floating Music & SFX Pills */

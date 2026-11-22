@@ -163,6 +163,7 @@
   }
 
   function playHeroReveal() {
+    showChapter("hero", false);
     const chars = document.querySelectorAll("#hero-headline-bn .char");
     if (reducedMotion || typeof gsap === "undefined") {
       chars.forEach((c) => {
@@ -636,57 +637,80 @@
     });
   }
 
-  /* ---------- Action-Gated Chapter Reveals ---------- */
-  function revealChapter(targetId, triggerBtn) {
-    const target = $(targetId);
-    if (!target) return;
+  /* ---------- Step-by-Step Single-Chapter Stage ---------- */
+  const CHAPTER_ORDER = ["hero", "film", "gallery", "timeline", "reasons", "cake", "letter", "finale"];
+  let activeChapterIdx = 0;
 
-    const divider = document.querySelector(`.chapter-divider[data-divider-for="${targetId}"]`);
-    if (divider) divider.hidden = false;
+  function showChapter(targetId, animate = true, triggerBtn = null) {
+    const nextIdx = CHAPTER_ORDER.indexOf(targetId);
+    if (nextIdx === -1) return;
 
-    const wasHidden = target.hidden;
-    target.hidden = false;
-    if (triggerBtn) triggerBtn.classList.add("unlocked");
-
-    if (window.SiteSFX) window.SiteSFX.chime();
-    if (window.SiteParticles && triggerBtn) {
-      const r = triggerBtn.getBoundingClientRect();
-      window.SiteParticles.burst(r.left + r.width / 2, r.top + r.height / 2, 26, 0.7);
+    // Pause film if leaving film chapter
+    const storyVid = $("story-video");
+    if (storyVid && targetId !== "film" && !storyVid.paused) {
+      storyVid.pause();
     }
 
-    if (wasHidden && !reducedMotion && typeof gsap !== "undefined") {
-      if (divider) {
+    // Hide all chapters & dividers; show ONLY the active chapter
+    CHAPTER_ORDER.forEach((id) => {
+      const sec = $(id);
+      if (sec) sec.hidden = id !== targetId;
+    });
+    document.querySelectorAll(".chapter-divider").forEach((d) => {
+      d.hidden = true;
+    });
+
+    activeChapterIdx = nextIdx;
+    const target = $(targetId);
+
+    // Update top-left stepper & top golden progress bar
+    const stepper = $("chapter-stepper");
+    const stepLabel = $("chapter-step-label");
+    const backBtn = $("chapter-back-btn");
+    const bar = $("scroll-progress");
+    if (stepper) stepper.hidden = false;
+    if (stepLabel) stepLabel.textContent = `${nextIdx + 1} / ${CHAPTER_ORDER.length}`;
+    if (backBtn) backBtn.hidden = nextIdx === 0;
+    if (bar) bar.style.width = `${(((nextIdx + 1) / CHAPTER_ORDER.length) * 100).toFixed(1)}%`;
+
+    window.scrollTo({ top: 0, behavior: "instant" });
+
+    if (animate) {
+      if (window.SiteSFX) window.SiteSFX.chime();
+      if (window.SiteParticles) {
+        const r = triggerBtn ? triggerBtn.getBoundingClientRect() : null;
+        const cx = r ? r.left + r.width / 2 : window.innerWidth / 2;
+        const cy = r ? r.top + r.height / 2 : window.innerHeight * 0.45;
+        window.SiteParticles.burst(cx, cy, 28, 0.72);
+      }
+      if (target && !reducedMotion && typeof gsap !== "undefined") {
         gsap.fromTo(
-          divider.querySelectorAll(".divider-line"),
-          { scaleX: 0 },
-          { scaleX: 1, duration: 0.75, ease: "power2.out", clearProps: "transform" }
+          target,
+          { opacity: 0, y: 24 },
+          { opacity: 1, y: 0, duration: 0.7, ease: "power2.out", clearProps: "opacity,transform" }
         );
       }
-      gsap.fromTo(
-        target,
-        { opacity: 0, y: 28 },
-        { opacity: 1, y: 0, duration: 0.8, ease: "power2.out", clearProps: "opacity,transform" }
-      );
     }
 
     if (targetId === "timeline") {
       initTimelineScrollAnimations();
     } else if (typeof ScrollTrigger !== "undefined") {
-      setTimeout(() => ScrollTrigger.refresh(), 120);
+      setTimeout(() => ScrollTrigger.refresh(), 100);
     }
-
-    // Smoothly glide to the newly revealed chapter
-    setTimeout(() => {
-      target.scrollIntoView({ behavior: reducedMotion ? "auto" : "smooth", block: "start" });
-    }, 80);
   }
 
   function initChapterReveals() {
     document.querySelectorAll("[data-reveal-target]").forEach((btn) => {
       btn.addEventListener("click", () => {
         const targetId = btn.getAttribute("data-reveal-target");
-        if (targetId) revealChapter(targetId, btn);
+        if (targetId) showChapter(targetId, true, btn);
       });
+    });
+
+    $("chapter-back-btn")?.addEventListener("click", () => {
+      if (activeChapterIdx > 0) {
+        showChapter(CHAPTER_ORDER[activeChapterIdx - 1], true);
+      }
     });
   }
 
@@ -778,17 +802,7 @@
   }
 
   function initScrollProgress() {
-    const bar = $("scroll-progress");
-    if (!bar) return;
-    window.addEventListener(
-      "scroll",
-      () => {
-        const max = document.documentElement.scrollHeight - window.innerHeight;
-        const pct = max > 0 ? Math.min(100, Math.max(0, (window.scrollY / max) * 100)) : 0;
-        bar.style.width = `${pct.toFixed(2)}%`;
-      },
-      { passive: true }
-    );
+    // Progress bar is driven cleanly by step progress (1/8 -> 8/8) in showChapter()
   }
 
   document.addEventListener("DOMContentLoaded", () => {

@@ -20,9 +20,9 @@
   <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;0,700;1,400;1,500;1,600;1,700&family=Galada&family=Great+Vibes&family=Hind+Siliguri:wght@300;400;500;600;700&family=Tiro+Bangla:ital@0;1&display=swap" rel="stylesheet">
 
   <!-- Stylesheets -->
-  <link rel="stylesheet" href="css/base.css?v=3">
-  <link rel="stylesheet" href="css/sections.css?v=3">
-  <link rel="stylesheet" href="css/effects.css?v=3">
+  <link rel="stylesheet" href="css/base.css?v=4">
+  <link rel="stylesheet" href="css/sections.css?v=4">
+  <link rel="stylesheet" href="css/effects.css?v=4">
 </head>
 <body>
   <!-- Scroll Progress Golden Thread -->
@@ -32,7 +32,14 @@
   <canvas id="ambient-canvas" class="bg-canvas" aria-hidden="true"></canvas>
   <canvas id="fireworks-canvas" class="fw-canvas" aria-hidden="true"></canvas>
 
-  <!-- Floating Persistent Audio Controls -->
+  <!-- Floating Step Navigation (Left) & Audio Controls (Right) -->
+  <nav id="chapter-stepper" class="chapter-stepper" aria-label="Chapter navigation" hidden>
+    <button id="chapter-back-btn" class="stepper-back-btn" type="button" aria-label="Previous step" hidden>
+      <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M15 18l-6-6 6-6" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+    </button>
+    <span id="chapter-step-label" class="stepper-label">1 / 8</span>
+  </nav>
+
   <div class="floating-audio-pills">
     <button id="sfx-pill" class="music-pill sfx-pill" type="button" aria-label="Toggle romantic sound effects" aria-pressed="true">
       <svg class="icon-music" viewBox="0 0 24 24" aria-hidden="true">
@@ -570,13 +577,13 @@
   <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/ScrollTrigger.min.js"></script>
 
   <!-- App Scripts -->
-  <script src="js/config.js?v=3"></script>
-  <script src="js/sfx.js?v=3"></script>
-  <script src="js/particles.js?v=3"></script>
-  <script src="js/cursor.js?v=3"></script>
-  <script src="js/gallery.js?v=3"></script>
-  <script src="js/cake.js?v=3"></script>
-  <script src="js/letter.js?v=3"></script>
-  <script src="js/main.js?v=3"></script>
+  <script src="js/config.js?v=4"></script>
+  <script src="js/sfx.js?v=4"></script>
+  <script src="js/particles.js?v=4"></script>
+  <script src="js/cursor.js?v=4"></script>
+  <script src="js/gallery.js?v=4"></script>
+  <script src="js/cake.js?v=4"></script>
+  <script src="js/letter.js?v=4"></script>
+  <script src="js/main.js?v=4"></script>
 </body>
 </html>
