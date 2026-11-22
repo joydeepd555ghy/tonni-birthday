@@ -259,13 +259,18 @@
     enterBtn.addEventListener(
       "click",
       () => {
-        if (window.SiteSFX) window.SiteSFX.unlockBurst();
+        if (window.SiteSFX) {
+          if (window.SiteSFX.curtainOpen) window.SiteSFX.curtainOpen();
+          else window.SiteSFX.unlockBurst();
+        }
         if (window.SiteMusic) window.SiteMusic.play("birthday");
         if (window.SiteParticles) {
-          window.SiteParticles.burst(window.innerWidth / 2, window.innerHeight / 2, 54, 0.75);
+          window.SiteParticles.burst(window.innerWidth / 2, window.innerHeight * 0.38, 42, 0.7);
+          window.SiteParticles.burst(window.innerWidth / 2, window.innerHeight * 0.62, 42, 0.8);
+          window.SiteParticles.heartRain(18);
         }
         screen.classList.add("parting");
-        const delay = reducedMotion ? 80 : 950;
+        const delay = reducedMotion ? 80 : 1250;
         setTimeout(() => {
           screen.hidden = true;
           initGateAndLoader();

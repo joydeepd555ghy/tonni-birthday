@@ -137,6 +137,15 @@
       playTone(f, 0.42, "sine", 0.045, 0);
       playTone(f * 2, 0.28, "triangle", 0.018, 0.02);
     },
+    curtainOpen() {
+      // Plush velvet drape whoosh + sweeping royal harp glissando + crystal sparkle
+      playNoise(0.95, 420, 0.055, 0);
+      playNoise(0.65, 1100, 0.025, 0.18);
+      [293.66, 369.99, 440.0, 554.37, 587.33, 739.99, 880.0, 1174.66].forEach((f, i) => {
+        playTone(f, 1.05, "sine", 0.05, 0.05 + i * 0.075);
+        playTone(f * 2, 0.55, "triangle", 0.016, 0.08 + i * 0.075);
+      });
+    },
     unlockBurst() {
       // Warm ascending harp arpeggio
       [293.66, 369.99, 440.0, 587.33, 739.99, 880.0].forEach((f, i) => {
