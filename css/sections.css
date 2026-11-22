@@ -112,14 +112,158 @@
   opacity: 0;
 }
 
+/* Floral Bouquets Framing All Sides of Premiere Screen */
+.floral-frame {
+  position: fixed;
+  inset: 0;
+  z-index: 3;
+  pointer-events: none;
+  overflow: hidden;
+  transition: opacity 0.9s ease;
+}
+
+.floral-bouquet {
+  position: absolute;
+  width: clamp(136px, 37vw, 250px);
+  height: auto;
+  filter: drop-shadow(0 10px 26px rgba(14, 2, 10, 0.55)) drop-shadow(0 0 18px rgba(255, 112, 158, 0.28));
+  transition: transform 1.2s cubic-bezier(0.22, 1, 0.36, 1), opacity 0.9s ease;
+}
+
+.bouquet-tl {
+  top: -14px;
+  left: -14px;
+  transform-origin: top left;
+  animation: bouquetBloomIn 1.1s cubic-bezier(0.22, 1, 0.36, 1) both, bouquetSway 5.5s ease-in-out 1.1s infinite alternate;
+}
+
+.bouquet-tr {
+  top: -14px;
+  right: -14px;
+  transform-origin: top right;
+  animation: bouquetBloomIn 1.15s cubic-bezier(0.22, 1, 0.36, 1) 0.1s both, bouquetSwayAlt 6s ease-in-out 1.2s infinite alternate;
+}
+
+.bouquet-bl {
+  bottom: -14px;
+  left: -14px;
+  transform-origin: bottom left;
+  animation: bouquetBloomIn 1.2s cubic-bezier(0.22, 1, 0.36, 1) 0.18s both, bouquetSwayAlt 5.8s ease-in-out 1.3s infinite alternate;
+}
+
+.bouquet-br {
+  bottom: -14px;
+  right: -14px;
+  transform-origin: bottom right;
+  animation: bouquetBloomIn 1.25s cubic-bezier(0.22, 1, 0.36, 1) 0.24s both, bouquetSway 6.2s ease-in-out 1.4s infinite alternate;
+}
+
+.floral-side {
+  position: absolute;
+  top: 50%;
+  width: clamp(46px, 12vw, 96px);
+  height: auto;
+  transform: translateY(-50%);
+  filter: drop-shadow(0 6px 18px rgba(14, 2, 10, 0.45));
+  transition: transform 1.15s cubic-bezier(0.22, 1, 0.36, 1), opacity 0.8s ease;
+}
+
+.side-left {
+  left: -8px;
+  animation: sideSwayL 5s ease-in-out infinite alternate;
+}
+
+.side-right {
+  right: -8px;
+  animation: sideSwayR 5.4s ease-in-out infinite alternate;
+}
+
+.onboarding-screen.parting .bouquet-tl { transform: translate(-110%, -40%) rotate(-18deg); opacity: 0; animation: none; }
+.onboarding-screen.parting .bouquet-tr { transform: translate(110%, -40%) rotate(18deg); opacity: 0; animation: none; }
+.onboarding-screen.parting .bouquet-bl { transform: translate(-110%, 40%) rotate(18deg); opacity: 0; animation: none; }
+.onboarding-screen.parting .bouquet-br { transform: translate(110%, 40%) rotate(-18deg); opacity: 0; animation: none; }
+.onboarding-screen.parting .side-left { transform: translate(-130%, -50%); opacity: 0; animation: none; }
+.onboarding-screen.parting .side-right { transform: translate(130%, -50%); opacity: 0; animation: none; }
+
+/* Giant "28th November" Zoom-Into-Premiere Splash */
+.date-intro-splash {
+  position: fixed;
+  inset: 0;
+  z-index: 5;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 24px;
+  cursor: pointer;
+  animation: dateZoomAppear 1.25s cubic-bezier(0.22, 1, 0.36, 1) both;
+  transition: transform 0.95s cubic-bezier(0.4, 0, 0.2, 1), opacity 0.85s ease, filter 0.85s ease;
+}
+
+.date-intro-splash.zoom-out {
+  transform: scale(2.5);
+  opacity: 0;
+  filter: blur(10px);
+  pointer-events: none;
+}
+
+.date-intro-splash[hidden] {
+  display: none;
+}
+
+.intro-date-eyebrow {
+  font-size: 0.78rem;
+  font-weight: 600;
+  letter-spacing: 0.32em;
+  text-transform: uppercase;
+  color: var(--blush);
+  text-shadow: 0 0 18px rgba(255, 112, 158, 0.7);
+  margin-bottom: 10px;
+}
+
+.intro-date-big {
+  font-family: var(--font-en-display);
+  font-style: italic;
+  font-weight: 700;
+  font-size: clamp(3.1rem, 13.5vw, 6.4rem);
+  line-height: 1.05;
+  color: var(--gold);
+  text-shadow:
+    0 0 28px rgba(247, 204, 122, 0.85),
+    0 0 64px rgba(255, 112, 158, 0.58),
+    0 12px 32px rgba(0, 0, 0, 0.65);
+}
+
+.intro-date-bn {
+  margin-top: 12px;
+  font-family: var(--font-bn-script);
+  font-size: clamp(1.55rem, 6.5vw, 2.55rem);
+  line-height: 1.65;
+  color: var(--cream);
+  text-shadow:
+    0 0 22px rgba(255, 112, 158, 0.75),
+    0 0 44px rgba(247, 204, 122, 0.45);
+}
+
 .onboarding-card {
   position: relative;
-  z-index: 3;
-  width: min(378px, 100%);
-  padding: 26px 22px 24px;
+  z-index: 4;
+  width: min(372px, 92vw);
+  padding: 24px 20px 22px;
   text-align: center;
-  animation: cardFloatIn 0.9s cubic-bezier(0.22, 1, 0.36, 1) both;
-  transition: opacity 0.65s ease, transform 0.65s ease;
+  transition: opacity 0.85s ease, transform 0.9s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.onboarding-screen.intro-phase .onboarding-card {
+  opacity: 0;
+  transform: scale(0.76);
+  pointer-events: none;
+}
+
+.onboarding-screen:not(.intro-phase):not(.parting) .onboarding-card {
+  opacity: 1;
+  transform: scale(1);
 }
 
 .premiere-ticket {

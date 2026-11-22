@@ -310,6 +310,29 @@
 
     screen.hidden = false;
     initPremiereCountdown();
+
+    // Giant "28th November" zoom-into-premiere intro sequence (~2.2s, or tap to zoom in immediately)
+    const dateIntro = $("date-intro-splash");
+    if (dateIntro && !reducedMotion) {
+      let introDone = false;
+      const finishIntro = () => {
+        if (introDone) return;
+        introDone = true;
+        dateIntro.classList.add("zoom-out");
+        screen.classList.remove("intro-phase");
+        if (window.SiteParticles) {
+          window.SiteParticles.burst(window.innerWidth / 2, window.innerHeight * 0.45, 36, 0.7);
+        }
+        setTimeout(() => {
+          dateIntro.hidden = true;
+        }, 900);
+      };
+      dateIntro.addEventListener("click", finishIntro, { once: true });
+      setTimeout(finishIntro, 2150);
+    } else {
+      if (dateIntro) dateIntro.hidden = true;
+      screen.classList.remove("intro-phase");
+    }
     enterBtn.addEventListener(
       "click",
       () => {

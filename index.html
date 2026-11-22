@@ -20,9 +20,9 @@
   <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;0,700;1,400;1,500;1,600;1,700&family=Galada&family=Great+Vibes&family=Hind+Siliguri:wght@300;400;500;600;700&family=Tiro+Bangla:ital@0;1&display=swap" rel="stylesheet">
 
   <!-- Stylesheets -->
-  <link rel="stylesheet" href="css/base.css?v=17">
-  <link rel="stylesheet" href="css/sections.css?v=17">
-  <link rel="stylesheet" href="css/effects.css?v=17">
+  <link rel="stylesheet" href="css/base.css?v=18">
+  <link rel="stylesheet" href="css/sections.css?v=18">
+  <link rel="stylesheet" href="css/effects.css?v=18">
 </head>
 <body>
   <!-- Scroll Progress Golden Thread -->
@@ -95,13 +95,246 @@
     </svg>
   </button>
 
-  <!-- 00. Royal Romantic Onboarding Curtain -->
-  <section id="onboarding-screen" class="overlay-screen onboarding-screen" aria-label="Birthday premiere welcome" hidden>
+  <!-- 00. Royal Romantic Onboarding Curtain with Floral Bouquets & 28th November Zoom Intro -->
+  <section id="onboarding-screen" class="overlay-screen onboarding-screen intro-phase" aria-label="Birthday premiere welcome" hidden>
     <div class="curtain-spotlight" aria-hidden="true"></div>
     <div class="velvet-curtain curtain-left" aria-hidden="true"></div>
     <div class="velvet-curtain curtain-right" aria-hidden="true"></div>
     <div class="curtain-seam-glow" aria-hidden="true"></div>
-    <div class="glass-card onboarding-card royal-card premiere-ticket">
+
+    <!-- Lush Handcrafted Botanical Floral Bouquets (Roses, Daisies, Cherry Blossoms, Lavender & Gold Leaves) -->
+    <div id="floral-frame" class="floral-frame" aria-hidden="true">
+      <svg class="floral-bouquet bouquet-tl" viewBox="0 0 220 220">
+        <!-- Leaves & Stems -->
+        <path d="M10 10 Q80 40 135 28 Q90 64 38 68 Z" fill="#2c6e49" opacity="0.9"/>
+        <path d="M8 22 Q45 95 28 158 Q68 115 62 52 Z" fill="#3b8558" opacity="0.88"/>
+        <path d="M22 18 Q98 70 156 82 Q105 98 54 68 Z" fill="#d9a54c" opacity="0.7"/>
+        <!-- Lavender Sprig -->
+        <g fill="#c9a0ff" opacity="0.9">
+          <ellipse cx="144" cy="34" rx="5" ry="8" transform="rotate(28 144 34)"/>
+          <ellipse cx="155" cy="40" rx="5" ry="7" transform="rotate(34 155 40)"/>
+          <ellipse cx="164" cy="48" rx="4" ry="6" transform="rotate(42 164 48)"/>
+        </g>
+        <!-- Deep Crimson Rose -->
+        <g transform="translate(52,52)">
+          <circle r="30" fill="#c92a5e"/>
+          <circle cx="-8" cy="-6" r="20" fill="#e84378"/>
+          <circle cx="8" cy="4" r="18" fill="#ff709e"/>
+          <circle cx="-2" cy="-2" r="11" fill="#ffb3cb"/>
+          <path d="M-8 0 Q0 -10 8 0 Q0 8 -5 2" fill="none" stroke="#8f1740" stroke-width="2"/>
+        </g>
+        <!-- Blooming White & Gold Daisy -->
+        <g transform="translate(114,48)">
+          <g fill="#fff8f2" stroke="#ffd9e6" stroke-width="0.6">
+            <ellipse cx="0" cy="-16" rx="5.5" ry="12"/>
+            <ellipse cx="0" cy="16" rx="5.5" ry="12"/>
+            <ellipse cx="-16" cy="0" rx="12" ry="5.5"/>
+            <ellipse cx="16" cy="0" rx="12" ry="5.5"/>
+            <ellipse cx="-11" cy="-11" rx="5.5" ry="11" transform="rotate(-45 -11 -11)"/>
+            <ellipse cx="11" cy="11" rx="5.5" ry="11" transform="rotate(-45 11 11)"/>
+            <ellipse cx="11" cy="-11" rx="5.5" ry="11" transform="rotate(45 11 -11)"/>
+            <ellipse cx="-11" cy="11" rx="5.5" ry="11" transform="rotate(45 -11 11)"/>
+          </g>
+          <circle r="8.5" fill="#f7c948"/>
+          <circle r="4.5" fill="#e09a1e"/>
+        </g>
+        <!-- Soft Blush Peony / Cherry Blossom -->
+        <g transform="translate(46,118)">
+          <g fill="#ffc4d9">
+            <circle cx="0" cy="-12" r="11"/>
+            <circle cx="11" cy="-3" r="11"/>
+            <circle cx="7" cy="10" r="11"/>
+            <circle cx="-7" cy="10" r="11"/>
+            <circle cx="-11" cy="-3" r="11"/>
+          </g>
+          <circle r="6" fill="#f7cc7a"/>
+        </g>
+        <!-- Mini Daisy Bud -->
+        <g transform="translate(92,98) scale(0.68)">
+          <g fill="#fff8f2">
+            <ellipse cx="0" cy="-14" rx="5" ry="10"/>
+            <ellipse cx="0" cy="14" rx="5" ry="10"/>
+            <ellipse cx="-14" cy="0" rx="10" ry="5"/>
+            <ellipse cx="14" cy="0" rx="10" ry="5"/>
+            <ellipse cx="-10" cy="-10" rx="5" ry="10" transform="rotate(-45 -10 -10)"/>
+            <ellipse cx="10" cy="10" rx="5" ry="10" transform="rotate(-45 10 10)"/>
+            <ellipse cx="10" cy="-10" rx="5" ry="10" transform="rotate(45 10 -10)"/>
+            <ellipse cx="-10" cy="10" rx="5" ry="10" transform="rotate(45 -10 10)"/>
+          </g>
+          <circle r="7" fill="#f7cc7a"/>
+        </g>
+      </svg>
+
+      <svg class="floral-bouquet bouquet-tr" viewBox="0 0 220 220">
+        <g transform="translate(220,0) scale(-1,1)">
+          <path d="M10 10 Q80 40 135 28 Q90 64 38 68 Z" fill="#2c6e49" opacity="0.9"/>
+          <path d="M8 22 Q45 95 28 158 Q68 115 62 52 Z" fill="#3b8558" opacity="0.88"/>
+          <path d="M22 18 Q98 70 156 82 Q105 98 54 68 Z" fill="#d9a54c" opacity="0.7"/>
+          <g fill="#e0b3ff" opacity="0.9">
+            <ellipse cx="144" cy="34" rx="5" ry="8" transform="rotate(28 144 34)"/>
+            <ellipse cx="155" cy="40" rx="5" ry="7" transform="rotate(34 155 40)"/>
+            <ellipse cx="164" cy="48" rx="4" ry="6" transform="rotate(42 164 48)"/>
+          </g>
+          <g transform="translate(52,52)">
+            <circle r="30" fill="#d9386c"/>
+            <circle cx="-7" cy="-5" r="20" fill="#ff6b9d"/>
+            <circle cx="8" cy="4" r="17" fill="#ffa3c2"/>
+            <circle cx="-1" cy="-1" r="10" fill="#ffe0eb"/>
+          </g>
+          <g transform="translate(114,48)">
+            <g fill="#fff8f2" stroke="#ffd9e6" stroke-width="0.6">
+              <ellipse cx="0" cy="-16" rx="5.5" ry="12"/>
+              <ellipse cx="0" cy="16" rx="5.5" ry="12"/>
+              <ellipse cx="-16" cy="0" rx="12" ry="5.5"/>
+              <ellipse cx="16" cy="0" rx="12" ry="5.5"/>
+              <ellipse cx="-11" cy="-11" rx="5.5" ry="11" transform="rotate(-45 -11 -11)"/>
+              <ellipse cx="11" cy="11" rx="5.5" ry="11" transform="rotate(-45 11 11)"/>
+              <ellipse cx="11" cy="-11" rx="5.5" ry="11" transform="rotate(45 11 -11)"/>
+              <ellipse cx="-11" cy="11" rx="5.5" ry="11" transform="rotate(45 -11 11)"/>
+            </g>
+            <circle r="8.5" fill="#f7c948"/>
+            <circle r="4.5" fill="#e09a1e"/>
+          </g>
+          <g transform="translate(46,118)">
+            <g fill="#ff9ebc">
+              <circle cx="0" cy="-12" r="11"/>
+              <circle cx="11" cy="-3" r="11"/>
+              <circle cx="7" cy="10" r="11"/>
+              <circle cx="-7" cy="10" r="11"/>
+              <circle cx="-11" cy="-3" r="11"/>
+            </g>
+            <circle r="6" fill="#f7cc7a"/>
+          </g>
+          <g transform="translate(94,98) scale(0.7)">
+            <g fill="#fff8f2">
+              <ellipse cx="0" cy="-14" rx="5" ry="10"/>
+              <ellipse cx="0" cy="14" rx="5" ry="10"/>
+              <ellipse cx="-14" cy="0" rx="10" ry="5"/>
+              <ellipse cx="14" cy="0" rx="10" ry="5"/>
+            </g>
+            <circle r="7" fill="#f7cc7a"/>
+          </g>
+        </g>
+      </svg>
+
+      <svg class="floral-bouquet bouquet-bl" viewBox="0 0 220 220">
+        <g transform="translate(0,220) scale(1,-1)">
+          <path d="M10 10 Q80 40 135 28 Q90 64 38 68 Z" fill="#2c6e49" opacity="0.9"/>
+          <path d="M8 22 Q45 95 28 158 Q68 115 62 52 Z" fill="#3b8558" opacity="0.88"/>
+          <path d="M22 18 Q98 70 156 82 Q105 98 54 68 Z" fill="#d9a54c" opacity="0.72"/>
+          <g transform="translate(52,54)">
+            <circle r="30" fill="#c92a5e"/>
+            <circle cx="-7" cy="-6" r="20" fill="#ff709e"/>
+            <circle cx="7" cy="4" r="17" fill="#ffb3cb"/>
+            <circle cx="-2" cy="-2" r="9" fill="#fff0f5"/>
+          </g>
+          <g transform="translate(116,46)">
+            <g fill="#fff8f2">
+              <ellipse cx="0" cy="-16" rx="5.5" ry="12"/>
+              <ellipse cx="0" cy="16" rx="5.5" ry="12"/>
+              <ellipse cx="-16" cy="0" rx="12" ry="5.5"/>
+              <ellipse cx="16" cy="0" rx="12" ry="5.5"/>
+              <ellipse cx="-11" cy="-11" rx="5.5" ry="11" transform="rotate(-45 -11 -11)"/>
+              <ellipse cx="11" cy="11" rx="5.5" ry="11" transform="rotate(-45 11 11)"/>
+              <ellipse cx="11" cy="-11" rx="5.5" ry="11" transform="rotate(45 11 -11)"/>
+              <ellipse cx="-11" cy="11" rx="5.5" ry="11" transform="rotate(45 -11 11)"/>
+            </g>
+            <circle r="8.5" fill="#f7c948"/>
+          </g>
+          <g transform="translate(46,120)">
+            <g fill="#ffd6e6">
+              <circle cx="0" cy="-12" r="11"/>
+              <circle cx="11" cy="-3" r="11"/>
+              <circle cx="7" cy="10" r="11"/>
+              <circle cx="-7" cy="10" r="11"/>
+              <circle cx="-11" cy="-3" r="11"/>
+            </g>
+            <circle r="6" fill="#ff709e"/>
+          </g>
+        </g>
+      </svg>
+
+      <svg class="floral-bouquet bouquet-br" viewBox="0 0 220 220">
+        <g transform="translate(220,220) scale(-1,-1)">
+          <path d="M10 10 Q80 40 135 28 Q90 64 38 68 Z" fill="#2c6e49" opacity="0.9"/>
+          <path d="M8 22 Q45 95 28 158 Q68 115 62 52 Z" fill="#3b8558" opacity="0.88"/>
+          <path d="M22 18 Q98 70 156 82 Q105 98 54 68 Z" fill="#d9a54c" opacity="0.72"/>
+          <g transform="translate(52,54)">
+            <circle r="30" fill="#d9386c"/>
+            <circle cx="-7" cy="-6" r="20" fill="#ff6b9d"/>
+            <circle cx="7" cy="4" r="17" fill="#ffd0e0"/>
+            <circle cx="-2" cy="-2" r="9" fill="#fff5f8"/>
+          </g>
+          <g transform="translate(116,46)">
+            <g fill="#fff8f2">
+              <ellipse cx="0" cy="-16" rx="5.5" ry="12"/>
+              <ellipse cx="0" cy="16" rx="5.5" ry="12"/>
+              <ellipse cx="-16" cy="0" rx="12" ry="5.5"/>
+              <ellipse cx="16" cy="0" rx="12" ry="5.5"/>
+              <ellipse cx="-11" cy="-11" rx="5.5" ry="11" transform="rotate(-45 -11 -11)"/>
+              <ellipse cx="11" cy="11" rx="5.5" ry="11" transform="rotate(-45 11 11)"/>
+              <ellipse cx="11" cy="-11" rx="5.5" ry="11" transform="rotate(45 11 -11)"/>
+              <ellipse cx="-11" cy="11" rx="5.5" ry="11" transform="rotate(45 -11 11)"/>
+            </g>
+            <circle r="8.5" fill="#f7c948"/>
+          </g>
+          <g transform="translate(46,120)">
+            <g fill="#ffb3cb">
+              <circle cx="0" cy="-12" r="11"/>
+              <circle cx="11" cy="-3" r="11"/>
+              <circle cx="7" cy="10" r="11"/>
+              <circle cx="-7" cy="10" r="11"/>
+              <circle cx="-11" cy="-3" r="11"/>
+            </g>
+            <circle r="6" fill="#f7cc7a"/>
+          </g>
+        </g>
+      </svg>
+
+      <!-- Side Floating Daisy & Rose Sprigs -->
+      <svg class="floral-side side-left" viewBox="0 0 90 160">
+        <path d="M0 80 Q38 66 56 30 M0 88 Q42 104 52 134" fill="none" stroke="#3b8558" stroke-width="3" stroke-linecap="round"/>
+        <g transform="translate(44,44) scale(0.75)">
+          <g fill="#fff8f2">
+            <ellipse cx="0" cy="-14" rx="5" ry="10"/><ellipse cx="0" cy="14" rx="5" ry="10"/>
+            <ellipse cx="-14" cy="0" rx="10" ry="5"/><ellipse cx="14" cy="0" rx="10" ry="5"/>
+            <ellipse cx="-10" cy="-10" rx="5" ry="10" transform="rotate(-45 -10 -10)"/>
+            <ellipse cx="10" cy="10" rx="5" ry="10" transform="rotate(-45 10 10)"/>
+          </g>
+          <circle r="6.5" fill="#f7c948"/>
+        </g>
+        <g transform="translate(42,118) scale(0.7)">
+          <circle r="16" fill="#ff709e"/><circle r="9" fill="#ffd9e6"/>
+        </g>
+      </svg>
+
+      <svg class="floral-side side-right" viewBox="0 0 90 160">
+        <g transform="translate(90,0) scale(-1,1)">
+          <path d="M0 80 Q38 66 56 30 M0 88 Q42 104 52 134" fill="none" stroke="#3b8558" stroke-width="3" stroke-linecap="round"/>
+          <g transform="translate(44,44) scale(0.75)">
+            <g fill="#fff8f2">
+              <ellipse cx="0" cy="-14" rx="5" ry="10"/><ellipse cx="0" cy="14" rx="5" ry="10"/>
+              <ellipse cx="-14" cy="0" rx="10" ry="5"/><ellipse cx="14" cy="0" rx="10" ry="5"/>
+              <ellipse cx="-10" cy="-10" rx="5" ry="10" transform="rotate(-45 -10 -10)"/>
+              <ellipse cx="10" cy="10" rx="5" ry="10" transform="rotate(-45 10 10)"/>
+            </g>
+            <circle r="6.5" fill="#f7c948"/>
+          </g>
+          <g transform="translate(42,118) scale(0.7)">
+            <circle r="16" fill="#ff709e"/><circle r="9" fill="#ffd9e6"/>
+          </g>
+        </g>
+      </svg>
+    </div>
+
+    <!-- Giant "28th November" Zoom-Into-Premiere Intro Title -->
+    <div id="date-intro-splash" class="date-intro-splash" role="status" aria-live="polite">
+      <p class="intro-date-eyebrow" lang="en">A Day Written in the Stars</p>
+      <p class="intro-date-big" lang="en">28th November</p>
+      <p class="intro-date-bn" lang="bn">২৮ নভেম্বর • মহারানীর জন্মদিন</p>
+    </div>
+
+    <div id="onboarding-card" class="glass-card onboarding-card royal-card premiere-ticket">
       <!-- Ornate Gold Corner Sparkles -->
       <svg class="corner-ornament tl" viewBox="0 0 32 32" aria-hidden="true"><path d="M4 28 V10 Q4 4 10 4 H28" fill="none" stroke="#f7cc7a" stroke-width="1.6" stroke-linecap="round"/><circle cx="9" cy="9" r="2" fill="#ff709e"/></svg>
       <svg class="corner-ornament tr" viewBox="0 0 32 32" aria-hidden="true"><path d="M28 28 V10 Q28 4 22 4 H4" fill="none" stroke="#f7cc7a" stroke-width="1.6" stroke-linecap="round"/><circle cx="23" cy="9" r="2" fill="#ff709e"/></svg>
@@ -690,13 +923,13 @@
   <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/ScrollTrigger.min.js"></script>
 
   <!-- App Scripts -->
-  <script src="js/config.js?v=17"></script>
-  <script src="js/sfx.js?v=17"></script>
-  <script src="js/particles.js?v=17"></script>
-  <script src="js/cursor.js?v=17"></script>
-  <script src="js/gallery.js?v=17"></script>
-  <script src="js/cake.js?v=17"></script>
-  <script src="js/letter.js?v=17"></script>
-  <script src="js/main.js?v=17"></script>
+  <script src="js/config.js?v=18"></script>
+  <script src="js/sfx.js?v=18"></script>
+  <script src="js/particles.js?v=18"></script>
+  <script src="js/cursor.js?v=18"></script>
+  <script src="js/gallery.js?v=18"></script>
+  <script src="js/cake.js?v=18"></script>
+  <script src="js/letter.js?v=18"></script>
+  <script src="js/main.js?v=18"></script>
 </body>
 </html>
