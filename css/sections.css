@@ -21,37 +21,64 @@
 
 .velvet-curtain {
   position: absolute;
-  top: -4%;
-  bottom: -4%;
-  width: 53%;
+  top: -6%;
+  bottom: -6%;
+  width: 55%;
   z-index: 1;
+  overflow: hidden;
   background:
-    linear-gradient(180deg, rgba(16, 2, 10, 0.55) 0%, transparent 18%, transparent 82%, rgba(12, 2, 8, 0.65) 100%),
+    linear-gradient(180deg, rgba(16, 2, 10, 0.52) 0%, transparent 18%, transparent 82%, rgba(12, 2, 8, 0.62) 100%),
     repeating-linear-gradient(
       90deg,
-      rgba(122, 18, 58, 0.96) 0px,
+      rgba(136, 20, 64, 0.96) 0px,
       rgba(56, 8, 30, 0.98) 24px,
-      rgba(96, 14, 48, 0.95) 48px,
-      rgba(44, 6, 24, 0.98) 68px
+      rgba(108, 16, 54, 0.96) 48px,
+      rgba(42, 6, 22, 0.98) 70px
     );
+  background-size: 100% 100%, 140% 100%;
   box-shadow: inset 0 0 95px rgba(0, 0, 0, 0.72);
+  transform-origin: top center;
+  will-change: transform, background-position;
   transition: transform 1.35s cubic-bezier(0.22, 1, 0.36, 1), opacity 1.1s ease;
 }
 
+.velvet-curtain::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background: linear-gradient(
+    105deg,
+    transparent 20%,
+    rgba(255, 168, 198, 0.16) 42%,
+    rgba(247, 204, 122, 0.14) 50%,
+    transparent 74%
+  );
+  background-size: 220% 100%;
+  animation: velvetSheenWave 7.5s ease-in-out infinite alternate;
+}
+
 .curtain-left {
-  left: -1%;
-  border-right: 3px solid rgba(247, 204, 122, 0.72);
+  left: -3%;
+  border-right: 3px solid rgba(247, 204, 122, 0.78);
   box-shadow:
-    inset -18px 0 36px rgba(247, 204, 122, 0.14),
+    inset -18px 0 38px rgba(247, 204, 122, 0.18),
     8px 0 32px rgba(0, 0, 0, 0.65);
+  animation: velvetWaveLeft 6.5s ease-in-out infinite alternate;
 }
 
 .curtain-right {
-  right: -1%;
-  border-left: 3px solid rgba(247, 204, 122, 0.72);
+  right: -3%;
+  border-left: 3px solid rgba(247, 204, 122, 0.78);
   box-shadow:
-    inset 18px 0 36px rgba(247, 204, 122, 0.14),
+    inset 18px 0 38px rgba(247, 204, 122, 0.18),
     -8px 0 32px rgba(0, 0, 0, 0.65);
+  animation: velvetWaveRight 6.8s ease-in-out infinite alternate;
+}
+
+.onboarding-screen.parting .curtain-left,
+.onboarding-screen.parting .curtain-right {
+  animation: none;
 }
 
 .curtain-seam-glow {

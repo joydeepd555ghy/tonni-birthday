@@ -266,8 +266,45 @@
 }
 
 @keyframes spotlightPulse {
-  0% { opacity: 0.72; transform: scale(0.98); }
-  100% { opacity: 1; transform: scale(1.06); }
+  0% { opacity: 0.7; transform: translateX(-4%) scale(0.98); }
+  50% { opacity: 1; transform: translateX(4%) scale(1.06); }
+  100% { opacity: 0.8; transform: translateX(-2%) scale(1.02); }
+}
+
+@keyframes velvetWaveLeft {
+  0% {
+    transform: skewX(0deg) scaleX(1);
+    background-position: 0 0, 0% 0;
+  }
+  50% {
+    transform: skewX(1.6deg) scaleX(1.025);
+    background-position: 0 0, 38% 0;
+  }
+  100% {
+    transform: skewX(-1.2deg) scaleX(0.99);
+    background-position: 0 0, 14% 0;
+  }
+}
+
+@keyframes velvetWaveRight {
+  0% {
+    transform: skewX(0deg) scaleX(1);
+    background-position: 0 0, 100% 0;
+  }
+  50% {
+    transform: skewX(-1.6deg) scaleX(1.025);
+    background-position: 0 0, 62% 0;
+  }
+  100% {
+    transform: skewX(1.2deg) scaleX(0.99);
+    background-position: 0 0, 86% 0;
+  }
+}
+
+@keyframes velvetSheenWave {
+  0% { background-position: 0% 0; opacity: 0.6; }
+  50% { background-position: 100% 0; opacity: 1; }
+  100% { background-position: 20% 0; opacity: 0.7; }
 }
 
 @keyframes cardFloatIn {
