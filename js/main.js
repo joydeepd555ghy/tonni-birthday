@@ -122,6 +122,8 @@
     setText("finale-btn-en", cfg.finale.buttonEn);
     setText("finale-msg-bn", cfg.finale.messageBn);
     setText("finale-msg-en", cfg.finale.messageEn);
+    setText("finale-replay-bn", cfg.finale.replayVoiceBn || "আবার শোনো");
+    setText("finale-replay-en", cfg.finale.replayVoiceEn || "Replay my voice note");
     setText("finale-credit", cfg.finale.credit);
 
     // Chapter reveal buttons
@@ -434,10 +436,24 @@
     heroBtn?.addEventListener("click", toggle);
     pill?.addEventListener("click", toggle);
 
+    function duck(level = 0.14) {
+      if (!playing) return;
+      clearInterval(fadeTimer);
+      const a = getActiveAudio();
+      a.volume = Math.min(a.volume, level);
+    }
+
+    function unduck() {
+      if (!playing) return;
+      fadeIn(getActiveAudio(), 0.72);
+    }
+
     window.SiteMusic = {
       play,
       pause,
       switchTo,
+      duck,
+      unduck,
       toggle,
       isPlaying: () => playing,
       wasPausedByVideo: () => pausedByVideo
@@ -783,15 +799,50 @@
     setTimeout(() => ScrollTrigger.refresh(), 150);
   }
 
-  /* ---------- 9. Finale ---------- */
+  /* ---------- 9. Finale (with Joydeep's Voice Note + Kiss-Synced Fireworks) ---------- */
   function initFinale() {
     const btn = $("finale-btn");
     const reveal = $("finale-reveal");
+    const replayBtn = $("finale-replay-voice");
     if (!btn || !reveal) return;
+
+    const voiceSrc = window.SITE_CONFIG?.meta?.voiceWishSrc || "assets/music/joydeep-wish.mp3";
+    const voiceAudio = new Audio(voiceSrc);
+    voiceAudio.preload = "auto";
+    let kissBurstTimer = null;
+
+    voiceAudio.addEventListener("ended", () => {
+      if (window.SiteMusic && window.SiteMusic.unduck) {
+        window.SiteMusic.unduck();
+      }
+    });
+
+    function playVoiceWish() {
+      clearTimeout(kissBurstTimer);
+      if (window.SiteMusic && window.SiteMusic.duck) {
+        window.SiteMusic.duck(0.14);
+      }
+      if (window.SiteSFX) window.SiteSFX.finaleChord();
+
+      voiceAudio.currentTime = 0;
+      voiceAudio.volume = 1;
+      voiceAudio.play().catch(() => {
+        if (window.SiteMusic && window.SiteMusic.unduck) window.SiteMusic.unduck();
+      });
+
+      // Right at the kiss ("mmuah!" ~4.6s), explode a big heart & firework burst
+      kissBurstTimer = setTimeout(() => {
+        if (window.SiteParticles) {
+          window.SiteParticles.burst(window.innerWidth / 2, window.innerHeight * 0.42, 65, 0.85);
+          window.SiteParticles.heartRain(26);
+        }
+      }, 4600);
+    }
 
     btn.addEventListener("click", () => {
       document.body.classList.add("finale-active");
       reveal.hidden = false;
+      playVoiceWish();
       if (window.SiteParticles) {
         window.SiteParticles.finaleShow();
       }
@@ -799,6 +850,8 @@
         gsap.from(reveal, { opacity: 0, y: 20, duration: 0.9, ease: "power2.out", clearProps: "all" });
       }
     });
+
+    replayBtn?.addEventListener("click", playVoiceWish);
   }
 
   function initScrollProgress() {

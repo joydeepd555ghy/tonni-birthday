@@ -13,6 +13,7 @@ window.SITE_CONFIG = {
     startDate: "2026-02-10",
     birthdayMusicSrc: "assets/music/maharani-birthday.mp3",
     romanticMusicSrc: "assets/music/song.mp3",
+    voiceWishSrc: "assets/music/joydeep-wish.mp3",
     musicSrc: "assets/music/maharani-birthday.mp3",
     heroPhoto: "assets/media/tonni.jpg",
     joydeepPhoto: "assets/media/joydeep.jpg",
@@ -233,6 +234,8 @@ window.SITE_CONFIG = {
     buttonEn: "One more thing, Maharani...",
     messageBn: "শুভ জন্মদিন, আমার মহারানী তন্নি।",
     messageEn: "Happy Birthday, my Maharani. I love you, today and always.",
+    replayVoiceBn: "আবার শোনো",
+    replayVoiceEn: "Replay my voice note",
     credit: "With all my heart, Joydeep Debnath"
   },
 
