@@ -20,9 +20,9 @@
   <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;0,700;1,400;1,500;1,600;1,700&family=Galada&family=Great+Vibes&family=Hind+Siliguri:wght@300;400;500;600;700&family=Tiro+Bangla:ital@0;1&display=swap" rel="stylesheet">
 
   <!-- Stylesheets -->
-  <link rel="stylesheet" href="css/base.css?v=6">
-  <link rel="stylesheet" href="css/sections.css?v=6">
-  <link rel="stylesheet" href="css/effects.css?v=6">
+  <link rel="stylesheet" href="css/base.css?v=7">
+  <link rel="stylesheet" href="css/sections.css?v=7">
+  <link rel="stylesheet" href="css/effects.css?v=7">
 </head>
 <body>
   <!-- Scroll Progress Golden Thread -->
@@ -57,6 +57,13 @@
       <span class="music-pill-text">Music</span>
     </button>
   </div>
+
+  <!-- Cute Floating Love-Burst Charm Button -->
+  <button id="love-tap-fab" class="love-tap-fab" type="button" aria-label="Send a love burst" hidden>
+    <svg viewBox="0 0 24 24" aria-hidden="true">
+      <path d="M12 21s-8.5-5.6-8.5-11.5C3.5 6.4 5.9 4 8.8 4c1.7 0 3.2.9 3.2 2.3C12 4.9 13.5 4 15.2 4 18.1 4 20.5 6.4 20.5 9.5 20.5 15.4 12 21 12 21Z"/>
+    </svg>
+  </button>
 
   <!-- 00. Royal Romantic Onboarding Curtain -->
   <section id="onboarding-screen" class="overlay-screen onboarding-screen" aria-label="Birthday premiere welcome" hidden>
@@ -142,14 +149,18 @@
       <p class="eyebrow" id="hero-eyebrow" lang="en"></p>
 
       <div class="hero-arch-stage">
+        <div class="hero-aurora" aria-hidden="true"></div>
         <div class="hero-orbit" aria-hidden="true">
           <svg class="orbit-sparkle s1" viewBox="0 0 24 24"><path d="M12 1L14.6 9.4L23 12L14.6 14.6L12 23L9.4 14.6L1 12L9.4 9.4Z"/></svg>
+          <svg class="orbit-heart h1" viewBox="0 0 24 24"><path d="M12 21s-8.5-5.6-8.5-11.5C3.5 6.4 5.9 4 8.8 4c1.7 0 3.2.9 3.2 2.3C12 4.9 13.5 4 15.2 4 18.1 4 20.5 6.4 20.5 9.5 20.5 15.4 12 21 12 21Z"/></svg>
           <svg class="orbit-sparkle s2" viewBox="0 0 24 24"><path d="M12 1L14.6 9.4L23 12L14.6 14.6L12 23L9.4 14.6L1 12L9.4 9.4Z"/></svg>
+          <svg class="orbit-heart h2" viewBox="0 0 24 24"><path d="M12 21s-8.5-5.6-8.5-11.5C3.5 6.4 5.9 4 8.8 4c1.7 0 3.2.9 3.2 2.3C12 4.9 13.5 4 15.2 4 18.1 4 20.5 6.4 20.5 9.5 20.5 15.4 12 21 12 21Z"/></svg>
           <svg class="orbit-sparkle s3" viewBox="0 0 24 24"><path d="M12 1L14.6 9.4L23 12L14.6 14.6L12 23L9.4 14.6L1 12L9.4 9.4Z"/></svg>
         </div>
         <div class="arch-frame">
           <img id="hero-photo" src="assets/media/tonni.jpg" alt="Tonni Sarker smiling" loading="eager" decoding="async">
         </div>
+        <span class="arch-love-ribbon" lang="bn" aria-hidden="true">মহারানী</span>
       </div>
 
       <h1 class="hero-title-bn" id="hero-headline-bn" lang="bn"></h1>
@@ -533,6 +544,9 @@
       </button>
 
       <div id="finale-reveal" class="finale-reveal" aria-live="polite" hidden>
+        <div id="finale-voice-wave" class="voice-wave" aria-hidden="true" hidden>
+          <span></span><span></span><span></span><span></span><span></span><span></span><span></span>
+        </div>
         <p class="finale-message-bn" id="finale-msg-bn" lang="bn"></p>
         <p class="finale-message-en" id="finale-msg-en" lang="en"></p>
         <div class="chapter-next-wrap">
@@ -596,13 +610,13 @@
   <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/ScrollTrigger.min.js"></script>
 
   <!-- App Scripts -->
-  <script src="js/config.js?v=5"></script>
-  <script src="js/sfx.js?v=5"></script>
-  <script src="js/particles.js?v=5"></script>
-  <script src="js/cursor.js?v=5"></script>
-  <script src="js/gallery.js?v=5"></script>
-  <script src="js/cake.js?v=5"></script>
-  <script src="js/letter.js?v=5"></script>
-  <script src="js/main.js?v=5"></script>
+  <script src="js/config.js?v=7"></script>
+  <script src="js/sfx.js?v=7"></script>
+  <script src="js/particles.js?v=7"></script>
+  <script src="js/cursor.js?v=7"></script>
+  <script src="js/gallery.js?v=7"></script>
+  <script src="js/cake.js?v=7"></script>
+  <script src="js/letter.js?v=7"></script>
+  <script src="js/main.js?v=7"></script>
 </body>
 </html>

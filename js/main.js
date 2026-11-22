@@ -679,12 +679,14 @@
     activeChapterIdx = nextIdx;
     const target = $(targetId);
 
-    // Update top-left stepper & top golden progress bar
+    // Update top-left stepper, love-charm FAB & top golden progress bar
     const stepper = $("chapter-stepper");
     const stepLabel = $("chapter-step-label");
     const backBtn = $("chapter-back-btn");
+    const fab = $("love-tap-fab");
     const bar = $("scroll-progress");
     if (stepper) stepper.hidden = false;
+    if (fab) fab.hidden = false;
     if (stepLabel) stepLabel.textContent = `${nextIdx + 1} / ${CHAPTER_ORDER.length}`;
     if (backBtn) backBtn.hidden = nextIdx === 0;
     if (bar) bar.style.width = `${(((nextIdx + 1) / CHAPTER_ORDER.length) * 100).toFixed(1)}%`;
@@ -808,10 +810,12 @@
 
     const voiceSrc = window.SITE_CONFIG?.meta?.voiceWishSrc || "assets/music/joydeep-wish.mp3";
     const voiceAudio = new Audio(voiceSrc);
+    const wave = $("finale-voice-wave");
     voiceAudio.preload = "auto";
     let kissBurstTimer = null;
 
     voiceAudio.addEventListener("ended", () => {
+      if (wave) wave.hidden = true;
       if (window.SiteMusic && window.SiteMusic.unduck) {
         window.SiteMusic.unduck();
       }
@@ -819,6 +823,7 @@
 
     function playVoiceWish() {
       clearTimeout(kissBurstTimer);
+      if (wave) wave.hidden = false;
       if (window.SiteMusic && window.SiteMusic.duck) {
         window.SiteMusic.duck(0.14);
       }
@@ -827,6 +832,7 @@
       voiceAudio.currentTime = 0;
       voiceAudio.volume = 1;
       voiceAudio.play().catch(() => {
+        if (wave) wave.hidden = true;
         if (window.SiteMusic && window.SiteMusic.unduck) window.SiteMusic.unduck();
       });
 
@@ -858,6 +864,33 @@
     // Progress bar is driven cleanly by step progress (1/8 -> 8/8) in showChapter()
   }
 
+  /* ---------- Cute Floating Love-Charm Button ---------- */
+  function initLoveFab() {
+    const fab = $("love-tap-fab");
+    if (!fab) return;
+    const whispers = ["মহারানী", "লক্ষ্মী", "কুচুপুচু", "ভালোবাসি", "My Queen", "শুভ জন্মদিন"];
+    let idx = 0;
+
+    fab.addEventListener("click", () => {
+      if (window.SiteSFX) window.SiteSFX.chime();
+      const r = fab.getBoundingClientRect();
+      const cx = r.left + r.width / 2;
+      const cy = r.top;
+
+      if (window.SiteParticles) {
+        window.SiteParticles.burst(cx, cy, 24, 0.9);
+      }
+
+      const pill = document.createElement("span");
+      pill.className = "love-whisper-pill";
+      pill.textContent = whispers[idx++ % whispers.length];
+      pill.style.left = `${Math.min(window.innerWidth - 76, Math.max(76, cx - 28))}px`;
+      pill.style.top = `${cy - 12}px`;
+      document.body.appendChild(pill);
+      setTimeout(() => pill.remove(), 1650);
+    });
+  }
+
   document.addEventListener("DOMContentLoaded", () => {
     hydrateCopy();
     prepareHeroHeadline();
@@ -867,6 +900,7 @@
     initTimeline();
     initReasons();
     initChapterReveals();
+    initLoveFab();
     initFinale();
     initOnboarding();
   });

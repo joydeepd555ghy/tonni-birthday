@@ -180,6 +180,44 @@
   100% { transform: scale(1.09) translate(-1.5%, -1.5%); }
 }
 
+/* Cute floating love-charm pulse, whisper float, voice wave & gentle card bob */
+.love-tap-fab {
+  animation: heartBeat 2.4s ease-in-out infinite;
+}
+
+.reason-card:nth-child(odd) {
+  animation: gentleBob 4.4s ease-in-out infinite alternate;
+}
+
+.reason-card:nth-child(even) {
+  animation: gentleBob 4.8s ease-in-out 0.8s infinite alternate;
+}
+
+@keyframes gentleBob {
+  from { transform: translateY(0); }
+  to { transform: translateY(-5px); }
+}
+
+@keyframes whisperFloat {
+  0% {
+    opacity: 0;
+    transform: translate(-50%, 0) scale(0.75);
+  }
+  20% {
+    opacity: 1;
+    transform: translate(-50%, -22px) scale(1.04);
+  }
+  100% {
+    opacity: 0;
+    transform: translate(-50%, -95px) scale(0.95);
+  }
+}
+
+@keyframes waveDance {
+  0% { height: 7px; opacity: 0.65; }
+  100% { height: 28px; opacity: 1; }
+}
+
 /* Finale night-sky darkening */
 body.finale-active::after {
   content: "";

@@ -22,6 +22,7 @@
 
   const petals = [];
   const bokeh = [];
+  const floatHearts = [];
   const stars = [];
   const shootingStars = [];
   const fwParticles = [];
@@ -73,16 +74,32 @@
     };
   }
 
+  function createFloatHeart(randomY) {
+    return {
+      x: Math.random() * W,
+      y: randomY ? Math.random() * H : H + 20 + Math.random() * 50,
+      s: 4 + Math.random() * 6.5,
+      vy: -(0.35 + Math.random() * 0.55),
+      phase: Math.random() * Math.PI * 2,
+      sway: 0.35 + Math.random() * 0.65,
+      alpha: 0.16 + Math.random() * 0.24,
+      color: PETAL_COLORS[(Math.random() * PETAL_COLORS.length) | 0]
+    };
+  }
+
   function initAmbient() {
     petals.length = 0;
     bokeh.length = 0;
+    floatHearts.length = 0;
     stars.length = 0;
     const isMobile = W < 640;
-    const petalCount = isMobile ? 24 : 34;
-    const bokehCount = isMobile ? 12 : 18;
-    const starCount = isMobile ? 22 : 36;
+    const petalCount = isMobile ? 20 : 28;
+    const bokehCount = isMobile ? 10 : 16;
+    const heartCount = isMobile ? 12 : 18;
+    const starCount = isMobile ? 22 : 34;
     for (let i = 0; i < petalCount; i++) petals.push(createPetal(true));
     for (let i = 0; i < bokehCount; i++) bokeh.push(createBokeh(true));
+    for (let i = 0; i < heartCount; i++) floatHearts.push(createFloatHeart(true));
     for (let i = 0; i < starCount; i++) {
       stars.push({
         x: Math.random() * W,
@@ -181,6 +198,18 @@
       actx.beginPath();
       actx.arc(b.x, b.y, b.r * 2, 0, Math.PI * 2);
       actx.fill();
+    }
+
+    for (let i = 0; i < floatHearts.length; i++) {
+      const h = floatHearts[i];
+      h.y += h.vy;
+      h.x += Math.sin((h.phase += 0.02)) * h.sway;
+      if (h.y < -28) Object.assign(h, createFloatHeart(false));
+      actx.save();
+      actx.globalAlpha = h.alpha;
+      actx.fillStyle = h.color;
+      drawHeartShape(actx, h.x, h.y, h.s);
+      actx.restore();
     }
 
     for (let i = 0; i < petals.length; i++) {

@@ -270,23 +270,57 @@
   margin: 12px auto 16px;
 }
 
+.hero-aurora {
+  position: absolute;
+  inset: -26px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(255, 112, 158, 0.36) 0%, rgba(247, 204, 122, 0.16) 45%, transparent 72%);
+  filter: blur(18px);
+  pointer-events: none;
+}
+
 .hero-orbit {
   position: absolute;
   inset: -18px;
   pointer-events: none;
 }
 
-.orbit-sparkle {
+.orbit-sparkle,
+.orbit-heart {
   position: absolute;
-  width: 18px;
-  height: 18px;
+  width: 17px;
+  height: 17px;
   fill: var(--gold);
   filter: drop-shadow(0 0 8px rgba(242, 195, 107, 0.85));
 }
 
-.orbit-sparkle.s1 { top: 8%; left: 4%; }
-.orbit-sparkle.s2 { top: 20%; right: 2%; width: 14px; height: 14px; fill: var(--blush); }
-.orbit-sparkle.s3 { bottom: 14%; left: -2%; width: 13px; height: 13px; }
+.orbit-heart {
+  fill: var(--rose);
+  filter: drop-shadow(0 0 9px rgba(255, 112, 158, 0.9));
+}
+
+.orbit-sparkle.s1 { top: 6%; left: 6%; }
+.orbit-heart.h1 { top: 44%; right: -8%; width: 16px; height: 16px; }
+.orbit-sparkle.s2 { top: 18%; right: 2%; width: 14px; height: 14px; fill: var(--blush); }
+.orbit-heart.h2 { bottom: 26%; left: -7%; width: 15px; height: 15px; fill: var(--blush); }
+.orbit-sparkle.s3 { bottom: 10%; right: 8%; width: 13px; height: 13px; }
+
+.arch-love-ribbon {
+  position: absolute;
+  bottom: -11px;
+  left: 50%;
+  transform: translateX(-50%);
+  padding: 2px 16px;
+  border-radius: var(--radius-pill);
+  background: linear-gradient(135deg, #ff709e, #d93b70);
+  border: 1px solid var(--gold);
+  color: #fff6f9;
+  font-family: var(--font-bn-script);
+  font-size: 0.95rem;
+  line-height: 1.5;
+  box-shadow: 0 6px 20px rgba(255, 112, 158, 0.55);
+  white-space: nowrap;
+}
 
 .arch-frame {
   position: relative;
@@ -1538,6 +1572,86 @@
   text-transform: uppercase;
   color: rgba(251, 233, 220, 0.55);
 }
+
+/* Cute Floating Love-Burst Charm Button */
+.love-tap-fab {
+  position: fixed;
+  right: 16px;
+  bottom: calc(18px + env(safe-area-inset-bottom, 0px));
+  z-index: 46;
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  border: 1.5px solid rgba(247, 204, 122, 0.7);
+  background: linear-gradient(145deg, rgba(255, 112, 158, 0.9), rgba(180, 36, 86, 0.92));
+  color: #fff5f8;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow:
+    0 10px 28px rgba(255, 112, 158, 0.45),
+    0 0 22px rgba(247, 204, 122, 0.3);
+  transition: transform 0.2s ease;
+}
+
+.love-tap-fab[hidden] {
+  display: none;
+}
+
+.love-tap-fab:active {
+  transform: scale(0.9);
+}
+
+.love-tap-fab svg {
+  width: 24px;
+  height: 24px;
+  fill: currentColor;
+}
+
+.love-whisper-pill {
+  position: fixed;
+  pointer-events: none;
+  z-index: 68;
+  padding: 5px 14px;
+  border-radius: var(--radius-pill);
+  background: rgba(58, 12, 38, 0.88);
+  border: 1px solid rgba(247, 204, 122, 0.65);
+  color: var(--gold);
+  font-family: var(--font-bn-script);
+  font-size: 1.05rem;
+  line-height: 1.5;
+  box-shadow: 0 8px 24px rgba(255, 112, 158, 0.35);
+  transform: translate(-50%, -50%);
+  animation: whisperFloat 1.6s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+}
+
+/* Finale Voice-Wave Equalizer */
+.voice-wave {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 5px;
+  height: 32px;
+  margin-bottom: 12px;
+}
+
+.voice-wave[hidden] {
+  display: none;
+}
+
+.voice-wave span {
+  width: 4px;
+  height: 10px;
+  border-radius: 99px;
+  background: linear-gradient(180deg, var(--gold), var(--rose));
+  animation: waveDance 0.9s ease-in-out infinite alternate;
+}
+
+.voice-wave span:nth-child(2) { animation-delay: 0.12s; }
+.voice-wave span:nth-child(3) { animation-delay: 0.24s; }
+.voice-wave span:nth-child(4) { animation-delay: 0.36s; }
+.voice-wave span:nth-child(5) { animation-delay: 0.24s; }
+.voice-wave span:nth-child(6) { animation-delay: 0.12s; }
 
 /* Action-Gated Chapter Reveal Controls */
 .chapter-reveal[hidden],
