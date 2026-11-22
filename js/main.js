@@ -864,6 +864,72 @@
     // Progress bar is driven cleanly by step progress (1/8 -> 8/8) in showChapter()
   }
 
+  /* ---------- Dreamy Floating Photo Glimpses Backdrop ---------- */
+  window.initDreamBackdrop = function (mediaList) {
+    const container = $("dream-glimpses");
+    if (!container || reducedMotion || !Array.isArray(mediaList) || mediaList.length === 0) return;
+
+    const photos = mediaList.filter((m) => m.type === "photo" && m.thumb);
+    if (!photos.length) return;
+
+    const isMobile = window.innerWidth < 768;
+    const slots = isMobile
+      ? [
+          { left: "-4%", top: "10%", w: "108px", rot: "-8deg", op: "0.2", dur: "10s", gx: "8px", gy: "-16px" },
+          { left: "76%", top: "14%", w: "104px", rot: "7deg", op: "0.19", dur: "12s", gx: "-8px", gy: "-14px" },
+          { left: "-5%", top: "68%", w: "112px", rot: "6deg", op: "0.2", dur: "11s", gx: "10px", gy: "-18px" },
+          { left: "74%", top: "64%", w: "106px", rot: "-7deg", op: "0.18", dur: "13s", gx: "-9px", gy: "-15px" }
+        ]
+      : [
+          { left: "3%", top: "12%", w: "148px", rot: "-7deg", op: "0.24", dur: "11s", gx: "12px", gy: "-20px" },
+          { left: "84%", top: "10%", w: "152px", rot: "6deg", op: "0.24", dur: "13s", gx: "-12px", gy: "-18px" },
+          { left: "6%", top: "46%", w: "134px", rot: "5deg", op: "0.2", dur: "12s", gx: "10px", gy: "-16px" },
+          { left: "86%", top: "48%", w: "138px", rot: "-6deg", op: "0.2", dur: "14s", gx: "-10px", gy: "-20px" },
+          { left: "4%", top: "76%", w: "146px", rot: "-5deg", op: "0.22", dur: "10s", gx: "12px", gy: "-14px" },
+          { left: "83%", top: "75%", w: "144px", rot: "7deg", op: "0.22", dur: "12s", gx: "-12px", gy: "-16px" }
+        ];
+
+    container.innerHTML = "";
+    let poolIdx = Math.floor(Math.random() * photos.length);
+    const cards = [];
+
+    slots.forEach((s, i) => {
+      const card = document.createElement("div");
+      card.className = "dream-glimpse";
+      card.style.left = s.left;
+      card.style.top = s.top;
+      card.style.setProperty("--gw", s.w);
+      card.style.setProperty("--grot", s.rot);
+      card.style.setProperty("--gop", s.op);
+      card.style.setProperty("--gdur", s.dur);
+      card.style.setProperty("--gx", s.gx);
+      card.style.setProperty("--gy", s.gy);
+
+      const img = document.createElement("img");
+      img.src = photos[poolIdx++ % photos.length].thumb;
+      img.alt = "";
+      img.loading = "lazy";
+      img.decoding = "async";
+      card.appendChild(img);
+      container.appendChild(card);
+      cards.push({ card, img });
+
+      setTimeout(() => card.classList.add("visible"), 260 + i * 240);
+    });
+
+    // Gently crossfade one background glimpse to a new photo every 5s
+    let slotTurn = 0;
+    setInterval(() => {
+      if (document.hidden || !cards.length) return;
+      const target = cards[slotTurn++ % cards.length];
+      target.card.classList.remove("visible");
+      setTimeout(() => {
+        target.img.src = photos[poolIdx++ % photos.length].thumb;
+        target.card.classList.add("visible");
+      }, 1500);
+    }, 5200);
+  };
+
   /* ---------- Cute Floating Love-Charm Button ---------- */
   function initLoveFab() {
     const fab = $("love-tap-fab");

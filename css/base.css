@@ -113,6 +113,59 @@ input:focus-visible,
   border: 0;
 }
 
+/* Dreamy Romantic Aurora + Floating Photo Glimpses Backdrop */
+.dream-backdrop {
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+  overflow: hidden;
+  pointer-events: none;
+}
+
+.dream-aurora {
+  position: absolute;
+  inset: -25%;
+  background:
+    radial-gradient(45% 42% at 24% 28%, rgba(255, 112, 158, 0.28) 0%, transparent 70%),
+    radial-gradient(42% 45% at 78% 24%, rgba(247, 204, 122, 0.22) 0%, transparent 72%),
+    radial-gradient(50% 45% at 50% 82%, rgba(212, 54, 116, 0.26) 0%, transparent 74%);
+  filter: blur(42px);
+  will-change: transform;
+  animation: auroraDrift 18s ease-in-out infinite alternate;
+}
+
+.dream-glimpses {
+  position: absolute;
+  inset: 0;
+}
+
+.dream-glimpse {
+  position: absolute;
+  width: var(--gw, 122px);
+  aspect-ratio: 3 / 4;
+  border-radius: 22px;
+  padding: 4px;
+  background: linear-gradient(145deg, rgba(247, 204, 122, 0.42), rgba(255, 112, 158, 0.32));
+  box-shadow: 0 14px 36px rgba(18, 3, 12, 0.45), 0 0 28px rgba(255, 112, 158, 0.22);
+  opacity: 0;
+  transform: rotate(var(--grot, 0deg)) scale(0.95);
+  transition: opacity 1.6s ease, transform 1.6s ease;
+  animation: glimpseFloat var(--gdur, 11s) ease-in-out infinite alternate;
+}
+
+.dream-glimpse.visible {
+  opacity: var(--gop, 0.22);
+  transform: rotate(var(--grot, 0deg)) scale(1);
+}
+
+.dream-glimpse img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 18px;
+  filter: blur(1.2px) saturate(1.12);
+}
+
 /* Background Canvases */
 .bg-canvas,
 .fw-canvas {

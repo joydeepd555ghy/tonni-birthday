@@ -610,6 +610,10 @@
     initAlbums();
     applyFilter();
 
+    if (typeof window.initDreamBackdrop === "function" && allMedia.length > 0) {
+      window.initDreamBackdrop(allMedia);
+    }
+
     window.addEventListener("resize", updateCarousel, { passive: true });
   }
 
