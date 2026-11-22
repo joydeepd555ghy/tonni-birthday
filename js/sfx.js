@@ -73,6 +73,54 @@
     src.start(t);
   }
 
+  function playClap(delay = 0, peak = 0.055, freq = 1150) {
+    const c = ensureCtx();
+    if (!c || c.state !== "running") return;
+    // A realistic single hand clap has 2-3 micro-impulses (~12ms apart) + short resonant tail
+    const dur = 0.14;
+    const bufSize = Math.floor(c.sampleRate * dur);
+    const buffer = c.createBuffer(1, bufSize, c.sampleRate);
+    const data = buffer.getChannelData(0);
+    for (let i = 0; i < bufSize; i++) {
+      const env = Math.exp(-i / (c.sampleRate * 0.028));
+      data[i] = (Math.random() * 2 - 1) * env;
+    }
+
+    const src = c.createBufferSource();
+    src.buffer = buffer;
+
+    const bp = c.createBiquadFilter();
+    bp.type = "bandpass";
+    bp.frequency.value = freq;
+    bp.Q.value = 1.4;
+
+    const gain = c.createGain();
+    const t = c.currentTime + delay;
+    gain.gain.setValueAtTime(0.0001, t);
+    gain.gain.linearRampToValueAtTime(peak, t + 0.006);
+    gain.gain.exponentialRampToValueAtTime(0.0001, t + dur);
+
+    src.connect(bp);
+    bp.connect(gain);
+    gain.connect(c.destination);
+    src.start(t);
+  }
+
+  function playApplause(startDelay = 0.45, durationSec = 2.8) {
+    // Organic multi-person celebratory applause with swell & gentle fade-out
+    const totalClaps = 46;
+    for (let i = 0; i < totalClaps; i++) {
+      const progress = i / totalClaps;
+      const jitter = (Math.random() - 0.5) * 0.07;
+      const t = startDelay + progress * durationSec + jitter;
+      // Swell in quickly, sustain, then taper softly
+      const env = progress < 0.15 ? progress / 0.15 : progress > 0.72 ? (1 - progress) / 0.28 : 1;
+      const peak = (0.032 + Math.random() * 0.035) * Math.max(0.25, env);
+      const freq = 900 + Math.random() * 850;
+      playClap(Math.max(0, t), peak, freq);
+    }
+  }
+
   const SFX = {
     isEnabled: () => enabled,
     setEnabled(val) {
@@ -113,10 +161,18 @@
       });
     },
     blowOut() {
-      playNoise(0.45, 500, 0.05, 0);
-      [587.33, 739.99, 880.0, 1174.66].forEach((f, i) => {
-        playTone(f, 0.85, "sine", 0.05, 0.35 + i * 0.1);
+      // Breath whoosh -> celebratory wish chime -> warm applause & confetti pops!
+      playNoise(0.45, 500, 0.055, 0);
+      [587.33, 739.99, 880.0, 1174.66, 1479.98].forEach((f, i) => {
+        playTone(f, 0.9, "sine", 0.048, 0.35 + i * 0.09);
       });
+      playApplause(0.65, 2.9);
+      // Soft party poppers
+      playNoise(0.09, 2200, 0.06, 0.75);
+      playNoise(0.09, 1900, 0.055, 1.15);
+    },
+    applause() {
+      playApplause(0.05, 2.5);
     },
     firework() {
       // Soft whistle up + sparkle pop
