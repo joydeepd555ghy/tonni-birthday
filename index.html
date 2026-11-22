@@ -20,9 +20,9 @@
   <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;0,700;1,400;1,500;1,600;1,700&family=Galada&family=Great+Vibes&family=Hind+Siliguri:wght@300;400;500;600;700&family=Tiro+Bangla:ital@0;1&display=swap" rel="stylesheet">
 
   <!-- Stylesheets -->
-  <link rel="stylesheet" href="css/base.css?v=16">
-  <link rel="stylesheet" href="css/sections.css?v=16">
-  <link rel="stylesheet" href="css/effects.css?v=16">
+  <link rel="stylesheet" href="css/base.css?v=17">
+  <link rel="stylesheet" href="css/sections.css?v=17">
+  <link rel="stylesheet" href="css/effects.css?v=17">
 </head>
 <body>
   <!-- Scroll Progress Golden Thread -->
@@ -33,6 +33,10 @@
     <div class="dream-aurora"></div>
     <div id="dream-glimpses" class="dream-glimpses"></div>
   </div>
+
+  <!-- Cinema Theater Dimming & Hug Heartbeat Flash -->
+  <div id="cinema-dim" class="cinema-dim" aria-hidden="true"></div>
+  <div id="hug-pulse-overlay" class="hug-pulse-overlay" aria-hidden="true"></div>
 
   <!-- Ambient Background Canvases -->
   <canvas id="ambient-canvas" class="bg-canvas" aria-hidden="true"></canvas>
@@ -419,6 +423,18 @@
       </header>
       <div id="reasons-grid" class="reasons-grid"></div>
       <p id="reasons-progress" class="reasons-progress" aria-live="polite">Tap any card above to unlock the next surprise</p>
+      <div id="reasons-all-secret" class="glass-card reasons-secret" aria-live="polite" hidden>
+        <p id="reasons-secret-bn" class="reasons-secret-bn" lang="bn"></p>
+        <p id="reasons-secret-en" class="reasons-secret-en" lang="en"></p>
+      </div>
+
+      <!-- Personalized Royal Birthday Vouchers (Skincare & Foodie) -->
+      <div id="vouchers-section" class="vouchers-section">
+        <h3 id="vouchers-title-bn" class="vouchers-title-bn" lang="bn"></h3>
+        <p id="vouchers-title-en" class="vouchers-title-en" lang="en"></p>
+        <div id="vouchers-grid" class="vouchers-grid"></div>
+      </div>
+
       <div id="reveal-cake-wrap" class="chapter-next-wrap" hidden>
         <button id="reveal-cake-btn" class="btn btn-gold btn-chapter-next" type="button" data-reveal-target="cake">
           <span class="btn-bilingual">
@@ -441,6 +457,7 @@
       </header>
 
       <div class="cake-stage">
+        <div id="cake-candle-glow" class="cake-candle-glow" aria-hidden="true"></div>
         <svg id="cake-svg" class="cake-svg" viewBox="0 0 280 250" role="img" aria-label="Birthday cake with flickering candles">
           <defs>
             <radialGradient id="flameGrad" cx="50%" cy="60%" r="60%">
@@ -555,6 +572,13 @@
                 </svg>
               </div>
               <button id="letter-skip-btn" class="letter-skip-btn" type="button" hidden></button>
+              <div id="letter-hug-wrap" class="letter-hug-wrap" hidden>
+                <button id="letter-hug-btn" class="btn btn-small btn-gold" type="button">
+                  <svg class="btn-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 21s-8.5-5.6-8.5-11.5C3.5 6.4 5.9 4 8.8 4c1.7 0 3.2.9 3.2 2.3C12 4.9 13.5 4 15.2 4 18.1 4 20.5 6.4 20.5 9.5 20.5 15.4 12 21 12 21Z" fill="currentColor"/></svg>
+                  <span id="letter-hug-label" lang="bn"></span>
+                </button>
+                <p id="letter-hug-status" class="letter-hug-status" role="status" aria-live="polite"></p>
+              </div>
             </div>
           </article>
           <div class="envelope-front"></div>
@@ -593,9 +617,10 @@
         <div id="finale-voice-wave" class="voice-wave" aria-hidden="true" hidden>
           <span></span><span></span><span></span><span></span><span></span><span></span><span></span>
         </div>
+        <p id="finale-voice-caption" class="finale-voice-caption" lang="bn" aria-live="polite"></p>
         <p class="finale-message-bn" id="finale-msg-bn" lang="bn"></p>
         <p class="finale-message-en" id="finale-msg-en" lang="en"></p>
-        <div class="chapter-next-wrap">
+        <div class="chapter-next-wrap finale-action-row">
           <button id="finale-replay-voice" class="btn btn-glass" type="button">
             <svg class="btn-icon" viewBox="0 0 24 24" aria-hidden="true">
               <path d="M12 1a3 3 0 0 0-3 3v8a3 3 0 0 0 6 0V4a3 3 0 0 0-3-3z" fill="none" stroke="currentColor" stroke-width="1.8"/>
@@ -604,6 +629,12 @@
             <span class="btn-bilingual">
               <span id="finale-replay-bn" lang="bn"></span>
               <span id="finale-replay-en" lang="en"></span>
+            </span>
+          </button>
+          <button id="finale-relive-btn" class="btn btn-gold" type="button">
+            <span class="btn-bilingual">
+              <span id="finale-relive-bn" lang="bn"></span>
+              <span id="finale-relive-en" lang="en"></span>
             </span>
           </button>
         </div>
@@ -624,6 +655,9 @@
     <div id="lb-stage" class="lb-stage">
       <img id="lb-img" class="lb-media" src="" alt="" hidden>
       <video id="lb-video" class="lb-media" controls playsinline hidden></video>
+      <span id="lb-heart-pop" class="lb-heart-pop" aria-hidden="true">
+        <svg viewBox="0 0 24 24"><path d="M12 21s-8.5-5.6-8.5-11.5C3.5 6.4 5.9 4 8.8 4c1.7 0 3.2.9 3.2 2.3C12 4.9 13.5 4 15.2 4 18.1 4 20.5 6.4 20.5 9.5 20.5 15.4 12 21 12 21Z"/></svg>
+      </span>
     </div>
     <button id="lb-next" class="lb-nav lb-next icon-btn" type="button" aria-label="Next memory">
       <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9 18l6-6-6-6" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
@@ -656,13 +690,13 @@
   <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/ScrollTrigger.min.js"></script>
 
   <!-- App Scripts -->
-  <script src="js/config.js?v=15"></script>
-  <script src="js/sfx.js?v=15"></script>
-  <script src="js/particles.js?v=15"></script>
-  <script src="js/cursor.js?v=15"></script>
-  <script src="js/gallery.js?v=15"></script>
-  <script src="js/cake.js?v=15"></script>
-  <script src="js/letter.js?v=15"></script>
-  <script src="js/main.js?v=15"></script>
+  <script src="js/config.js?v=17"></script>
+  <script src="js/sfx.js?v=17"></script>
+  <script src="js/particles.js?v=17"></script>
+  <script src="js/cursor.js?v=17"></script>
+  <script src="js/gallery.js?v=17"></script>
+  <script src="js/cake.js?v=17"></script>
+  <script src="js/letter.js?v=17"></script>
+  <script src="js/main.js?v=17"></script>
 </body>
 </html>

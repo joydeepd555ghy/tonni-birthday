@@ -87,6 +87,15 @@ window.SITE_CONFIG = {
     surpriseBtnEn: "Surprise me",
     slideshowBtnBn: "মহারানীর স্লাইডশো",
     slideshowBtnEn: "Maharani's Slideshow",
+    slideshowCaptions: [
+      "তুমি হাসলে পুরো পৃথিবীটা সুন্দর হয়ে যায়, মহারানী।",
+      "Every glance of yours feels like magic.",
+      "তোমার গ্লো আর মিষ্টি হাসি—দুটোই আমার সবচেয়ে প্রিয়।",
+      "My favourite glow queen & foodie partner forever.",
+      "তুমি পাশে থাকলে প্রতিটি মুহূর্ত উৎসব।",
+      "A thousand photos still wouldn't be enough.",
+      "শুভ জন্মদিন, আমার লক্ষ্মী কুচুপুচু মহারানী।"
+    ],
     loadMoreLabel: "Show more moments",
     emptyText: "Add photos and videos to assets/raw/ and run tools/optimize.py.",
     albums: {
@@ -156,14 +165,42 @@ window.SITE_CONFIG = {
     titleBn: "মহারানী, তুমি কেন এত বিশেষ",
     titleEn: "Why you are so special, Maharani",
     subtitle: "Tap each royal card to reveal a secret.",
+    allFlippedBn: "আর সবচেয়ে বড় কারণ—তুমি শুধু তুমি, আমার মহারানী।",
+    allFlippedEn: "And the biggest reason of all—simply being you, my Maharani.",
+    vouchersTitleBn: "মহারানীর জন্মদিনের বিশেষ উপহার",
+    vouchersTitleEn: "Tap to Claim Your Birthday Treats",
+    vouchers: [
+      {
+        id: "skincare",
+        tag: "ROYAL GLOW PASS",
+        titleBn: "স্কিনকেয়ার ট্রিট",
+        titleEn: "Skincare Wish Treat",
+        desc: "Pick your favourite serums, lip tints, or skincare must-haves—my treat for your royal glow!",
+        claimLabel: "Claim Glow Treat",
+        claimedLabel: "Claimed by Maharani"
+      },
+      {
+        id: "foodie",
+        tag: "ROYAL FOODIE PASS",
+        titleBn: "মহারানীর ফুডি ডেট",
+        titleEn: "Unlimited Foodie Feast",
+        desc: "Biryani, street food, desserts, or midnight cravings—eat whatever your heart desires, all on me!",
+        claimLabel: "Claim Foodie Treat",
+        claimedLabel: "Claimed by Maharani"
+      }
+    ],
     items: [
       {
         bn: "তোমার হাসি আমার পুরো দিনটাকে আলোকিত করে দেয়, মহারানী।",
         en: "Your smile lights up every single day, Maharani."
       },
       {
-        bn: "তুমি খুব সাধারণ মুহূর্তগুলোকেও উৎসবের মতো সুন্দর করে তোলো।",
-        en: "You turn the simplest moments into pure magic."
+        bn: "স্কিনকেয়ার ছাড়াই তুমি এত সুন্দর, তবুও তোমার স্কিনকেয়ার ভালোবাসাটা ভীষণ কিউট।",
+        en: "You glow naturally, and watching you adore your skincare routine is the cutest thing ever."
+      },
+      {
+        bn: "ভালো খাবার দেখলে তোমার চোখের সেই খুশিটা আমার সবচেয়ে প্রিয় দৃশ্য।",
+        en: "Seeing your eyes light up over delicious food is my favourite sight in the world."
       },
       {
         bn: "একটা ছোট্ট \"Hi\"-কে তুমি আমার সবচেয়ে প্রিয় স্মৃতিতে বদলে দিয়েছো।",
@@ -178,12 +215,8 @@ window.SITE_CONFIG = {
         en: "Your grace and warmth make you truly my Maharani."
       },
       {
-        bn: "তুমি আমাকে প্রতিদিন আরও ভালো মানুষ হতে অনুপ্রেরণা দাও।",
-        en: "You inspire me to be better every single day."
-      },
-      {
-        bn: "তোমার চোখের দিকে তাকালে আমি আমার পুরো পৃথিবী খুঁজে পাই।",
-        en: "In your eyes, I find an entire universe."
+        bn: "তুমি খুব সাধারণ মুহূর্তগুলোকেও উৎসবের মতো সুন্দর করে তোলো।",
+        en: "You turn the simplest moments into pure magic."
       },
       {
         bn: "তুমি আছো বলেই প্রতিটি দিনই জন্মদিনের মতো বিশেষ।",
@@ -229,7 +262,10 @@ window.SITE_CONFIG = {
       }
     ],
     closingBn: "ইতি তোমার জয়দীপ",
-    closingEn: "Forever yours, Joydeep Debnath"
+    closingEn: "Forever yours, Joydeep Debnath",
+    hugBtnBn: "একটা আলিঙ্গন পাঠাও",
+    hugBtnEn: "Send a warm hug",
+    hugSentText: "Warmest birthday hug delivered straight to my heart, Maharani."
   },
 
   finale: {
@@ -239,6 +275,14 @@ window.SITE_CONFIG = {
     messageEn: "Happy Birthday, my Maharani. I love you, today and always.",
     replayVoiceBn: "আবার শোনো",
     replayVoiceEn: "Replay my voice note",
+    reliveBtnBn: "আবার প্রথম থেকে দেখো",
+    reliveBtnEn: "Relive from the beginning",
+    voiceCaptions: [
+      { at: 0.35, text: "শুভ জন্মদিন, মহারানী..." },
+      { at: 2.1, text: "আমার লক্ষ্মী কুচুপুচু..." },
+      { at: 3.65, text: "I love you..." },
+      { at: 4.55, text: "ম্মুআহ... চিরকাল তোমারই।" }
+    ],
     credit: "With all my heart, Joydeep Debnath"
   },
 

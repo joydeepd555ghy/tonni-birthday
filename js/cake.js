@@ -27,6 +27,11 @@
       }, idx * 170);
     });
 
+    const glow = $("cake-candle-glow");
+    if (glow) {
+      setTimeout(() => glow.classList.add("dimmed"), candles.length * 140);
+    }
+
     const finishDelay = candles.length * 170 + 180;
     setTimeout(() => {
       const wish = $("wish-message");
@@ -62,6 +67,8 @@
     candlesOut = false;
     const cfg = window.SITE_CONFIG?.cake || {};
     document.querySelectorAll("#candles-group .candle").forEach((c) => c.classList.remove("out"));
+    const glow = $("cake-candle-glow");
+    if (glow) glow.classList.remove("dimmed");
     const wish = $("wish-message");
     if (wish) wish.hidden = true;
 

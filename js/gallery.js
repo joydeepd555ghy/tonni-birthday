@@ -466,10 +466,20 @@
       else if (e.key === "ArrowRight") stepLightbox(1);
     });
 
-    // Double-tap / double-click zoom
+    // Double-tap / double-click zoom + cute heart reaction burst!
     img.addEventListener("dblclick", () => {
-      lbScale = lbScale > 1 ? 1 : 2;
+      lbScale = lbScale > 1 ? 1 : 1.85;
       img.style.transform = `scale(${lbScale})`;
+      const heartPop = $("lb-heart-pop");
+      if (heartPop) {
+        heartPop.classList.remove("pop");
+        void heartPop.offsetWidth;
+        heartPop.classList.add("pop");
+      }
+      if (window.SiteSFX) window.SiteSFX.chime();
+      if (window.SiteParticles) {
+        window.SiteParticles.burst(window.innerWidth / 2, window.innerHeight / 2, 22, 0.9);
+      }
     });
 
     // Pinch-to-zoom & horizontal swipe
@@ -553,7 +563,9 @@
     img.classList.add("ken-burns");
 
     $("slideshow-counter").textContent = `${ssIdx + 1} / ${ssItems.length}`;
-    $("slideshow-caption").textContent = item.caption || "";
+    const poeticList = window.SITE_CONFIG?.gallery?.slideshowCaptions || [];
+    const fallbackCap = poeticList.length ? poeticList[ssIdx % poeticList.length] : "";
+    $("slideshow-caption").textContent = item.caption || fallbackCap;
   }
 
   function scheduleSlideshowNext() {

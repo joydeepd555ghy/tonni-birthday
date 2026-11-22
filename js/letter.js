@@ -40,6 +40,8 @@
 
     if (sig) sig.classList.add("signed");
     if (skipBtn) skipBtn.hidden = true;
+    const hugWrap = $("letter-hug-wrap");
+    if (hugWrap) hugWrap.hidden = false;
   }
 
   function typeLetter() {
@@ -69,6 +71,8 @@
       if (pIdx >= paragraphs.length) {
         if (sig) sig.classList.add("signed");
         if (skipBtn) skipBtn.hidden = true;
+        const hugWrap = $("letter-hug-wrap");
+        if (hugWrap) hugWrap.hidden = false;
         return;
       }
 
@@ -137,6 +141,24 @@
     if (cbn) cbn.textContent = cfg.closingBn || "ইতি তোমার জয়দীপ";
     if (cen) cen.textContent = cfg.closingEn || "Forever yours, Joydeep Debnath";
     if (hint) hint.textContent = cfg.tapPrompt || "Tap the seal to open";
+
+    const hugLabel = $("letter-hug-label");
+    if (hugLabel) hugLabel.textContent = cfg.hugBtnBn || "একটা আলিঙ্গন পাঠাও";
+
+    $("letter-hug-btn")?.addEventListener("click", () => {
+      const pulse = $("hug-pulse-overlay");
+      if (pulse) {
+        pulse.classList.remove("pulsing");
+        void pulse.offsetWidth;
+        pulse.classList.add("pulsing");
+      }
+      if (window.SiteSFX) window.SiteSFX.unlockBurst();
+      if (window.SiteParticles) {
+        window.SiteParticles.burst(window.innerWidth / 2, window.innerHeight * 0.5, 42, 0.9);
+      }
+      const st = $("letter-hug-status");
+      if (st) st.textContent = cfg.hugSentText || "Warmest hug delivered straight to my heart, Maharani.";
+    });
 
     $("wax-seal-btn")?.addEventListener("click", openEnvelope);
   });

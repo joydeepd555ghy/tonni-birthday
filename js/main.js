@@ -102,6 +102,10 @@
     setText("reasons-title-bn", cfg.reasons.titleBn);
     setText("reasons-title-en", cfg.reasons.titleEn);
     setText("reasons-subtitle", cfg.reasons.subtitle);
+    setText("reasons-secret-bn", cfg.reasons.allFlippedBn || "");
+    setText("reasons-secret-en", cfg.reasons.allFlippedEn || "");
+    setText("vouchers-title-bn", cfg.reasons.vouchersTitleBn || "");
+    setText("vouchers-title-en", cfg.reasons.vouchersTitleEn || "");
 
     // Cake
     setText("cake-title-bn", cfg.cake.titleBn);
@@ -124,6 +128,8 @@
     setText("finale-msg-en", cfg.finale.messageEn);
     setText("finale-replay-bn", cfg.finale.replayVoiceBn || "আবার শোনো");
     setText("finale-replay-en", cfg.finale.replayVoiceEn || "Replay my voice note");
+    setText("finale-relive-bn", cfg.finale.reliveBtnBn || "আবার প্রথম থেকে দেখো");
+    setText("finale-relive-en", cfg.finale.reliveBtnEn || "Relive from the beginning");
     setText("finale-credit", cfg.finale.credit);
 
     // Chapter reveal buttons
@@ -544,8 +550,13 @@
       video.play().catch(() => {});
     });
 
+    const phoneFrame = video.closest(".phone-frame");
+    const cinemaDim = $("cinema-dim");
+
     video.addEventListener("play", () => {
       overlay.classList.add("hidden");
+      phoneFrame?.classList.add("ambilight");
+      cinemaDim?.classList.add("active");
       if (video.currentTime < 0.5) firedCues.clear();
       // Duck music gently to 0.32 so the romantic song stays softly underneath the video SFX
       if (window.SiteMusic && window.SiteMusic.duck) {
@@ -575,6 +586,8 @@
 
     const onStop = () => {
       overlay.classList.remove("hidden");
+      phoneFrame?.classList.remove("ambilight");
+      cinemaDim?.classList.remove("active");
       if (window.SiteMusic && window.SiteMusic.unduck) {
         window.SiteMusic.unduck();
       }
@@ -749,9 +762,58 @@
         if (cakeWrap && seen.size >= 1) {
           cakeWrap.hidden = false;
         }
+        const secretBox = $("reasons-all-secret");
+        if (secretBox && secretBox.hidden && seen.size === items.length) {
+          secretBox.hidden = false;
+          if (window.SiteSFX && window.SiteSFX.applause) window.SiteSFX.applause();
+          if (window.SiteParticles) {
+            window.SiteParticles.burst(window.innerWidth / 2, window.innerHeight * 0.45, 50, 0.85);
+            window.SiteParticles.heartRain(20);
+          }
+        }
       });
       grid.appendChild(btn);
     });
+
+    // Render personalized Skincare & Foodie Royal Birthday Vouchers
+    const vGrid = $("vouchers-grid");
+    const vouchers = window.SITE_CONFIG?.reasons?.vouchers || [];
+    if (vGrid && vouchers.length) {
+      vGrid.innerHTML = "";
+      vouchers.forEach((v) => {
+        const card = document.createElement("article");
+        card.className = "voucher-card";
+        card.innerHTML = `
+          <span class="voucher-tag"></span>
+          <h4 class="voucher-bn" lang="bn"></h4>
+          <p class="voucher-en" lang="en"></p>
+          <p class="voucher-desc"></p>
+          <button class="btn btn-small btn-glass voucher-btn" type="button"></button>
+        `;
+        card.querySelector(".voucher-tag").textContent = v.tag;
+        card.querySelector(".voucher-bn").textContent = v.titleBn;
+        card.querySelector(".voucher-en").textContent = v.titleEn;
+        card.querySelector(".voucher-desc").textContent = v.desc;
+        const cBtn = card.querySelector(".voucher-btn");
+        cBtn.textContent = v.claimLabel || "Claim Treat";
+
+        cBtn.addEventListener("click", () => {
+          if (card.classList.contains("claimed")) return;
+          card.classList.add("claimed");
+          cBtn.classList.remove("btn-glass");
+          cBtn.classList.add("btn-gold");
+          cBtn.textContent = v.claimedLabel || "Claimed by Maharani";
+          if (window.SiteSFX) window.SiteSFX.matchFanfare();
+          if (window.SiteParticles) {
+            const r = card.getBoundingClientRect();
+            window.SiteParticles.burst(r.left + r.width / 2, r.top + r.height / 2, 34, 0.8);
+          }
+          if (cakeWrap) cakeWrap.hidden = false;
+        });
+
+        vGrid.appendChild(card);
+      });
+    }
   }
 
   /* ---------- Step-by-Step Single-Chapter Stage ---------- */
@@ -927,12 +989,22 @@
           }
           const bubbles = stop.querySelectorAll(".chat-bubble, .wa-msg");
           if (bubbles.length) {
+            // Brief realistic "typing..." (• • •) bubble before messages pop in!
+            const host = bubbles[0].parentElement;
+            const dots = document.createElement("span");
+            dots.className = "typing-indicator";
+            dots.setAttribute("aria-hidden", "true");
+            dots.innerHTML = "<span></span><span></span><span></span>";
+            if (host) host.prepend(dots);
+
             gsap.from(bubbles, {
               opacity: 0,
               y: 12,
+              delay: 0.65,
               stagger: {
-                each: 0.28,
+                each: 0.34,
                 onStart: function () {
+                  if (dots.parentElement) dots.remove();
                   if (!window.SiteSFX) return;
                   const el = this.targets()[0];
                   if (el && el.classList.contains("her") && window.SiteSFX.msgRecv) {
@@ -959,13 +1031,23 @@
     const btn = $("finale-btn");
     const reveal = $("finale-reveal");
     const replayBtn = $("finale-replay-voice");
+    const reliveBtn = $("finale-relive-btn");
+    const captionEl = $("finale-voice-caption");
     if (!btn || !reveal) return;
 
     const voiceSrc = window.SITE_CONFIG?.meta?.voiceWishSrc || "assets/music/joydeep-wish.mp3";
+    const voiceCaptions = window.SITE_CONFIG?.finale?.voiceCaptions || [];
     const voiceAudio = new Audio(voiceSrc);
     const wave = $("finale-voice-wave");
     voiceAudio.preload = "auto";
     let kissBurstTimer = null;
+    let captionTimers = [];
+
+    function clearVoiceTimers() {
+      clearTimeout(kissBurstTimer);
+      captionTimers.forEach((t) => clearTimeout(t));
+      captionTimers = [];
+    }
 
     voiceAudio.addEventListener("ended", () => {
       if (wave) wave.hidden = true;
@@ -975,8 +1057,9 @@
     });
 
     function playVoiceWish() {
-      clearTimeout(kissBurstTimer);
+      clearVoiceTimers();
       if (wave) wave.hidden = false;
+      if (captionEl) captionEl.textContent = "";
       if (window.SiteMusic && window.SiteMusic.duck) {
         window.SiteMusic.duck(0.14);
       }
@@ -987,6 +1070,14 @@
       voiceAudio.play().catch(() => {
         if (wave) wave.hidden = true;
         if (window.SiteMusic && window.SiteMusic.unduck) window.SiteMusic.unduck();
+      });
+
+      // Synchronized glowing Bengali subtitles timed to your 6.4s voice note
+      voiceCaptions.forEach((cue) => {
+        const tid = setTimeout(() => {
+          if (captionEl) captionEl.textContent = cue.text;
+        }, Math.round(cue.at * 1000));
+        captionTimers.push(tid);
       });
 
       // Right at the kiss ("mmuah!" ~4.6s), explode a big heart & firework burst
@@ -1011,6 +1102,13 @@
     });
 
     replayBtn?.addEventListener("click", playVoiceWish);
+    reliveBtn?.addEventListener("click", () => {
+      document.body.classList.remove("finale-active");
+      if (window.SiteMusic && window.SiteMusic.switchTo) {
+        window.SiteMusic.switchTo("birthday");
+      }
+      showChapter("hero", true);
+    });
   }
 
   function initScrollProgress() {
@@ -1087,7 +1185,7 @@
   function initLoveFab() {
     const fab = $("love-tap-fab");
     if (!fab) return;
-    const whispers = ["মহারানী", "লক্ষ্মী", "কুচুপুচু", "ভালোবাসি", "My Queen", "শুভ জন্মদিন"];
+    const whispers = ["মহারানী", "লক্ষ্মী", "কুচুপুচু", "My Glow Queen", "Foodie Maharani", "ভালোবাসি", "শুভ জন্মদিন"];
     let idx = 0;
 
     fab.addEventListener("click", () => {
