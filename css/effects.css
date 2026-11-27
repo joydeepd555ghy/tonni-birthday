@@ -218,14 +218,16 @@
   100% { height: 28px; opacity: 1; }
 }
 
-/* Dreamy Romantic Text Glow across Headings & Captions */
+/* Dreamy Romantic Text Glow across Headings & Captions (static GPU-safe shadow, zero 60fps CPU repaint) */
 .hero-title-bn,
 .section-title-bn,
 .onboarding-title-bn,
 .wish-bn,
 .finale-message-bn,
 .gold-stamp-bn {
-  animation: textGlowGold 3.8s ease-in-out infinite alternate;
+  text-shadow:
+    0 0 18px rgba(247, 204, 122, 0.58),
+    0 0 36px rgba(255, 112, 158, 0.34);
 }
 
 .hero-title-en,

@@ -263,17 +263,30 @@
     const bMonth = (cfg.meta?.birthdayMonth || 11) - 1; // 0-indexed (10 = November)
     const bDay = cfg.meta?.birthdayDay || 28;
     let timer = null;
+    let mode = "";
+    let digitsEl = null;
 
     function update() {
       const now = new Date();
       if (now.getMonth() === bMonth && now.getDate() === bDay) {
-        box.innerHTML = `<span class="cd-today-bn" lang="bn"></span><span class="cd-today-en" lang="en"></span>`;
-        box.querySelector(".cd-today-bn").textContent =
-          cfg.onboarding?.birthdayTodayBn || "আজ তোমার বিশেষ দিন, মহারানী!";
-        box.querySelector(".cd-today-en").textContent =
-          cfg.onboarding?.birthdayTodayEn || "It's 28th November — Happy Birthday, Maharani!";
+        if (mode !== "today") {
+          mode = "today";
+          box.innerHTML = `<span class="cd-today-bn" lang="bn"></span><span class="cd-today-en" lang="en"></span>`;
+          box.querySelector(".cd-today-bn").textContent =
+            cfg.onboarding?.birthdayTodayBn || "আজ তোমার বিশেষ দিন, মহারানী!";
+          box.querySelector(".cd-today-en").textContent =
+            cfg.onboarding?.birthdayTodayEn || "It's 28th November — Happy Birthday, Maharani!";
+        }
         clearInterval(timer);
         return;
+      }
+
+      if (mode !== "countdown") {
+        mode = "countdown";
+        box.innerHTML = `<span class="cd-label" lang="bn"></span><span class="cd-digits"></span>`;
+        box.querySelector(".cd-label").textContent =
+          cfg.onboarding?.countdownPrefixBn || "মহারানীর জন্মদিনে আর মাত্র";
+        digitsEl = box.querySelector(".cd-digits");
       }
 
       let target = new Date(now.getFullYear(), bMonth, bDay, 0, 0, 0);
@@ -284,11 +297,10 @@
       const m = Math.floor((diff % 3600000) / 60000);
       const s = Math.floor((diff % 60000) / 1000);
 
-      box.innerHTML = `<span class="cd-label" lang="bn"></span><span class="cd-digits"></span>`;
-      box.querySelector(".cd-label").textContent =
-        cfg.onboarding?.countdownPrefixBn || "মহারানীর জন্মদিনে আর মাত্র";
-      box.querySelector(".cd-digits").textContent =
-        `${d}d : ${String(h).padStart(2, "0")}h : ${String(m).padStart(2, "0")}m : ${String(s).padStart(2, "0")}s`;
+      if (digitsEl) {
+        digitsEl.textContent =
+          `${d}d : ${String(h).padStart(2, "0")}h : ${String(m).padStart(2, "0")}m : ${String(s).padStart(2, "0")}s`;
+      }
     }
 
     update();
