@@ -115,7 +115,7 @@
 
 /* Floral Bouquets Framing All Sides of Premiere Screen */
 .floral-frame {
-  position: fixed;
+  position: absolute;
   inset: 0;
   z-index: 3;
   pointer-events: none;
@@ -127,7 +127,8 @@
   position: absolute;
   width: clamp(136px, 37vw, 250px);
   height: auto;
-  filter: drop-shadow(0 10px 26px rgba(14, 2, 10, 0.55)) drop-shadow(0 0 18px rgba(255, 112, 158, 0.28));
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
   transition: transform 1.2s cubic-bezier(0.22, 1, 0.36, 1), opacity 0.9s ease;
 }
 
@@ -165,7 +166,8 @@
   width: clamp(46px, 12vw, 96px);
   height: auto;
   transform: translateY(-50%);
-  filter: drop-shadow(0 6px 18px rgba(14, 2, 10, 0.45));
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
   transition: transform 1.15s cubic-bezier(0.22, 1, 0.36, 1), opacity 0.8s ease;
 }
 
@@ -188,7 +190,7 @@
 
 /* Giant "28th November" Zoom-Into-Premiere Splash */
 .date-intro-splash {
-  position: fixed;
+  position: absolute;
   inset: 0;
   z-index: 5;
   display: flex;
@@ -200,13 +202,11 @@
   cursor: pointer;
   backface-visibility: hidden;
   -webkit-backface-visibility: hidden;
-  animation: dateZoomAppear 1.15s cubic-bezier(0.22, 1, 0.36, 1) both;
-  transition: transform 0.9s cubic-bezier(0.4, 0, 0.2, 1), opacity 0.8s ease;
+  animation: dateZoomAppear 1.05s cubic-bezier(0.22, 1, 0.36, 1) forwards;
 }
 
 .date-intro-splash.zoom-out {
-  transform: scale(2.2) translate3d(0, 0, 0);
-  opacity: 0;
+  animation: dateZoomOut 0.85s cubic-bezier(0.4, 0, 0.2, 1) forwards;
   pointer-events: none;
 }
 

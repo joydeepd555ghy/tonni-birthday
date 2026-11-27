@@ -293,11 +293,22 @@
 @keyframes dateZoomAppear {
   0% {
     opacity: 0;
-    transform: scale(0.62) translate3d(0, 0, 0);
+    transform: scale(0.68) translate3d(0, 0, 0);
   }
   100% {
     opacity: 1;
     transform: scale(1) translate3d(0, 0, 0);
+  }
+}
+
+@keyframes dateZoomOut {
+  0% {
+    opacity: 1;
+    transform: scale(1) translate3d(0, 0, 0);
+  }
+  100% {
+    opacity: 0;
+    transform: scale(1.85) translate3d(0, 0, 0);
   }
 }
 

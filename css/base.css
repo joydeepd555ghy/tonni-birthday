@@ -55,7 +55,6 @@ body {
     radial-gradient(65% 50% at 12% 38%, rgba(247, 204, 122, 0.14) 0%, transparent 70%),
     radial-gradient(75% 55% at 88% 82%, rgba(255, 112, 158, 0.2) 0%, transparent 72%),
     #1c0514;
-  background-attachment: fixed;
   -webkit-font-smoothing: antialiased;
 }
 
@@ -124,13 +123,11 @@ input:focus-visible,
 
 .dream-aurora {
   position: absolute;
-  inset: -25%;
+  inset: -15%;
   background:
-    radial-gradient(45% 42% at 24% 28%, rgba(255, 112, 158, 0.28) 0%, transparent 70%),
-    radial-gradient(42% 45% at 78% 24%, rgba(247, 204, 122, 0.22) 0%, transparent 72%),
-    radial-gradient(50% 45% at 50% 82%, rgba(212, 54, 116, 0.26) 0%, transparent 74%);
-  filter: blur(42px);
-  will-change: transform;
+    radial-gradient(45% 42% at 24% 28%, rgba(255, 112, 158, 0.26) 0%, transparent 72%),
+    radial-gradient(42% 45% at 78% 24%, rgba(247, 204, 122, 0.2) 0%, transparent 74%),
+    radial-gradient(50% 45% at 50% 82%, rgba(212, 54, 116, 0.24) 0%, transparent 76%);
   animation: auroraDrift 18s ease-in-out infinite alternate;
 }
 
