@@ -15,6 +15,7 @@ window.SITE_CONFIG = {
     startDate: "2026-02-10",
     birthdayMusicSrc: "assets/music/maharani-birthday.mp3",
     romanticMusicSrc: "assets/music/song.mp3",
+    letterMusicSrc: "assets/music/letter-birthday.mp3",
     voiceWishSrc: "assets/music/joydeep-wish.mp3",
     musicSrc: "assets/music/maharani-birthday.mp3",
     heroPhoto: "assets/media/tonni.jpg",

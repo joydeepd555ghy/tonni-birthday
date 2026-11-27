@@ -427,7 +427,8 @@
 
     const tracks = {
       birthday: new Audio(cfg?.meta?.birthdayMusicSrc || "assets/music/maharani-birthday.mp3"),
-      romantic: new Audio(cfg?.meta?.romanticMusicSrc || "assets/music/song.mp3")
+      romantic: new Audio(cfg?.meta?.romanticMusicSrc || "assets/music/song.mp3"),
+      letter: new Audio(cfg?.meta?.letterMusicSrc || "assets/music/letter-birthday.mp3")
     };
     Object.values(tracks).forEach((a) => {
       a.loop = true;
@@ -547,7 +548,8 @@
     heroBtn?.addEventListener("click", toggle);
     pill?.addEventListener("click", toggle);
     switchPill?.addEventListener("click", () => {
-      const nextKey = activeTrackKey === "birthday" ? "romantic" : "birthday";
+      const order = ["birthday", "romantic", "letter"];
+      const nextKey = order[(order.indexOf(activeTrackKey) + 1) % order.length];
       if (!playing) {
         play(nextKey);
       } else {
@@ -943,6 +945,10 @@
 
     if (targetId === "timeline") {
       initTimelineScrollAnimations();
+    } else if (targetId === "finale") {
+      if (window.SiteMusic && window.SiteMusic.switchTo) {
+        window.SiteMusic.switchTo("romantic");
+      }
     } else if (typeof ScrollTrigger !== "undefined") {
       setTimeout(() => ScrollTrigger.refresh(), 100);
     }

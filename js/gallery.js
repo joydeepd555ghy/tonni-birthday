@@ -631,5 +631,14 @@
     window.addEventListener("resize", updateCarousel, { passive: true });
   }
 
+  window.SiteLightbox = {
+    openSingle(src, caption = "") {
+      openLightbox(
+        [{ type: "photo", full: src, thumb: src, caption, album: "Handwritten Letter", date: "28 Nov" }],
+        0
+      );
+    }
+  };
+
   document.addEventListener("DOMContentLoaded", initGallery);
 })();

@@ -40,6 +40,8 @@
 
     if (sig) sig.classList.add("signed");
     if (skipBtn) skipBtn.hidden = true;
+    const hwWrap = $("letter-handwritten-wrap");
+    if (hwWrap) hwWrap.hidden = false;
     const hugWrap = $("letter-hug-wrap");
     if (hugWrap) hugWrap.hidden = false;
   }
@@ -71,6 +73,8 @@
       if (pIdx >= paragraphs.length) {
         if (sig) sig.classList.add("signed");
         if (skipBtn) skipBtn.hidden = true;
+        const hwWrap = $("letter-handwritten-wrap");
+        if (hwWrap) hwWrap.hidden = false;
         const hugWrap = $("letter-hug-wrap");
         if (hugWrap) hugWrap.hidden = false;
         return;
@@ -114,7 +118,7 @@
     wrapper.classList.add("opening");
     if (window.SiteSFX) window.SiteSFX.envelopeOpen();
     if (window.SiteMusic && window.SiteMusic.switchTo) {
-      window.SiteMusic.switchTo("romantic");
+      window.SiteMusic.switchTo("letter");
     }
 
     if (window.SiteParticles) {
@@ -158,6 +162,16 @@
       }
       const st = $("letter-hug-status");
       if (st) st.textContent = cfg.hugSentText || "Warmest hug delivered straight to my heart, Maharani.";
+    });
+
+    $("handwritten-open-btn")?.addEventListener("click", () => {
+      if (window.SiteSFX && window.SiteSFX.softPop) window.SiteSFX.softPop();
+      if (window.SiteLightbox) {
+        window.SiteLightbox.openSingle(
+          "assets/media/handwritten-letter.webp",
+          "Happy Birthday Maharani — written with love, Joydeep"
+        );
+      }
     });
 
     $("wax-seal-btn")?.addEventListener("click", openEnvelope);
